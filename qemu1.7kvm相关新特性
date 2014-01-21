@@ -1,0 +1,35 @@
+只罗列kvm相关的特性列表。
+设备模拟
+
+Audio
+HDA设备现在默认包含了mixer.之前需要在编译时配置"--enable-mixemu"
+Audio可以不依赖于OSS工作。之前需要在configure时特别配置
+Audio增加了 QEMU_AUDIO_TIMER_PERIOD 环境变量，比之前的版本CPU占用率更低。（和我们之前的修改方案非常类似）
+Block devices
+支持LSI 53C810 SCSI HBA卡，与现在的895A相比支持一些很老的WindowsNT版本。
+Device assignment
+VFIO现在支持通过MSI中断技术设置CPU亲和（VFIO是一套用户态驱动框架，可用于编写高效用户态驱动；在虚拟化情景下，亦可用来在用户态实现device passthrough）
+VFIO现在重置设备操作更加稳定，不论是使用PCI function-level reset(FLR),电源管理还是parent bridge的reset(通过内核)
+改进了使用某些VFIO设备的Roms时的可靠性。
+USB
+改进了USB3.0的性能和功能。
+x86
+Qemu现在可以产生ACPI表提供给firmware直接使用。未来可以使某些新特性无需修改firmware组件（比如seabios,ovmf,coreboot)
+基本支持虚拟机使用超过1TB内存。（但是firmware还不支持）
+Monitor
+“info block”命令可以自动补全
+可以通过monitor命令查询子命令帮助,比如“help info block"
+两个新命令”blockdev-snapshot-internal-sync","blockdev-snapshot-delete-internal-sync"改进了对内部快照的支持。
+新命令"blockdev-add"提供了一个用于block设备hotplug的QMP接口。
+Migration
+修正了Qemu1.5到Qemu1.6虚拟机迁移失败的问题。
+Block devices,qemu-img,qemu-io
+
+sheepdog驱动支持网络断链后自动重连
+VMDK驱动支持VMWare ESX产生的文件
+qcow2驱动可以发现某些类型的损坏，并防止向损坏的image上写数据
+VHDX驱动支持创建、写.vhdx images。
+文件的metadata可以使用”qemu-img map"输出成人类可读的格式或者json格式。
+Guest agent
+
+"filesystem freeze/thaw"命令现在支持windows系统了。（内部通过调用Volume Shadow Copy Service(VSS)）。 
