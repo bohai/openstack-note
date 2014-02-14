@@ -52,5 +52,10 @@ createImage快照流程：
 + 导出包含metadata的image  
   便于后续重新导入image
 
-###备注  
+###备注 
+[1]: http://docs.openstack.org/user-guide/content/cli_manage_images.html#glance-image-list 
+[2]: http://docs.openstack.org/trunk/openstack-ops/content/snapshots.html  
+[3]: http://www.sebastien-han.fr/blog/2012/12/10/openstack-perform-consistent-snapshots/
+[4]: http://docs.openstack.org/image-guide/content/
+
 
