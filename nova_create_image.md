@@ -52,7 +52,8 @@ createImage快照流程：
 >外部消息----->nova api（函数_action_create_image）----->nova compute api（函数snapshot_volume_backed）----->volume api(函数create_snapshot_force）
             |--->glance(函数create，创建image)
 
-更详细流程待pdb研究：
+更详细流程待pdb研究.
+是否为全量快照？看似不支持增量快照。
 
 
 ###当前快照导入、导出能力
