@@ -90,6 +90,9 @@ https://blueprints.launchpad.net/nova/+spec/linked-snapshot
 + 感觉像是利用linked clone快速clone虚拟机  
 https://blueprints.launchpad.net/nova/+spec/nova-fast-snapshot
 
++ 关联的一个重要BP
+https://wiki.openstack.org/wiki/Raksha
+
 ###备注 
 [1]: http://docs.openstack.org/user-guide/content/cli_manage_images.html#glance-image-list 
 [2]: http://docs.openstack.org/trunk/openstack-ops/content/snapshots.html  
