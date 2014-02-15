@@ -58,7 +58,7 @@ createImage快照流程：
 
 
 ###当前快照导入、导出能力
-+ 虚拟机快照导入
++ 虚拟机快照导出
     1.  使用nova image-create创建虚拟机快照
     2.  通过glance image-download <Image ID> --file filename.img导出虚拟机快照
 + 虚拟机快照导入
