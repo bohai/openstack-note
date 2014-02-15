@@ -90,7 +90,7 @@ https://blueprints.launchpad.net/nova/+spec/linked-snapshot
 + 感觉像是利用linked clone快速clone虚拟机  
 https://blueprints.launchpad.net/nova/+spec/nova-fast-snapshot
 
-+ 关联的一个重要BP
++ 关联的一个重要BP  
 https://wiki.openstack.org/wiki/Raksha
 
 ###备注 
