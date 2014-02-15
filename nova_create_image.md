@@ -4,15 +4,15 @@
 （QEMU 1.3+ and libvirt 1.0+ ）后支持livesnapshot。
 
 +   制作livesnapshot过程：  
-1.  flush虚拟机中的数据到磁盘，并冻结文件系统    
+    1.  flush虚拟机中的数据到磁盘，并冻结文件系统    
     主要使用sync,fsfreeze等命令  
-2.  创建虚拟机快照  
+    2.  创建虚拟机快照  
     <pre><code>$ nova image-create myCirrosServer myCirrosImage</code></pre>
 
 +   使用image创建虚拟机：  
-1.  查看image
+    1.  查看image
     <pre><code>$ nova image-show IMAGE </code></pre> 
-2.  创建虚拟机
+    2.  创建虚拟机
     <pre><code>$ nova boot newServer --image 7e5142af-1253-4634-bcc6-89482c5f2e8a \
    --flavor 3</code></pre>
 
