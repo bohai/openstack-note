@@ -3,6 +3,7 @@
 qemu的trim特性：1.5版支持raw，1.6版支持qcow2。  
 NTFS本身支持trim命令，EXT4需要在mount时指定参数-o discard，EXT3需要手工执行fstrim。  
 + libvirt方式启动虚拟机
+ide为例：  
 ```xml
     <disk type='file' device='disk'>
         <driver name='qemu' type='qcow2' cache='none' discard='unmap'/>
@@ -10,6 +11,7 @@ NTFS本身支持trim命令，EXT4需要在mount时指定参数-o discard，EXT3�
         <target dev='sdb' bus='ide'/>
     </disk>
 ```
+virtio-scsi为例：
 ```xml
 <devices> 
   <disk type='file' device='disk'>
