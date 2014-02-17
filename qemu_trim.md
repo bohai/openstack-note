@@ -34,7 +34,8 @@ mount -o discard /dev/sdb /mnt
 
 + trim实现原理  
 参照http://leiqzhang.com/2013/08/2013-08-07-virtual-disk-unmap-shrink/
-
+虚拟机磁盘设备Shrink过程：
+>guest fs----->device driver----->qemu block----->host fs---->host device driver----->device
 
 + 使用场景  
 虚拟化场景下节省存储空间。尤其是用于IO负荷低（数据使用频率低）的存储，用户删除数据后后端回收空间从而提高空间使用率。
