@@ -1,7 +1,7 @@
 ###libvirt/qemu  文件系统trim
-目前virtio驱动无法支持trim，ide/scsi/virtio-scsi驱动可以支持trim。
-qemu的trim特性：1.5版支持raw，1.6版支持qcow2。
-NTFS本身支持trim命令，EXT4需要在mount时指定参数-o discard，EXT3需要手工执行fstrim。
+目前virtio驱动无法支持trim，ide/scsi/virtio-scsi驱动可以支持trim。  
+qemu的trim特性：1.5版支持raw，1.6版支持qcow2。  
+NTFS本身支持trim命令，EXT4需要在mount时指定参数-o discard，EXT3需要手工执行fstrim。  
 + libvirt方式启动虚拟机
 ```xml
     <disk type='file' device='disk'>
@@ -10,10 +10,24 @@ NTFS本身支持trim命令，EXT4需要在mount时指定参数-o discard，EXT3�
         <target dev='sdb' bus='ide'/>
     </disk>
 ```
+```xml
+<devices> 
+  <disk type='file' device='disk'>
+        <source file='/tmp/scsidisk.qcow2'/>
+        <target dev='sda' bus='scsi'/>
+        <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+  </disk>
+  <controller type='scsi' index='0' model='virtio-scsi'/>     
+</devices>
+```
 
 + qemu直接启动虚拟机
 ```shell
 ./qemu-system-x86_64 --enable-kvm -m 2g -smp 2  -drive file=/data/hotplug/hotplug.qcow2,cache=none,if=ide,discard=on,format=qcow2 -drive file=/data/hotplug/vdb.qcow2,cache=none,if=ide,discard=on,format=qcow2  -vnc 186.100.8.138:-1
+```
+新格式（以virtio-scsi-pci为例）：  
+```shell
+./qemu-system-x86_64 --enable-kvm -m 2g -smp 2  -drive file=/data/hotplug/hotplug.qcow2,cache=none,if=none,id=hd2,discard=on,format=qcow2 -drive file=/data/hotplug/vdb.qcow2,cache=none,if=none,id=hd,discard=on,format=qcow2 -device virtio-scsi-pci,id=scsi -device scsi-hd,drive=hd2 -device scsi-hd,drive=hd   -vnc 186.100.8.138:-1
 ```
 
 + 确认方法  
