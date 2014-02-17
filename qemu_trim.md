@@ -43,7 +43,7 @@ mount -o discard /dev/sdb /mnt
 
 +参考  
 为什么引入trim命令：  
-http://www.360doc.com/content/11/0723/10/7040275_135349919.shtml
+http://www.360doc.com/content/11/0723/10/7040275_135349919.shtml  
 为什么引入unmap命令：  
 主要为了应对thin provision场景的存储使用效率。  
 
