@@ -32,12 +32,18 @@ mount -o discard /dev/sdb /mnt
 294M    vdb.qcow2
 ```
 
-+ trim实现原理  
-参照http://leiqzhang.com/2013/08/2013-08-07-virtual-disk-unmap-shrink/
-虚拟机磁盘设备Shrink过程：
++ Shrink实现原理  
+参照http://leiqzhang.com/2013/08/2013-08-07-virtual-disk-unmap-shrink/   
+虚拟机磁盘设备Shrink过程：  
 >guest fs----->device driver----->qemu block----->host fs---->host device driver----->device
 
-+ 使用场景  
-虚拟化场景下节省存储空间。尤其是用于IO负荷低（数据使用频率低）的存储，用户删除数据后后端回收空间从而提高空间使用率。
++ 使用场景    
+提供空间使用率。  
+提高写数据性能。  
 
++参考  
+为什么引入trim命令：  
+http://www.360doc.com/content/11/0723/10/7040275_135349919.shtml
+为什么引入unmap命令：  
+主要为了应对thin provision场景的存储使用效率。  
 
