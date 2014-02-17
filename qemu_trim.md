@@ -57,7 +57,7 @@ mount -o discard /dev/sdb /mnt
 提供空间使用率。  
 提高写数据性能。  
 
-+参考  
++ 参考  
  -  为什么引入trim命令：  
 http://www.360doc.com/content/11/0723/10/7040275_135349919.shtml  
  -  为什么引入unmap命令：  
