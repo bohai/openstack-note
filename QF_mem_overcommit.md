@@ -74,6 +74,11 @@ virsh setmem DOMAIN_NAME SIZE
 virsh setmem win7 2G
 ```
 
+没有查看（虚拟机分配内存-气球内存）大小的virsh命令，但是可以使用：  
+```shell
+# virsh qemu-monitor-command --hmp win7 'info balloon'
+balloon: actual=4096
+```
 
 + qemu命令  
 
@@ -88,12 +93,6 @@ ballon设备：
 释放内存(设置气球大小,释放需要一个过程）：
 ```xml
 (qemu) balloon SIZE
-```
-
-没有查看（虚拟机分配内存-气球内存）大小的virsh命令，但是可以使用：  
-```shell
-# virsh qemu-monitor-command --hmp win7 'info balloon'
-balloon: actual=4096
 ```
 
 + 其他  
