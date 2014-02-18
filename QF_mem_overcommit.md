@@ -67,7 +67,7 @@ ballon设备：
 ```xml
 (qemu) info balloon
 ```
-释放内存(设置气球大小）：
+释放内存(设置气球大小,释放需要一个过程）：
 ```xml
 (qemu) balloon SIZE
 ```
