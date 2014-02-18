@@ -96,9 +96,10 @@ ballon设备：
 ```
 
 + 其他  
-
+关于自动气泡，从多个层次都可以实现。比如hypervisor层或者更上层的管理系统实现。
 
 #####页面交换  
 #####页面压缩  
 
 [KSM]:https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/chap-KSM.html
+[自动气泡]:http://lists.nongnu.org/archive/html/qemu-devel/2013-05/msg01295.html
