@@ -11,3 +11,4 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 
 
 [1]:qemu_feature_trim.md
+[2]:https://wiki.openstack.org/wiki/BlockDeviceConfig
