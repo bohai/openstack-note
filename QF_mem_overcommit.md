@@ -2,7 +2,7 @@
 -----
 #####透明页面共享  
 + KSM  
-KSM是Linux内核提供的一个功能，主要用于合并完全相同的内存页面从而提高内存使用率。  
+[KSM]是Linux内核提供的一个功能，主要用于合并完全相同的内存页面从而提高内存使用率。  
 由于KVM虚拟机是Linux的一个进程，所以可以很方便的使用到该特性。从而提供内存超配的能力。  
   - 确认KSM是否开启：  
 ```shell
@@ -57,3 +57,5 @@ abundant_threshold|一个区域有多少百分数的有效冗余页面，uksmd�
 #####内存气泡  
 #####页面交换  
 #####页面压缩  
+
+[KSM]:https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/chap-KSM.html
