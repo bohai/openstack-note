@@ -58,6 +58,19 @@ abundant_threshold|一个区域有多少百分数的有效冗余页面，uksmd�
 内存气泡的原理非常简单，通过在guest中申请内存来进行guest内的释放，供其他虚拟机使用。  
 + libvirt xml  
 + qemu命令  
+ballon设备：  
+```xml
+-device virtio-balloon-pci,id=DEVICE_ID
+```
+查看虚拟机实际内存：  
+```xml
+(qemu) info balloon
+```
+释放内存(设置气球大小）：
+```xml
+(qemu) balloon SIZE
+```
+
 + 其他  
 
 
