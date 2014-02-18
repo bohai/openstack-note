@@ -41,4 +41,8 @@
        <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
  </disk>
 ```
-
+#####qemu命令
+```xml
+-drive file=/dev/sdb,if=none,id=drive-virtio-disk1,format=raw,cache=none 
+-device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x6,drive=drive-virtio-disk1,id=virtio-disk1
+```
