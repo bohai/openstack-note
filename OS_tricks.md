@@ -35,3 +35,14 @@ mysql>select * from table名;
 + 查看表结构：  
 mysql>desc table名;
 
+###pdb调试
+两种方式运行：
+	* python -m pdb myscript.py
+	* 代码中添加pdb
+```python
+          import pdb
+          pdb.set_trace()
+```
+pdb支持的指令以及指令详细用法可以通过help查看。
+
+
