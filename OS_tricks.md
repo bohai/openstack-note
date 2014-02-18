@@ -1,3 +1,6 @@
+openstack tricks
+---
+
 ###使用curl发送消息：
 + [root@controller ~(keystone_admin)]# nova --debug image-create 6c2504f4-efa9-47ec-b6f4-06a9fde8a00b nova_100_new_01
 + 获取token：  
