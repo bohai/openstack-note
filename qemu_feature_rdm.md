@@ -1,6 +1,6 @@
 ### RDM（raw device mapping）
 -----
-使用的virtio-scsi。  
+使用的virtio-scsi。目前主推的方式。在可扩展性，灵活性，可伸缩性上好于virtio-blk。
 适用于IO密集型应用的场景。
 #####libvirt xml
 第一种为推荐方式，可以实现LUN隔离。
