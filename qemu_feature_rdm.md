@@ -1,7 +1,7 @@
 ### RDM（raw device mapping）
-
-
-### libvirt xml
+-----
+使用的virtio-scsi。
+#####libvirt xml
 第一种为推荐方式，可以实现LUN隔离。
 ```xml
      <disk type='block' device='lun'>
@@ -20,7 +20,7 @@
 
      <controller type='scsi' index='0' model='virtio-scsi'/>
 ```
-### qemu命令
+##### qemu命令
 + disk方式的RDM
 ```xml
 -drive file=/dev/sdb,if=none,id=drive-scsi0-0-0-1,format=raw,cache=none 
@@ -28,5 +28,17 @@
 -device virtio-scsi-pci,id=scsi0,bus=pci.0,addr=0x4
 ```
 + lun方式的RDM
++ 
 
+###SCSI passthrough
+这个同RDM比较容易混淆,这个是用的virtio-blk。
+#####libvirt xml
+```xml
+ <disk type='block' device='lun'>
+       <driver name='qemu' type='raw' cache='none'/>
+       <source dev='/dev/mapper/360022a110000ecba5db427db00000023'/>
+       <target dev='vdb' bus='virtio'/>
+       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+ </disk>
+```
 
