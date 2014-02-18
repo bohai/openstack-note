@@ -56,7 +56,25 @@ abundant_threshold|一个区域有多少百分数的有效冗余页面，uksmd�
 
 #####内存气泡  
 内存气泡的原理非常简单，通过在guest中申请内存来进行guest内的释放，供其他虚拟机使用。  
-+ libvirt xml  
++ libvirt   
+
+xml文件：  
+```xml
+  <devices>
+    ......
+    <memballoon model='virtio'/>
+    ......
+  </devices>
+```
+
+设置（虚拟机分配内存-气球内存）大小，大小可以带单位，默认单位为k。
+```shell
+virsh setmem DOMAIN_NAME SIZE
+例如：
+virsh setmem win7 2G
+```
+
+
 + qemu命令  
 
 ballon设备：  
@@ -70,6 +88,12 @@ ballon设备：
 释放内存(设置气球大小,释放需要一个过程）：
 ```xml
 (qemu) balloon SIZE
+```
+
+没有查看（虚拟机分配内存-气球内存）大小的virsh命令，但是可以使用：  
+```shell
+# virsh qemu-monitor-command --hmp win7 'info balloon'
+balloon: actual=4096
 ```
 
 + 其他  
