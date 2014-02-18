@@ -100,8 +100,10 @@ ballon设备：
 
 #####页面交换  
 qemu-kvm虚拟机作为系统的进程存在，所使用的内存可以利用系统的swap能力进行换出。  
+不需要特别设置。
 
 #####页面压缩  
+未见支持。  
 
 [KSM]:https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/chap-KSM.html
 [自动气泡]:http://lists.nongnu.org/archive/html/qemu-devel/2013-05/msg01295.html
