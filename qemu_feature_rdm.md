@@ -28,7 +28,6 @@
 -device virtio-scsi-pci,id=scsi0,bus=pci.0,addr=0x4
 ```
 + lun方式的RDM
-+ 
 
 ###SCSI passthrough
 这个同RDM比较容易混淆,这个是用的virtio-blk。
