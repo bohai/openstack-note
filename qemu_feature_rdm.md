@@ -27,6 +27,6 @@
 -device scsi-hd,bus=scsi0.0,channel=0,scsi-id=0,lun=1,drive=drive-scsi0-0-0-1,id=scsi0-0-0-1 
 -device virtio-scsi-pci,id=scsi0,bus=pci.0,addr=0x4
 ```
-
++ lun方式的RDM
 
 
