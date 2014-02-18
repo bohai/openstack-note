@@ -99,6 +99,8 @@ ballon设备：
 关于[自动气泡]，从多个层次都可以实现。比如hypervisor层或者更上层的管理系统实现。
 
 #####页面交换  
+qemu-kvm虚拟机作为系统的进程存在，所使用的内存可以利用系统的swap能力进行换出。  
+
 #####页面压缩  
 
 [KSM]:https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/chap-KSM.html
