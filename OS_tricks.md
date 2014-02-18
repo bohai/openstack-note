@@ -18,7 +18,7 @@ curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/6c
 
 + json可读显示
 ```xml
-curl | python mjson.py
+curl命令 | python -mjson.tool
 ```
 
 ###查看mysql数据库：
