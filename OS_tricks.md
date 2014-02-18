@@ -37,8 +37,8 @@ mysql>desc table名;
 
 ###pdb调试
 两种方式运行：
-	* python -m pdb myscript.py
-	* 代码中添加pdb
++ python -m pdb myscript.py
++ 代码中添加pdb
 ```python
           import pdb
           pdb.set_trace()
