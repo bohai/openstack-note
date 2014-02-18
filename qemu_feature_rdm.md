@@ -30,7 +30,7 @@
 ```
 + lun方式的RDM
 
-###SCSI passthrough
+###scsi passthrough
 -----
 这个同RDM比较容易混淆,这个是用的virtio-blk。（不推荐使用）
 #####libvirt xml
@@ -47,3 +47,6 @@
 -drive file=/dev/sdb,if=none,id=drive-virtio-disk1,format=raw,cache=none 
 -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x6,drive=drive-virtio-disk1,id=virtio-disk1
 ```
+
+###参考：  
+http://www.ovirt.org/Features/Virtio-SCSI
