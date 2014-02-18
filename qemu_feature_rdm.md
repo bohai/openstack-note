@@ -30,7 +30,7 @@
 ```
 + lun方式的RDM
 
-###scsi passthrough
+###virtio-blk
 -----
 这个同RDM比较容易混淆,这个是用的virtio-blk。（不推荐使用）
 #####libvirt xml
