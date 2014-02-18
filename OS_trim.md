@@ -10,5 +10,10 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 ###代码流程  
 
 
+###笔记
+```xml
+curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/c62b5277-23cf-4af2-b6ae-15765e9341d1/os-volume_attachments -X GET -H "X-Auth-Project-Id: admin" -H "User-Agent: python-novaclient" -H "Accept: application/json" -H "X-Auth-Token: 2e3c783097fc4f07b2673f520f4d9962"
+```
+
 [trim特性]:qemu_feature_trim.md
 [2]:https://wiki.openstack.org/wiki/BlockDeviceConfig
