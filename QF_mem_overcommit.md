@@ -5,11 +5,21 @@
 KSM是Linux内核提供的一个功能，主要用于合并完全相同的内存页面从而提高内存使用率。  
 由于KVM虚拟机是Linux的一个进程，所以可以很方便的使用到该特性。从而提供内存超配的能力。  
   - 确认KSM是否开启：  
-    ```  KSM /boot/config-`uname –r`  ``` 
+```shell
+KSM /boot/config-`uname –r`  
+``` 
   - 内核参数目录：/sys/kernel/mm/ksm  
   - 默认KSM可以监控2000个页面：  
-    ``` cat /sys/kernel/mm/KSM/max_kernel_pages ```    
-    ```2000 ```
+```shell 
+cat /sys/kernel/mm/KSM/max_kernel_pages   
+2000 
+```
+  - KSM需要程序使用madvise函数申请内存。确认KVM编译包含了该能力。   
+``` c
+#ifdef MADV_MERGEABLE
+        madvise(new_block->host, size, MADV_MERGEABLE);
+#endif
+```
 
 
 + UKSM   
