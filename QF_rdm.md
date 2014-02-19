@@ -12,12 +12,12 @@
        <address type='drive' controller='0' bus='0'/>
      </disk>
 
-     <disk type='block' device='disk'>
+     <!-- <disk type='block' device='disk'>
        <driver name='qemu' type='raw' cache='none'/>
        <source dev='/dev/mapper/360022a110000ecba5db4074800000022'/>
        <target dev='sda' bus='scsi'/>
        <address type='drive' controller='0' bus='1'/>
-     </disk>
+     </disk>  这种方式内部实现待考证-->
 
      <controller type='scsi' index='0' model='virtio-scsi'/>
 ```
