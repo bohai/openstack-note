@@ -26,7 +26,7 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 4. 用户将卷挂载给虚拟机  
 
 ###代码流程  
-+ image metada支持[virtio-scsi controller]已经实现，目前在review中。预计i3合入。  
++ image metadata支持[virtio-scsi controller]已经实现，目前在review中。预计i3合入。  
 + volume metadata支持discard属性（默认不开启）、bus属性（默认不设置）待开发（xml属性生成）。
 
 ###笔记
