@@ -1,3 +1,13 @@
+计划
+------
+0.  openstack能力/bp调查  完成
+1.  qemu/kvm能力验证      完成
+2.  openstack原型
+3.  BP提交
+4.  代码提交、review
+
+准备
+------
 ###特性介绍  
 qemu在1.5/1.6已经支持了raw和qcow2的[trim特性]。  
 本文主要介绍在openstack中的实现。
