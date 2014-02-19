@@ -1,4 +1,4 @@
-CPU Qos
+Mem Qos
 -----
 ### libvirt  
 xml配置：  
