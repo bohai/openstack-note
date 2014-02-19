@@ -1,10 +1,11 @@
 计划
 ------
-0.  openstack能力/bp调查  完成
-1.  qemu/kvm能力验证      完成
-2.  openstack原型
-3.  BP提交
-4.  代码提交、review
+0.  |openstack能力/bp调查  |  完成|
+----|----------------------|------|
+1.  |qemu/kvm能力验证      |完成|
+2.  |openstack原型||
+3.  |BP提交||
+4.  |代码提交、review||
 
 准备
 ------
