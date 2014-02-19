@@ -16,8 +16,8 @@ qemu在1.5/1.6已经支持了raw和qcow2的[trim特性]。
 
 ###接口变化  
 接口名：  
-v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments  
-通过参数dict参数volumeAttachment传入是否开启trim。  
+~~v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments  
+通过参数dict参数volumeAttachment传入是否开启trim。~~  
 
 ###代码流程  
 底层[virtio-scsi controller]设备生成。     
