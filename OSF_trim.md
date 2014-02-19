@@ -19,12 +19,15 @@ qemu在1.5/1.6已经支持了raw和qcow2的[trim特性]。
 ~~v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments  
 通过参数dict参数volumeAttachment传入是否开启trim。~~  
 
+###典型使用方法  
+1. 用户通过image metadata添加virtio-scsi controller或者ide设备  
+2. 用户创建虚拟机   
+3. 用户通过volume metadata添加discard, bus属性  
+4. 用户将卷挂载给虚拟机  
+
 ###代码流程  
-底层[virtio-scsi controller]设备生成。     
-底层disk设备discard属性生成。   
-通过cinder中volume metadata中设置discard属性。（默认不开启，可以设置打开）  
-nova挂卷时获得并生成持discard属性。   
-xml生成时使用对应bus（目前ide,virtio-scsi支持discard；可以参照用户在metadata中实现）。  
++ image metada支持[virtio-scsi controller]已经实现，目前在review中。预计i3合入。  
++ volume metadata支持discard属性（默认不开启）、bus属性（默认不设置））待开发。（xml属性生成）
 
 ###笔记
 + volume attach：  
