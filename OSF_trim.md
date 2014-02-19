@@ -24,7 +24,7 @@ qemu在1.5/1.6已经支持了raw和qcow2的[trim特性]。
 底层disk设备discard属性生成。   
 通过cinder中volume metadata中设置discard属性。（默认不开启，可以设置打开）  
 nova挂卷时获得并生成持discard属性。   
-xml生成时使用对应bus（目前ide,virtio-scsi支持discard）。  
+xml生成时使用对应bus（目前ide,virtio-scsi支持discard；可以参照用户在metadata中实现）。  
 
 ###笔记
 + volume attach：  
