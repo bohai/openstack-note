@@ -20,7 +20,8 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 通过参数dict参数volumeAttachment传入是否开启trim。  
 
 ###代码流程  
-
+底层[virtio-scsi controller]设备生成。   
+底层disk设备discard属性生成。  
 
 ###笔记
 + volume attach：  
