@@ -20,8 +20,10 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 通过参数dict参数volumeAttachment传入是否开启trim。  
 
 ###代码流程  
-底层[virtio-scsi controller]设备生成。   
-底层disk设备discard属性生成。  
+底层[virtio-scsi controller]设备生成。     
+底层disk设备discard属性生成。   
+通过cinder中volume metadata中设置discard属性。（默认不开启，可以设置打开）  
+nova挂卷时获得并生成持discard属性。  
 
 ###笔记
 + volume attach：  
