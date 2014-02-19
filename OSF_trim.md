@@ -33,3 +33,4 @@ curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/c6
 
 [trim特性]:QF_trim.md
 [2]:https://wiki.openstack.org/wiki/BlockDeviceConfig
+[virtio-scsi controller]https://blueprints.launchpad.net/nova/+spec/libvirt-virtio-scsi-driver
