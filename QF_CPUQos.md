@@ -45,6 +45,19 @@ emulator_period: 1000000
 emulator_quota : -1
 ```
 
+动态设置：  
+```shell
+virsh schedinfo --domain domain --set <parameter=value> --weight weight --cap cap --current  --config  --live 
+```
+>parameter允许的参数有：cpu_shares、vcpu_period、vcpu_quota、emulator_period、emulator_quota，其意义同上。  
+--config 下次重启生效，即修改固化的配置数据。不支持使用virsh create创建的非持久化虚拟机。  
+--live 在线生效，不修改固化的配置数据。如果虚拟机shutdown后数据失效。虚拟机非运行态时，不能设置--live参数。  
+--current 根据当前虚拟机状态确定实际参数行为：如果虚拟机状态为运行态，则效果同--live；否则效果同--config。  
+当--current、--config、--live参数均缺省时，默认参数为--current。  
+配置了--current就不能再出现--config或--live参数。  
+例如：  
+virsh schedinfo --set cpu_shares=1024 winxp  
+
 ###参考
 1. vdsm中的Qos  
 使用了IBM的MOM。  
