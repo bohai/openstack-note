@@ -21,15 +21,12 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 
 ###典型使用方法  
 1. 用户通过image metadata添加virtio-scsi controller或者ide设备  
-
-> hw_scsi_model=virtio-scsi/ide
+    >hw_scsi_model=virtio-scsi/ide
 
 2. 用户创建虚拟机   
 3. 用户通过volume metadata添加discard, bus属性  
-
-> discard属性: hw_disk_discard=unmap/ignore
-
-> bus属性：hw_disk_bus=scsi, virtio, uml, xen, ide, usb
+    > discard属性: hw_disk_discard=unmap/ignore  
+    > bus属性：hw_disk_bus=scsi, virtio, uml, xen, ide, usb  
 
 4. 用户将卷挂载给虚拟机  
 
