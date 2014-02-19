@@ -1,5 +1,6 @@
 Mem Qos
 -----
+本质上也是通过cgroup实现，相关按照见CPU Qos。
 ### libvirt  
 xml配置：  
 ```xml
