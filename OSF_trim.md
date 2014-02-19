@@ -23,9 +23,13 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 
 
 ###笔记
++ volume attach：  
 ```xml
 curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/c62b5277-23cf-4af2-b6ae-15765e9341d1/os-volume_attachments -X GET -H "X-Auth-Project-Id: admin" -H "User-Agent: python-novaclient" -H "Accept: application/json" -H "X-Auth-Token: 2e3c783097fc4f07b2673f520f4d9962"
 ```
++ 缺失  
+目前openstack底层未进行controller的指定。依靠libvirt自动生成。
+但是特殊场景，由于需要制定controller的model类型，需要特别订制。
 
 [trim特性]:QF_trim.md
 [2]:https://wiki.openstack.org/wiki/BlockDeviceConfig
