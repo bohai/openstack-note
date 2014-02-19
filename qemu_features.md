@@ -4,10 +4,10 @@
           	|内存气泡	|是	|
           	|页面交换	|是	|
           	|页面压缩	|否	|
-CPU QoS		|上限		|是	|
+[CPU QoS]		|上限		|是	|
 		|预留		|否	|
 		|份额		|是	|
-内存 QoS	|上限		|是	|
+[内存 QoS]	|上限		|是	|
 		|预留		|否	|
 		|份额		|否	|
 虚拟机快照	|内存快照	|	|	
@@ -99,3 +99,5 @@ Inter-VM Share Memory(IVSMEM)|	|	|
 ELI		|		|	|
 
 [内存超分配]: QF_mem_overcommit.md 
+[CPU QoS]: QF_CPUQos.md 
+[内存 QoS]: QF_MEMQos.md 
