@@ -2,6 +2,18 @@ Openstack卷迁移限速
 -----
 为Openstack基于主机copy迁移卷增加限速能力。
 
+计划
+------
+    |内容                  |  进度|
+----|----------------------|------|
+0.  |openstack能力/bp调查  |  完成|
+1.  |qemu/kvm能力验证      |  完成|
+2.  |openstack实现原型||
+3.  |BP提交||
+4.  |代码提交、review||
+
+过程
+------
 ### 迁移命令  
 ```shell
 [root@controller ~(keystone_admin)]# cinder help migrate
