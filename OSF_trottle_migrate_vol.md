@@ -51,7 +51,7 @@ Optional arguments:
 1. 在remote host上创建volume
 2. copy volume  
     a. 卷被挂载在正在运行的虚拟机上：利用虚拟机存储迁移功能  
-    b. 卷未被挂载在正在运行的虚拟机上：dd命令拷贝卷volume_utils.copy_volume  
+    b. 卷未被挂载在正在运行的虚拟机上：参考driver的copy_volume_data接口，内部为dd命令拷贝卷（volume_utils.copy_volume）  
 
 ### dd限速手段（利用pv工具）
 可以使用pv工具进行限速。
