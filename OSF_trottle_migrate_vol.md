@@ -9,7 +9,7 @@ Openstack卷迁移限速
 0.  |openstack能力/bp调查  |  完成|
 1.  |当前实现以及限速方法调查      |  完成|
 2.  |openstack实现原型||
-3.  |BP提交||
+3.  |BP提交|完成|
 4.  |代码提交、review||
 
 过程
