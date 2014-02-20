@@ -63,6 +63,28 @@ Optional arguments:
 25600字节(26 kB)已复制，8.3499 秒，3.1 kB/秒
 ```
 
+### python中多级管道的例子  
+```python
+[root@controller pipe]# more testpipe.py
+import subprocess
+
+if __name__=="__main__":
+    ddpipe = subprocess.Popen( ["-c", "dd if=/dev/vda count=100 bs=512 | pv -L 3k | dd of=/home/bigfile" ],
+        stdin= subprocess.PIPE, shell=True )
+    ddpipe.communicate( "input data\n" )
+    ddpipe.wait()
+    
+[root@controller pipe]# more testpipe2.py
+import subprocess
+
+if __name__=="__main__":
+    child1 = subprocess.Popen(["dd", "if=/dev/vda", "bs=512", "count=100"], stdout=subprocess.PIPE)
+    child2 = subprocess.Popen(["pv", "-L", "3k"], stdin=child1.stdout, stdout=subprocess.PIPE)
+    child3 = subprocess.Popen(["dd", "of=/home/bigfile"], stdin=child2.stdout)
+    out = child3.communicate()
+
+```
+
 备注：
 1. 是否有跨存储类型的迁移?
 
