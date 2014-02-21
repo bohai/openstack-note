@@ -1,6 +1,8 @@
-### qemu-img创建卷快照 
+内置快照
+-----
 这种方式创建的快照属于内部快照。即快照保存在卷文件中。  
 可以明显的看到qcow2文件增大。
+### qemu-img创建卷快照 
 + 创建快照  
 ```shell
 qemu-img snapshot -c snapshot01 test.qcow2
