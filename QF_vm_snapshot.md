@@ -22,7 +22,41 @@ qemu-img snapshot -a snapshot01 test.qcow2
 qemu-img snapshot -d snapshot01 test.qcow2
 ```
 ### Libvirt创建虚拟机快照  
-
++ snapshot.xml  
+```xml
+  <domainsnapshot>
+    <name>snapshot01</name>
+    <description>Snapshot of OS install and updates by boh</description>
+    <disks>
+      <disk name='/data/os-multi/controller.qcow2'>
+      </disk>
+    </disks>
+  </domainsnapshot>
+```
++ 制作快照
+```shell 
+virsh snapshot-create controller snapshot.xml
+```
++ 查看快照  
+快照元信息保存在/var/lib/libvirt/qemu/snapshot/中。  
+```shell
+[root@fedora170 snapshot]# virsh snapshot-list controller
+ Name                 Creation Time             State
+------------------------------------------------------------
+ snapshot01           2014-02-22 11:24:04 +0800 running
+[root@fedora170 snapshot]# ls -l /var/lib/libvirt/qemu/snapshot/controller/
+total 8
+-rw------- 1 root root 4768 Feb 22 11:26 snapshot01.xml
+```
++ 查看当前快照信息  
+```shell
+virsh snapshot-current controller
+```
++ 恢复、删除快照信息  
+```shell
+virsh snapshot-revert controller snapshot02
+virsh snapshot-delete controller snapshot02
+```
 
 ### 参考
 [Atomic Snapshots of Multiple Devices]:http://wiki.qemu.org/Features/SnapshotsMultipleDevices
