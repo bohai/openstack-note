@@ -65,7 +65,8 @@ virsh snapshot-delete controller snapshot02    //删除快照
 外置快照  
 ------
 ### 利用qemu-img   
-### 利用libvirt
+### 利用libvirt  
++ 创建  
 ```shell
 virsh snapshot-create-as --domain f17-base snap1 snap1-desc \
 --disk-only --diskspec vda,snapshot=external,file=/export/vmimages/sn1-of-f17-base.qcow2 \
