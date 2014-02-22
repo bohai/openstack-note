@@ -107,7 +107,7 @@ virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用�
 [kvm快照浅析]:http://itxx.sinaapp.com/blog/content/130
 [1]:http://blog.sina.com.cn/s/blog_53ab41fd01013rc0.html
 [2]:http://blog.csdn.net/gg296231363/article/details/6899533
-
+[libvirt snapshot讲的最好]:http://libvirt.org/formatsnapshot.html
 
 ```shell
 #libvirt的虚拟机快照实现过程：
