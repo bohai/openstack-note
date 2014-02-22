@@ -101,3 +101,23 @@ virsh snapshot-delete controller snapshot02
 [kvm快照浅析]:http://itxx.sinaapp.com/blog/content/130
 [1]:http://blog.sina.com.cn/s/blog_53ab41fd01013rc0.html
 [2]:http://blog.csdn.net/gg296231363/article/details/6899533
+
+
+```
+optionally - use the guest-agent to tell the guest OS to quiesce I/O
+tell qemu to migrate guest memory to file; qemu pauses guest
+for each disk:
+  tell qemu to pause disk image modifications for that disk
+libvirt resumes qemu (but I/O is still frozen)
+for each disk:
+  libvirt creates the snapshot
+  if the snapshot involves updating the backing image used by qemu:
+    pass qemu the new fd for the disk image
+  tell qemu to resume disk I/O on that disk
+
+where once again, reverting to a system restore point is:
+
+for each disk:
+  revert back to disk snapshot point
+tell qemu to do incoming migration from file
+```
