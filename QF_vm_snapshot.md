@@ -38,7 +38,7 @@ qemu-img snapshot -d snapshot01 test.qcow2
 virsh snapshot-create controller snapshot.xml
 ```
 + 查看快照  
-快照元信息保存在/var/lib/libvirt/qemu/snapshot/中。  
+快照元信息保存在/var/lib/libvirt/qemu/snapshot/中(虚拟机destroy后会丢失)。  
 ```shell
 [root@fedora170 snapshot]# virsh snapshot-list controller
  Name                 Creation Time             State
