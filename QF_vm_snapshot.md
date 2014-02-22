@@ -30,7 +30,7 @@
 
 内置快照
 -----
-### 利用qemu-img命令进行磁盘内置快照 
+### 利用qemu-img进行磁盘内置快照 
 ```shell
 qemu-img snapshot -c snapshot01 test.qcow2  //创建
 qemu-img snapshot -l test.qcow2             //查看
@@ -38,9 +38,9 @@ qemu-img snapshot -a snapshot01 test.qcow2  //revert到快照点
 qemu-img snapshot -d snapshot01 test.qcow2  //删除
 
 ```
-### Libvirt创建虚拟机快照  
-+ snapshot.xml  
+### 利用Libvirt进行磁盘内置快照  
 ```xml
+snapshot.xml
   <domainsnapshot>
     <name>snapshot01</name>
     <description>Snapshot of OS install and updates by boh</description>
@@ -49,40 +49,18 @@ qemu-img snapshot -d snapshot01 test.qcow2  //删除
       </disk>
     </disks>
   </domainsnapshot>
-```
-+ 制作快照
-```shell 
-virsh snapshot-create controller snapshot.xml
-```
-+ 查看快照  
-快照元信息保存在/var/lib/libvirt/qemu/snapshot/中(虚拟机destroy后会丢失)。  
-```shell
-[root@fedora170 snapshot]# virsh snapshot-list controller
- Name                 Creation Time             State
-------------------------------------------------------------
- snapshot01           2014-02-22 11:24:04 +0800 running
-[root@fedora170 snapshot]# ls -l /var/lib/libvirt/qemu/snapshot/controller/
-total 8
--rw------- 1 root root 4768 Feb 22 11:26 snapshot01.xml
-```
-+ 查看当前快照信息  
-```shell
-virsh snapshot-current controller
-```
-+ 恢复、删除快照信息  
-```shell
-virsh snapshot-revert controller snapshot02
-virsh snapshot-delete controller snapshot02
-```
-+ 快照还支持多盘原子组、guest文件系统freeze（需要qemu-ga支持）     
-```shell
+  
+virsh snapshot-create controller snapshot.xml  //创建快照。快照元信息在/var/lib/libvirt/qemu/snapshot/（destroy后丢失）
+virsh snapshot-list controller --tree          //树形查看快照。
+virsh snapshot-current controller              //查看当前快照
+virsh snapshot-revert controller snapshot02    //恢复快照
+virsh snapshot-delete controller snapshot02    //删除快照
+
+功能参数：
     --quiesce        quiesce guest's file systems
     --atomic         require atomic operation
+
 ```
-外置快照
-------
-### qemu创建快照
-### libvirt创建快照  
 
 
 ### 参考
