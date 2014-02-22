@@ -24,13 +24,13 @@
 主要使用qemu的savevm（migrate to file）实现。    
 只能对运行态的虚拟机进行。 
 
-+ 检查点快照
++ 检查点快照    
 同时保存虚拟机的磁盘快照和内存快照。用于将虚拟机恢复到某个时间点。可以保证数据的一致性。  
 
 
 内置快照
 -----
-### 利用qemu-img进行磁盘内置快照 
+### 利用qemu-img   
 ```shell
 qemu-img snapshot -c snapshot01 test.qcow2  //创建
 qemu-img snapshot -l test.qcow2             //查看
@@ -38,7 +38,7 @@ qemu-img snapshot -a snapshot01 test.qcow2  //revert到快照点
 qemu-img snapshot -d snapshot01 test.qcow2  //删除
 
 ```
-### 利用Libvirt进行磁盘内置快照  
+### 利用Libvirt     
 ```xml
 snapshot.xml
   <domainsnapshot>
@@ -59,6 +59,33 @@ virsh snapshot-delete controller snapshot02    //删除快照
 功能参数：
     --quiesce        quiesce guest's file systems
     --atomic         require atomic operation
+
+```
+
+外置快照  
+------
+### 利用qemu-img   
+### 利用libvirt
+```shell
+virsh snapshot-create-as --domain f17-base snap1 snap1-desc \
+--disk-only --diskspec vda,snapshot=external,file=/export/vmimages/sn1-of-f17-base.qcow2 \
+--atomic
+# virsh domblklist f17-base
+Target     Source
+----------------------------------------------------
+vda        /export/vmimages/sn1-of-f17-base.qcow2
+```
++ 删除(快照链缩短）  
+外置快照的删除，相对于内置快照稍显复杂。  
+主要利用blockcommit或者blockpull来实现。  
+blockcommit是向base方向合并，blockpull则相反。  
+```shell
+virsh blockcommit --domain f17 vda  --base /export/vmimages/sn2.qcow2 --top /export/vmimages/sn3.qcow2 --wait --verbose
+
+#只支持pull到最前端  
+virsh blockpull --domain RootBase --path /var/lib/libvirt/images/active.qcow2  \
+  --base /var/lib/libvirt/images/RootBase.qcow2 --wait --verbose
+virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用的快照
 
 ```
 
