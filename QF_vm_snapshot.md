@@ -122,7 +122,7 @@ for each disk:
     pass qemu the new fd for the disk image
   tell qemu to resume disk I/O on that disk
 
-虚拟机快照恢复实现过程：
+#虚拟机快照恢复实现过程：
 
 for each disk:
   revert back to disk snapshot point
