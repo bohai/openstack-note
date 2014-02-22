@@ -57,7 +57,7 @@ virsh snapshot-current controller
 virsh snapshot-revert controller snapshot02
 virsh snapshot-delete controller snapshot02
 ```
-+ 快照还支持多盘原子组、guest文件系统freeze、仅磁盘快照（需要qemu-ga支持）   
++ 快照还支持多盘原子组、guest文件系统freeze、仅磁盘快照（需要qemu-ga支持）     
 ```shell
     --disk-only      capture disk state but not vm state
     --quiesce        quiesce guest's file systems
