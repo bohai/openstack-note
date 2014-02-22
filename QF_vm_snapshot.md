@@ -65,6 +65,7 @@ virsh snapshot-delete controller snapshot02    //删除快照
 外置快照  
 ------
 ### 利用qemu-img   
+可以利用qcow2的backing_file创建。  
 ### 利用libvirt  
 + 创建  
 ```shell
@@ -89,7 +90,8 @@ virsh blockpull --domain RootBase --path /var/lib/libvirt/images/active.qcow2  \
 virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用的快照
 
 ```
-
++ 其他方法
+利用LVM创建。利用文件系统能力创建。利用存储本身的功能创建。  
 
 ### 参考
 [Atomic Snapshots of Multiple Devices]:http://wiki.qemu.org/Features/SnapshotsMultipleDevices
