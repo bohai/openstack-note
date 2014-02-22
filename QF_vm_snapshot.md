@@ -63,6 +63,11 @@ virsh snapshot-delete controller snapshot02
     --quiesce        quiesce guest's file systems
     --atomic         require atomic operation
 ```
+外置快照
+------
+### qemu创建快照
+### libvirt创建快照  
+
 
 ### 参考
 [Atomic Snapshots of Multiple Devices]:http://wiki.qemu.org/Features/SnapshotsMultipleDevices
