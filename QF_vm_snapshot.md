@@ -21,7 +21,7 @@
         
 + 内存快照  
 对虚拟机的内存/设备信息进行保存。该机制同时用于休眠恢复，迁移等场景。    
-主要使用qemu的savevm（migrate to file）实现。    
+主要使用virsh save（qemu migrate to file）实现。    
 只能对运行态的虚拟机进行。 
 
 + 检查点快照    
