@@ -65,7 +65,12 @@ virsh snapshot-delete controller snapshot02    //删除快照
 外置快照  
 ------
 ### 利用qemu-img   
++ 关机态  
 可以利用qcow2的backing_file创建。  
++ 运行态  
+可以利用qemu的snapshot_blkdev命令。（为了数据一致性，可以使用guest-fsfreeze-freeze和guest-fsfreeze-thaw进行文件系统的冻结解冻结操作）  
+多盘可以利用qemu的transaction实现atomic。  
+
 ### 利用libvirt  
 + 创建  
 ```shell
@@ -90,7 +95,7 @@ virsh blockpull --domain RootBase --path /var/lib/libvirt/images/active.qcow2  \
 virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用的快照
 
 ```
-+ 其他方法
+### 其他方法
 利用LVM创建。利用文件系统能力创建。利用存储本身的功能创建。  
 
 ### 参考
@@ -104,7 +109,8 @@ virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用�
 [2]:http://blog.csdn.net/gg296231363/article/details/6899533
 
 
-```
+```shell
+#libvirt的虚拟机快照实现过程：
 optionally - use the guest-agent to tell the guest OS to quiesce I/O
 tell qemu to migrate guest memory to file; qemu pauses guest
 for each disk:
@@ -116,7 +122,7 @@ for each disk:
     pass qemu the new fd for the disk image
   tell qemu to resume disk I/O on that disk
 
-where once again, reverting to a system restore point is:
+虚拟机快照恢复实现过程：
 
 for each disk:
   revert back to disk snapshot point
