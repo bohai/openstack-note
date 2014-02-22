@@ -10,7 +10,7 @@
 [内存 QoS]	|上限		|是	|
 		|预留		|是	|
 		|份额		|否	|
-[虚拟机快照]	|内存快照	|	|	
+[虚拟机快照]	|内存快照	|是	|	
 		|无中断内存快照	|	|	
 Host		|Logical Processors|	|	
 		|Physical Memory|	|	
