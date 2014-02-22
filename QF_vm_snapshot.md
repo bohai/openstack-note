@@ -1,49 +1,42 @@
 快照分类
 -----
-+ 内置快照  
-    一个qcow2文件中即保存原始数据，又保存快照信息。
-    + 磁盘快照
-        + 关机态  
-            libvirt使用qemu-img命令创建  
-        + 运行态  
-            libvirt使用savevm命令创建 
-    + 检查点快照  
-            libvirt使用savevm命令创建
-+ 外置快照
-    快照信息保存在单独的文件中。
-    + 磁盘快照 
-        + 关机态
-            libvirt使用qemu-img命令创建
-        + 运行态
-            libvirt使用transaction命令创建？（没找到，待确认）
-    + 检查点快照
-    虚拟机的磁盘状态保存在一个文件中。内存和设备状态保存在另一个文件中。  
-        开发中？
-+ 备注   
-    可以将虚拟机内存设备状态保存在文件中，然后使用该文件恢复，可以恢复到当时的状态。  
-    使用qemu的migrate(to file)完成信息的转储。  
++ 磁盘快照  
+对磁盘数据进行快照。主要用于虚拟机备份等场合。  
+    + 按快照信息保存为可以可以分为：  
+        + 内置快照  
+            快照数据和base磁盘数据放在一个qcow2文件中。  
+        + 外置快照  
+            快照数据单独的qcow2文件存放。  
+    + 按虚拟机状态可以分为:  
+        + 关机态快照  
+            数据可以保证一致性。  
+        + 运行态快照  
+            数据无法保证一致性，类似与系统crash后的磁盘数据。使用是可能需要fsck等操作。  
+    + 按磁盘数量可以分为        
+        + 单盘  
+            单盘快照不涉及原子性。  
+        + 多盘  
+            涉及原子性。主要分两个方面：1.是所有盘快照点相同 2.所有盘要么都快照成功，要么都快照失败。  
+            主要依赖于qemu的transaction实现。  
+        
++ 内存快照  
+对虚拟机的内存/设备信息进行保存。该机制同时用于休眠恢复，迁移等场景。    
+主要使用qemu的savevm（migrate to file）实现。    
+只能对运行态的虚拟机进行。 
+
++ 检查点快照
+同时保存虚拟机的磁盘快照和内存快照。用于将虚拟机恢复到某个时间点。可以保证数据的一致性。  
 
 
 内置快照
 -----
-### qemu-img创建卷快照 
-+ 创建快照  
+### 利用qemu-img命令进行磁盘内置快照 
 ```shell
-qemu-img snapshot -c snapshot01 test.qcow2
-```
-+ 查看快照  
-```shell
-qemu-img snapshot -l test.qcow2
-```
+qemu-img snapshot -c snapshot01 test.qcow2  //创建
+qemu-img snapshot -l test.qcow2             //查看
+qemu-img snapshot -a snapshot01 test.qcow2  //revert到快照点
+qemu-img snapshot -d snapshot01 test.qcow2  //删除
 
-+ revert到快照点 
-```shell
-qemu-img snapshot -a snapshot01 test.qcow2
-```
-
-+ 删除快照   
-```shell 
-qemu-img snapshot -d snapshot01 test.qcow2
 ```
 ### Libvirt创建虚拟机快照  
 + snapshot.xml  
