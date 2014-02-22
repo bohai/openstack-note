@@ -10,7 +10,7 @@
 [内存 QoS]	|上限		|是	|
 		|预留		|是	|
 		|份额		|否	|
-虚拟机快照	|内存快照	|	|	
+[虚拟机快照]	|内存快照	|	|	
 		|无中断内存快照	|	|	
 Host		|Logical Processors|	|	
 		|Physical Memory|	|	
@@ -101,3 +101,4 @@ ELI		|		|	|
 [内存超分配]: QF_mem_overcommit.md 
 [CPU QoS]: QF_CPUQos.md 
 [内存 QoS]: QF_MEMQos.md 
+[虚拟机快照]:QF_vm_snapshot.md
