@@ -26,8 +26,6 @@
 
 内置快照
 -----
-单个qcow2中包括了数据和快照状态信息。    
-可以明显的看到qcow2文件增大。
 ### qemu-img创建卷快照 
 + 创建快照  
 ```shell
@@ -83,9 +81,8 @@ virsh snapshot-current controller
 virsh snapshot-revert controller snapshot02
 virsh snapshot-delete controller snapshot02
 ```
-+ 快照还支持多盘原子组、guest文件系统freeze、仅磁盘快照（需要qemu-ga支持）     
++ 快照还支持多盘原子组、guest文件系统freeze（需要qemu-ga支持）     
 ```shell
-    --disk-only      capture disk state but not vm state
     --quiesce        quiesce guest's file systems
     --atomic         require atomic operation
 ```
