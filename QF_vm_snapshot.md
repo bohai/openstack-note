@@ -126,6 +126,7 @@ virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用�
 
 实现原理
 --------
+### qemu 
 内置快照：利用qcow2中的L1 table进行实现。  
 外置快照：只是在qcow2中的头部记录下backingfile。  
 内存快照：通过qemu命令savemvm实现，内部通过qemu_savevm_state函数实现（也是migration的基础设施）。  
@@ -137,6 +138,8 @@ virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用�
       ret = qemu_savevm_state(f); 
       ...
 ```
+### libvirt  
+
 
 ### 参考
 [Atomic Snapshots of Multiple Devices]:http://wiki.qemu.org/Features/SnapshotsMultipleDevices
