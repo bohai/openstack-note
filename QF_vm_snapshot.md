@@ -120,14 +120,23 @@ virsh blockpull --domain RootBase --path /var/lib/libvirt/images/active.qcow2  \
   --base /var/lib/libvirt/images/RootBase.qcow2 --wait --verbose
 virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用的快照
 
-实现原理
---------
-内置快照：利用qcow2中的L1 table进行实现。
-外置快照：只是在qcow2中的头部记录下backingfile。
-
 ```
 ### 其他方法
 利用LVM创建。利用文件系统能力创建。利用存储本身的功能创建。  
+
+实现原理
+--------
+内置快照：利用qcow2中的L1 table进行实现。  
+外置快照：只是在qcow2中的头部记录下backingfile。  
+内存快照：通过qemu命令savemvm实现，内部通过qemu_savevm_state函数实现（也是migration的基础设施）。  
+```c
+  void do_savevm(Monitor *mon, const QDict *qdict) 
+  {
+      BlockDriverState *bs, *bs1;                                   
+      ...
+      ret = qemu_savevm_state(f); 
+      ...
+```
 
 ### 参考
 [Atomic Snapshots of Multiple Devices]:http://wiki.qemu.org/Features/SnapshotsMultipleDevices
