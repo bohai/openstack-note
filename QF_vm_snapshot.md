@@ -74,6 +74,29 @@ qemu-img create -f qcow2 -b base.qcow2 snapshot.qcow2
 可以利用qemu的snapshot_blkdev命令。（为了数据一致性，可以使用guest-fsfreeze-freeze和guest-fsfreeze-thaw进行文件系统的冻结解冻结操作）  
 多盘可以利用qemu的transaction实现atomic。  
 
++ 磁盘快照链关系显示  
+```shell
+[root@localhost data]# qemu-img info --backing-chain snapshot.qcow2 --output=json
+[
+    {
+        "virtual-size": 1073741824,
+        "filename": "snapshot.qcow2",
+        "cluster-size": 65536,
+        "format": "qcow2",
+        "actual-size": 200704,
+        "backing-filename": "base.qcow2",
+        "dirty-flag": false
+    },
+    {
+        "virtual-size": 1073741824,
+        "filename": "base.qcow2",
+        "cluster-size": 65536,
+        "format": "qcow2",
+        "actual-size": 139264,
+        "dirty-flag": false
+    }
+]
+```
 ### 利用libvirt  
 + 创建  
 ```shell
@@ -96,6 +119,11 @@ virsh blockcommit --domain f17 vda  --base /export/vmimages/sn2.qcow2 --top /exp
 virsh blockpull --domain RootBase --path /var/lib/libvirt/images/active.qcow2  \
   --base /var/lib/libvirt/images/RootBase.qcow2 --wait --verbose
 virsh snapshot-delete --domain RootBase Snap-3 --metadata         #删除无用的快照
+
+实现原理
+--------
+内置快照：利用qcow2中的L1 table进行实现。
+外置快照：只是在qcow2中的头部记录下backingfile。
 
 ```
 ### 其他方法
