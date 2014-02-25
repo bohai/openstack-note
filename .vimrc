@@ -14,6 +14,7 @@ Bundle 'Syntastic'
 Bundle 'taglist.vim'
 Bundle 'https://github.com/Lokaltog/vim-powerline.git'
 Bundle 'https://github.com/Valloric/YouCompleteMe.git'
+Bundle 'Yggdroot/indentLine'
 
 filetype plugin indent on     " required
 
