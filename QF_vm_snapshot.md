@@ -67,6 +67,9 @@ virsh snapshot-delete controller snapshot02    //删除快照
 ### 利用qemu-img   
 + 关机态  
 可以利用qcow2的backing_file创建。  
+```shell
+qemu-img create -f qcow2 -b base.qcow2 snapshot.qcow2
+```
 + 运行态  
 可以利用qemu的snapshot_blkdev命令。（为了数据一致性，可以使用guest-fsfreeze-freeze和guest-fsfreeze-thaw进行文件系统的冻结解冻结操作）  
 多盘可以利用qemu的transaction实现atomic。  
