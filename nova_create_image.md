@@ -90,7 +90,7 @@ openstack和版本对快照的思路略有不同。openstack因为存在镜像�
 ###BP列表
 + 在线虚拟机快照（包含内存、CPU状态）   开发中  Next  
 https://blueprints.launchpad.net/nova/+spec/live-snapshot-vms
-+ Live snapshot基础能力                                   完成（好像根本没做）  
++ Live snapshot基础能力                                   完成  
 https://blueprints.launchpad.net/nova/+spec/live-snapshots
 + libvirt无中断快照                                            完成  
 https://blueprints.launchpad.net/nova/+spec/libvirt-live-snapshots
