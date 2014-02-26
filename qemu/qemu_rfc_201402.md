@@ -15,5 +15,14 @@ http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg01754.html
 
 >qemu -enable-kvm -drive file=debian.raw,iops=75,iops_max=10000,if=virtio,cache=none
 
++ [RFC] platform device passthrough  
+http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04666.html
+
++ 支持Intel MPX (Memory Protection Extensions)   
+http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04263.html
+
++ 
+
 
 [throttling]:http://www.nodalink.com/blog_throttling_25_01_2014.html
+[qemu timer]:http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04177.html
