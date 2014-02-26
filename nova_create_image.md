@@ -50,11 +50,29 @@ curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/6c
 + createImage接口（创建虚拟机快照）流程   
 ```shell
 底层实现：
-a. blockJobAbort
-b. 使用create_cow_image(qemu-img)创建快照盘
-c. 使用blockRebase做一个root盘的copy
-d. blockJobAbort
-e. 利用copy的快照抽取出完整的root盘文件
+a. 清理block设备上次的job信息
+[root@fedora170 data]# virsh blockjob test /data/test/test.qcow2 --abort
+error: Requested operation is not valid: No active operation on device: drive-virtio-disk0
+
+b. 创建基于block设备backing_file的qcow2文件
+[root@fedora170 data]# qemu-img create -f qcow2 -o backing_file=/data/test/test.qcow2,cluster_size=65536,size=20G /data/test/test.qcow2.delta
+Formatting '/data/test/test.qcow2.delta', fmt=qcow2 size=21474836480 backing_file='/data/test/test.qcow2' encryption=off cluster_size=65536 lazy_refcounts=off
+
+c. persist类型的虚拟机，进行undefine
+d. 将block数据拷贝到新做的qcow2文件上
+[root@fedora170 data]# virsh blockcopy test /data/test/test.qcow2 /data/test/test.qcow2.delta 0 --shallow --reuse-external
+Block Copy started
+
+e. 查询进度，等待block job完成
+[root@fedora170 data]# virsh blockjob test /data/test/test.qcow2 --info
+Block Copy: [100 %]
+
+f. 清理block设备上次的job信息
+[root@fedora170 data]# virsh blockjob test /data/test/test.qcow2  --abort
+
+g. persist类型的虚拟机，重新define
+h. 抽取整个block的数据到新的qcow2文件中（后续可以上传到glance上）
+[root@fedora170 data]# qemu-img convert -f qcow2 -O qcow2 -c /data/test/test.qcow2.delta /data/test/test_snapshot.qcow2
 ```
 
 ### 当前快照导入、导出方法
