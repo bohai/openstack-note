@@ -2,8 +2,8 @@ Openstack快照
 ----
 ###当前能力
 + 支持功能
-    + 卷快照
-    + 虚拟机快照
+    + 卷快照(支持一致性快照）
+    + 虚拟机快照（支持冷快照和live snapshot with no downtime)
 + 卷快照
 ```shell
 cinder snapshot-create
