@@ -8,7 +8,7 @@ Openstack快照
 ```shell
 cinder snapshot-create
 ```
-支持通过ga完成自动一致性操作（fsfreeze)  
+支持通过qemu-ga完成自动一致性操作（fsfreeze)  
 + 虚拟机快照制作过程
 ```shell    
 nova image-create
