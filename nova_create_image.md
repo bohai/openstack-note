@@ -94,7 +94,7 @@ https://blueprints.launchpad.net/nova/+spec/live-snapshot-vms
 https://blueprints.launchpad.net/nova/+spec/live-snapshots
 + libvirt无中断快照                                            完成  
 https://blueprints.launchpad.net/nova/+spec/libvirt-live-snapshots
-+ Qemu辅助卷快照（带内部VSS等？）               完成  
++ Qemu辅助卷快照（带内部VSS等？只支持一致性卷快照而非虚拟机）           完成  
 https://blueprints.launchpad.net/nova/+spec/qemu-assisted-snapshots
 https://wiki.openstack.org/wiki/Cinder/GuestAssistedSnapshotting
 + Instacne全卷快照：                                        draft阶段  
