@@ -131,5 +131,5 @@ https://wiki.openstack.org/wiki/Raksha
 [3]: http://www.sebastien-han.fr/blog/2012/12/10/openstack-perform-consistent-snapshots/
 [4]: http://docs.openstack.org/image-guide/content/
 
-[底层原理过程]：http://kashyapc.com/tag/snapshots/
+[底层原理过程]:http://kashyapc.com/tag/snapshots/
 
