@@ -8,6 +8,7 @@ Openstack快照
 ```shell
 cinder snapshot-create
 ```
+支持通过ga完成自动一致性操作（fsfreeze)  
 + 虚拟机快照制作过程
 ```shell    
 nova image-create
@@ -48,9 +49,14 @@ curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/6c
 ```
 + createImage接口（创建虚拟机快照）流程   
 ```shell
-外部消息----->nova api（函数_action_create_image）----->nova compute api（函数snapshot_volume_backed）----->volume api(函数create_snapshot_force）
-            |--->glance(函数create，创建image)
+底层实现：
+a. blockJobAbort
+b. 使用create_cow_image(qemu-img)创建快照盘
+c. 使用blockRebase做一个root盘的copy
+d. blockJobAbort
+e. 利用copy的快照抽取出完整的root盘文件
 ```
+
 ### 当前快照导入、导出方法
 + 虚拟机快照导出
     1.  使用nova image-create创建虚拟机快照
