@@ -10,7 +10,7 @@ http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg01754.html
 + Basis of the block filter infrastructure  
 提供类似于kernel device mapper的机制。使用例子如：luks加密 block driver。  
 + Block [throttling] infrastructure  
-提供对用户进行IO管理的能力。支持 bursting  
+提供对用户进行IO管理的能力。支持 bursting。    
 
 
 
