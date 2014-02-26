@@ -21,7 +21,15 @@ http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04666.html
 + 支持Intel MPX (Memory Protection Extensions)   
 http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04263.html
 
-+ 
++ [RFC PATCH] block: optimize zero writes with	bdrv_write_zer
+http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04134.html  
+
++ Add support for binding guest numa	nodes  
+http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg03289.html
+
++ [RFC PATCH v2 00/12] mc: fault tolerante through	micro-chec
+http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg03042.html  
+
 
 
 [throttling]:http://www.nodalink.com/blog_throttling_25_01_2014.html
