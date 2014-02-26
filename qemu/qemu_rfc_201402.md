@@ -9,5 +9,9 @@ http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg01754.html
 提供类似raid的机制保护虚拟机。会写三份以上数据。读数据时会进行投票，判断是否最新版本的数据。  
 + Basis of the block filter infrastructure  
 提供类似于kernel device mapper的机制。使用例子如：luks加密 block driver。  
-+ Block throttling infrastructure  
++ Block [throttling] infrastructure  
 提供对用户进行IO管理的能力。支持 bursting  
+
+
+
+[throttling]:http://www.nodalink.com/blog_throttling_25_01_2014.html
