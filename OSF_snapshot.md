@@ -88,6 +88,9 @@ h. 抽取整个block的数据到新的qcow2文件中（后续可以上传到glan
 -  包含内存、CPU状态等数据的快照。  
 该BP目前计划解决该问题（目前代码已经完成，在review中）：  
 https://blueprints.launchpad.net/nova/+spec/live-snapshot-vms  
+实现方式：
+通过glance container来存储instance的root盘、内存快照、虚拟机xml信息等。  
+
 -  虚拟机所有盘的快照。  
 该BP还在draft解决，完全没有开始：  
 https://blueprints.launchpad.net/nova/+spec/instance-level-snapshots
