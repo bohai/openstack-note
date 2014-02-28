@@ -4,6 +4,8 @@
 ### BP现状  
 + ddd
 +
+
+### 其他  
 + AutoNuma
 google code上的一个项目：[vm-balancer-numa]  
 主要完成cpu numa均衡放置以及重新均衡。
