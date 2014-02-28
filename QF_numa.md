@@ -51,9 +51,9 @@ virsh # capabilities
 -smp 8,sockets=1,cores=4,threads=1
 -numa node,nodeid=0,cpus=0-3,mem=1000 -numa node,nodeid=1,cpus=4-7,mem=1000
 ```
+可以在guest中看到这些node节点。
 
-
-+ VCPU绑定物理核
+### VCPU绑定物理核
 ```xml
 <vcpu cpuset='1-2'>4</vcpu>
 ```
@@ -80,7 +80,7 @@ cputune提供了精细的vcpu绑定设定，可以具体到每个vcpu设置。
     <emulatorpin cpuset='16'/>
   </cputune>
 ```
-+ memtune
+### memtune
 ```xml
 <numatune>
     <memory mode="strict" nodeset="1"/>
