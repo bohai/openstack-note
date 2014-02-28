@@ -46,7 +46,7 @@ CPU/内存[亲和性]设置
 多数情况下，我们无需设置亲和性。但是某些特殊场合，比如需要确保CPU资源不被其他虚拟机负载影响，  
 可以设置CPU的亲和性。  
 
-CPU亲和性由libvirt通过调用sched_setaffinity系统调用实现(如下），不需要在qemu层进行设置。  
+CPU亲和性由libvirt通过调用sched_setaffinity系统调用实现(如下以cpu热插中的代码为例），不需要在qemu层进行设置。  
 ```c
 src/qemu/qemu_driver.c：
 static int qemuDomainHotplugVcpus(virQEMUDriverPtr driver,
@@ -64,6 +64,17 @@ int virProcessSetAffinity(pid_t pid, virBitmapPtr map)
       if (sched_setaffinity(pid, masklen, mask) < 0) {
       ...
 }
+```
+
+memory的亲和性也是由libvirt通过调用numa_set_membind函数实现（由libnuma.so提供，该so为numactl的库）。
+```c
+  int
+  virNumaSetupMemoryPolicy(virNumaTuneDef numatune,
+          ¦       ¦       ¦virBitmapPtr nodemask)
+  {
+        ...
+        numa_set_membind(&mask);
+        ...
 ```
 
 备注：可以使用taskset工具手工对线程设置亲和性。
