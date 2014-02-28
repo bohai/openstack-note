@@ -2,7 +2,15 @@
 不支持
 
 ### BP现状  
-+ ddd
++ [guest numa]  
+BP状态为new(尚未成为approved），作者已经提交代码并开始review。    
+实现方法：通过image的metadata设置“hw_cpu_topology”，比如:   
+```
+"max_sockets=1"  
+"max_cores=4,max_threads=2"  
+```
+[guest numa]:https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
+
 +
 
 ### 其他  
