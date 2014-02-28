@@ -88,3 +88,7 @@ cputune提供了精细的vcpu绑定设定，可以具体到每个vcpu设置。
 /proc/18104/task/18106/status:Mems_allowed_list:    1
 /proc/18104/task/18114/status:Mems_allowed_list:    1
 ```
+
++ 动态修改   
+可以使用virsh numatune进行动态修改。  
+
