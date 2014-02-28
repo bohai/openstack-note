@@ -20,7 +20,8 @@ virsh # capabilities
 ```
 
 ### 设置guest numa topology
-qemu内部安装ACPI规范将node信息，topology信息防止在bios中供guest识别。
+qemu内部安装ACPI规范将node信息，topology信息防止在bios中供guest识别。  
+guest识别numa topology的意义在于，guest中的OS可以更好的进行进程调度和内存分配。  
 + libvirt
 ```xml
 <cpu>
