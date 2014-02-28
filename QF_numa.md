@@ -134,4 +134,8 @@ cputune提供了精细的vcpu绑定设定，可以具体到每个vcpu设置。
 + 设置emulator的cpu affinity  
 可以使用virsh emulatorpin进行修改。
 
+Libvirt/qemu社区关于numa的最新动态
+-----
+
+
 [亲和性]:http://www.ibm.com/developerworks/cn/linux/l-affinity.html
