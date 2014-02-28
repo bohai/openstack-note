@@ -35,4 +35,47 @@ virsh # capabilities
       </cells>
     </topology>
 ```
-+ 
++ 创建cpu node
+```xml
+<cpu>
+    <topology sockets='1' cores='8' threads='1'/>
+    <numa>
+      <cell cpus='0-3' memory='1024000'/>
+      <cell cpus='4-7' memory='1024000'/>
+     </numa>
+  </cpu>
+```
+但是从guest中并不能看到两个node。
+
++ VCPU绑定物理核
+```xml
+<vcpu cpuset='1-2'>4</vcpu>
+```
+查看CPU绑定情况（其中28863为qemu的进程IP）
+```shell
+#grep Cpus_allowed_list /proc/28863/task/*/status 
+/proc/28863/task/28863/status:Cpus_allowed_list:    1-2
+/proc/28863/task/28864/status:Cpus_allowed_list:    1-2
+/proc/28863/task/28865/status:Cpus_allowed_list:    1-2
+/proc/28863/task/28866/status:Cpus_allowed_list:    1-2
+/proc/28863/task/28867/status:Cpus_allowed_list:    1-2
+```
++ cputune
+```xml
+ <vcpu placement='static'>4</vcpu>
+  <cputune>
+    <shares>2048</shares>
+    <period>1000000</period>
+    <quota>-1</quota>
+    <vcpupin vcpu='0' cpuset='8'/>
+    <vcpupin vcpu='1' cpuset='16'/>
+    <emulatorpin cpuset='16'/>
+  </cputune>
+```
++ memtune
+```xml
+<numatune>
+    <memory mode="strict" nodeset="1"/>
+  </numatune>
+```
+
