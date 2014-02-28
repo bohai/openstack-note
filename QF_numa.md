@@ -89,6 +89,9 @@ cputune提供了精细的vcpu绑定设定，可以具体到每个vcpu设置。
 ```
 
 ### 动态修改   
++ numa
 可以使用virsh numatune进行动态修改。  
++ cpu affinity
+virsh vcpupin
 
 [亲和性]:http://www.ibm.com/developerworks/cn/linux/l-affinity.html
