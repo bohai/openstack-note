@@ -17,7 +17,7 @@ BP状态为new(尚未成为approved），作者已经提交代码并开始review
 
 [vm cpu topology]:https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
 项目wiki: https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
-+ [numa-aware-cpu-binding]
++ [numa-aware-cpu-binding]  
 BP尚未开始review。  
 [numa-aware-cpu-binding]:https://blueprints.launchpad.net/nova/+spec/numa-aware-cpu-binding
 
