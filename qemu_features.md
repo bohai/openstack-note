@@ -85,7 +85,7 @@ FT（Fault Tolerance）|	单vcpu  |NA 	|
 		|HA		|是	|
 虚拟机时钟同步	|		|	|		
 虚拟机故障检测	|	是	|	|
-Guest [NUMA](巨型虚拟机）|	|是	|
+Guest [NUMA]|	|是	|
 Host [NUMA]	|		|是	|
 Virtual SMP	|		|是	|
 Transparent Huge Page|		|是	|
