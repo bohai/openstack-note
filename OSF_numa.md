@@ -10,8 +10,8 @@ BP状态为new(尚未成为approved），作者已经提交代码并开始review
 "max_cores=4,max_threads=2"  
 ```
 [guest numa]:https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
+项目wiki: https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
 
-+
 
 ### 其他  
 + AutoNuma
