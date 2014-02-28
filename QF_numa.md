@@ -37,6 +37,15 @@ virsh # capabilities
 ```
 可以在guest中使用numactl --hardware看到这些node节点。  
 
+CPU/内存亲和性设置
+----
+进程的处理器亲和性（Processor Affinity），即是CPU的绑定设置，是指将进程绑定到特定的一个或多个CPU上去执行，  
+而不允许调度到其他的CPU上。  
+  
+在虚拟化环境中，qemu的vcpu是作为线程存在的，使用taskset工具进行亲和性设置。  
+多数情况下，我们无需设置亲和性。但是某些特殊场合，比如需要确保CPU资源不被其他虚拟机负载影响，  
+可以设置CPU的亲和性。  
+
 ### VCPU绑定物理核
 ```xml
 <vcpu cpuset='1-2'>4</vcpu>
