@@ -46,6 +46,26 @@ CPU/内存[亲和性]设置
 多数情况下，我们无需设置亲和性。但是某些特殊场合，比如需要确保CPU资源不被其他虚拟机负载影响，  
 可以设置CPU的亲和性。  
 
+CPU亲和性由libvirt通过调用sched_setaffinity系统调用实现(如下），不需要在qemu层进行设置。  
+```c
+src/qemu/qemu_driver.c：
+static int qemuDomainHotplugVcpus(virQEMUDriverPtr driver,
+        ¦       ¦       ¦       ¦ virDomainObjPtr vm,
+        ¦       ¦       ¦       ¦ unsigned int nvcpus)
+{
+      ...
+      virProcessSetAffinity(cpupids[i],
+      ...
+}
+src/util/virprocess.c：
+int virProcessSetAffinity(pid_t pid, virBitmapPtr map)
+{
+      ...
+      if (sched_setaffinity(pid, masklen, mask) < 0) {
+      ...
+}
+```
+
 备注：使用taskset工具手工对某一个线程设置亲和性。
 
 ### VCPU绑定物理核
