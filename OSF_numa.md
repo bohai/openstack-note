@@ -2,14 +2,16 @@
 不支持
 
 ### BP现状  
-+ [guest numa]  
++ [vm cpu topology]  
 BP状态为new(尚未成为approved），作者已经提交代码并开始review。    
 实现方法：通过image的metadata设置“hw_cpu_topology”，比如:   
 ```
 "max_sockets=1"  
 "max_cores=4,max_threads=2"  
 ```
-[guest numa]:https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
+只是设置sockets,threads,cores等信息。不包括node信息设置。  
+
+[vm cpu topology]:https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
 项目wiki: https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
 
 
