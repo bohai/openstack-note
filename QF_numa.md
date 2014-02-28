@@ -164,4 +164,5 @@ vmware对此有专门优化，频繁访问的页面，在node上有页面副本�
 Vmware相关
 ------
 Vmware支持CPU、内存的绑定,toppology的设置。  
-同时支持cpu、内存在node间的迁移。以及自动的平衡、再平衡策略。  
+同时支持cpu、内存在node间的迁移。以及自动的平衡、[再平衡]策略。
+[再平衡]:https://pubs.vmware.com/vsphere-50/index.jsp#com.vmware.vsphere.resmgmt.doc_50/GUID-BD4A462D-5CDC-4483-968B-1DCF103C4208.html
