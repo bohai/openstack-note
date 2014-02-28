@@ -160,3 +160,8 @@ numa的一些缺点
 vmware对此有专门优化，频繁访问的页面，在node上有页面副本，从而避免跨node访问带来的性能恶化。
 
 [专门优化]:https://pubs.vmware.com/vsphere-50/index.jsp#com.vmware.vsphere.resmgmt.doc_50/GUID-6D818472-D683-410F-84C3-0C56C21F4459.html
+
+Vmware相关
+------
+Vmware支持CPU、内存的绑定,toppology的设置。  
+同时支持cpu、内存在node间的迁移。以及自动的平衡、再平衡策略。  
