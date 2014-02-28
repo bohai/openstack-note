@@ -66,7 +66,7 @@ int virProcessSetAffinity(pid_t pid, virBitmapPtr map)
 }
 ```
 
-备注：使用taskset工具手工对某一个线程设置亲和性。
+备注：可以使用taskset工具手工对线程设置亲和性。
 
 ### VCPU绑定物理核
 ```xml
