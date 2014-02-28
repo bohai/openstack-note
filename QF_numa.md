@@ -151,3 +151,12 @@ qemu配置方法范例：
 
 [Add support for binding guest numa nodes to host numa nodes]:https://lists.gnu.org/archive/html/qemu-devel/2013-12/msg00568.html
 [亲和性]:http://www.ibm.com/developerworks/cn/linux/l-affinity.html
+
+numa的一些缺点
+------
+如果配置不当，可能不但无法获取高性能，反而有可能导致性能恶化。    
+
+另外numa与透明页共享的冲突，即由于页合并导致的跨node访问。   
+vmware对此有专门优化，频繁访问的页面，在node上有页面副本，从而避免跨node访问带来的性能恶化。
+
+[专门优化]:https://pubs.vmware.com/vsphere-50/index.jsp#com.vmware.vsphere.resmgmt.doc_50/GUID-6D818472-D683-410F-84C3-0C56C21F4459.html
