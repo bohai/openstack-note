@@ -78,4 +78,11 @@ virsh # capabilities
     <memory mode="strict" nodeset="1"/>
   </numatune>
 ```
-
+查看内存的设定情况：(其中18104为qemu的pid)
+```shell
+#grep Mems_allowed_list /proc/18104/task/*/status
+/proc/18104/task/18104/status:Mems_allowed_list:    1
+/proc/18104/task/18105/status:Mems_allowed_list:    1
+/proc/18104/task/18106/status:Mems_allowed_list:    1
+/proc/18104/task/18114/status:Mems_allowed_list:    1
+```
