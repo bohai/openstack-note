@@ -1,5 +1,9 @@
 ### Openstack现状  
-不支持
+支持cpuset设定。
+不支持cpu亲和性的精细设置。
+不支持内存亲和性设置。
+不支持topology设置。
+不支持guest numa设置。
 
 ### BP现状  
 + [vm cpu topology]  
