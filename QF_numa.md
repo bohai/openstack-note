@@ -60,7 +60,9 @@ virsh # capabilities
 /proc/28863/task/28866/status:Cpus_allowed_list:    1-2
 /proc/28863/task/28867/status:Cpus_allowed_list:    1-2
 ```
-+ cputune
++ cputune  
+cputune提供了精细的vcpu绑定设定，可以具体到每个vcpu设置。   
+而且提供vcpu能力的标准化，如quota,period,shares，可以用于实现cpu的Qos。  
 ```xml
  <vcpu placement='static'>4</vcpu>
   <cputune>
