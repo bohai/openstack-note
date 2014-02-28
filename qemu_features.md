@@ -85,8 +85,8 @@ FT（Fault Tolerance）|	单vcpu  |NA 	|
 		|HA		|是	|
 虚拟机时钟同步	|		|	|		
 虚拟机故障检测	|	是	|	|
-Guest NUMA(巨型虚拟机）|	|是	|
-Host NUMA	|		|是	|
+Guest [NUMA](巨型虚拟机）|	|是	|
+Host [NUMA]	|		|是	|
 Virtual SMP	|		|是	|
 Transparent Huge Page|		|是	|
 x2apic		|		|是	|
@@ -102,3 +102,4 @@ ELI		|		|	|
 [CPU QoS]: QF_CPUQos.md 
 [内存 QoS]: QF_MEMQos.md 
 [虚拟机快照]:QF_vm_snapshot.md
+[NUMA]:QF_numa.md
