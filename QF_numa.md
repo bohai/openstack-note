@@ -138,8 +138,8 @@ Libvirt/qemu社区关于numa的最新动态
 -----
 + [Add support for binding guest numa nodes to host numa nodes]  
 提供了guest memory绑定策略的设置能力。    
-避免某些情况下由此导致的性能下降。 （比如PCI passthrough是设备DMA传输的情况？这点还是不太懂）
-配置方法：
+避免某些情况下由此导致的性能下降。 （比如PCI passthrough是设备DMA传输的情况？这点还是不太懂）  
+配置方法：  
 ```shell
 -object memory-ram,size=512M,host-nodes=1,policy=membind,id=ram-node0 
 -numa node,nodeid=0,cpus=0,memdev=ram-node0 
