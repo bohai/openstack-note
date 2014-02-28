@@ -19,7 +19,7 @@ virsh # capabilities
 # numactl --hardware
 ```
 
-### 创建cpu node,topology  
+### 设置guest numa topology
 qemu内部安装ACPI规范将node信息，topology信息防止在bios中供guest识别。
 + libvirt
 ```xml
