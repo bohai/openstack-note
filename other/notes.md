@@ -10,3 +10,4 @@ sql map tools
 8. CSRF
 9. 社会工程学
 10. 钓鱼漏洞（伪造网站链接）
+11. root型shell
