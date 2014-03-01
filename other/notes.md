@@ -7,3 +7,4 @@ sql map tools
 5. 程序逻辑bug
 6. 未校验特殊值（尤其涉及计费，计时）
 7. cookie泄露用户信息
+8. CSRF
