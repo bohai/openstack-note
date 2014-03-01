@@ -9,3 +9,4 @@ sql map tools
 7. cookie泄露用户信息
 8. CSRF
 9. 社会工程学
+10. 钓鱼漏洞
