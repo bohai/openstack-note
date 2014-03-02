@@ -1,6 +1,10 @@
 ###wuyun
 1. SQL注入/SQL盲注*   
-sql map tools
+国内：啊d  
+国外:sqlmap  pangolin  
+
+扫描工具：burpsuite、JSky、safe3wvs、wvs、nmap.......
+注入工具：sqlmap（首选）、Havij、pangolin、Safe3SI... 
 2. 弱口令
 3. 任意代码执行/任意代码写入/任意文件读取*/任意文件上传/远程命令执行
 4. XSS
