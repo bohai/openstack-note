@@ -7,6 +7,8 @@ xml设置方法：
 	<hugepages/>
 </memoryBacking>
 ```
++ 内核参数  
+通过内核参数***/proc/sys/vm/nr_hugepages***修改。
 
 Transparent Huge Page
 ----
