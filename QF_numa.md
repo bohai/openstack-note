@@ -171,4 +171,18 @@ Vmware支持CPU、内存的绑定,toppology的设置。
 [再平衡]:https://pubs.vmware.com/vsphere-50/index.jsp#com.vmware.vsphere.resmgmt.doc_50/GUID-BD4A462D-5CDC-4483-968B-1DCF103C4208.html
 
 ### NUMA调优  
-[numa optimize]:https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7-Beta/html-single/Virtualization_Tuning_and_Optimization_Guide/index.html
+[NUMA调优]:https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7-Beta/html-single/Virtualization_Tuning_and_Optimization_Guide/index.html
++ 使用内核AutoNuma 进行balance  
+关闭自动numa
+```shell
+# echo NONUMA > /sys/kernel/debug/sched_features
+```
+查看自动numa
+```shell
+# cat /sys/kernel/debug/sched_features 
+```
+打开自动numa
+```shell
+# echo 1 > /sys/kernel/mm/autonuma/enabled
+```
+
