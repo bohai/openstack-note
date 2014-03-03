@@ -87,7 +87,7 @@ FT（Fault Tolerance）|	单vcpu  |NA 	|
 虚拟机故障检测	|	是	|	|
 Guest [NUMA]|	|是	|
 Host [NUMA]	|		|是	|
-Virtual SMP	|		|是	|
+Virtual SMP	|即支持多个VCPU |是	|
 Transparent Huge Page|		|是	|
 x2apic		|		|是	|
 msi-x		|		|	|
