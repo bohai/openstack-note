@@ -2,7 +2,7 @@
 支持cpuset设定。  
 不支持cpu亲和性的精细设置。  
 不支持内存亲和性设置。  
-不支持topology设置。  
+不支持topology设置。(bp现状1的解决范围)  
 不支持guest numa设置。  
 
 ### BP现状  
@@ -15,7 +15,7 @@ BP状态为new(尚未成为approved），作者已经提交代码并开始review
 ```
 只是设置sockets,threads,cores等信息。不包括node信息设置。  
 
-[vm cpu topology]:https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
+[vm cpu topology]:https://blueprints.launchpad.net/nova/+spec/support-libvirt-vcpu-topology
 项目wiki: https://wiki.openstack.org/wiki/VirtDriverGuestCPUTopology
 + [numa-aware-cpu-binding]  
 BP尚未开始review。  
