@@ -88,7 +88,7 @@ FT（Fault Tolerance）|	单vcpu  |NA 	|
 Guest [NUMA]|	|是	|
 Host [NUMA]	|		|是	|
 Virtual SMP	|即支持多个VCPU |是	|
-Transparent Huge Page|		|是	|
+[Transparent Huge Page]|		|是	|
 x2apic		|		|是	|
 msi-x		|		|	|
 posted interrupt|		|NA	|
@@ -103,3 +103,4 @@ ELI		|		|	|
 [内存 QoS]: QF_MEMQos.md 
 [虚拟机快照]:QF_vm_snapshot.md
 [NUMA]:QF_numa.md
+[Transparent Huge Page]:QF_hugepage.md
