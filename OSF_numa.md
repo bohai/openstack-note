@@ -1,6 +1,6 @@
 ### Openstack现状  
 支持vcpu cpuset设定。  
-不支持cpu亲和性的精细设置。  
+不支持cpu亲和性的精细设置。（bp2解决范围）  
 不支持内存亲和性设置。  
 不支持topology设置。(bp现状1的解决范围)  
 不支持guest numa设置。  
