@@ -12,7 +12,7 @@
 		|份额		|否	|
 [虚拟机快照]	|内存快照	|是	|	
 		|无中断内存快照	|	|	
-Host		|Logical Processors|	|	
+[Host]		|Logical Processors|	|	
 		|Physical Memory|	|	
 		|Virtual CPUs per Host|	|	
 VM		|Virtual CPUs per VM|	|	
@@ -104,3 +104,4 @@ ELI		|		|	|
 [虚拟机快照]:QF_vm_snapshot.md
 [NUMA]:QF_numa.md
 [Transparent Huge Page]:QF_hugepage.md
+[Host]:QF_host.md
