@@ -1,5 +1,12 @@
 Huge Page
 ----
++ libvirt  
+xml设置方法：
+```xml
+<memoryBacking>
+	<hugepages/>
+</memoryBacking>
+```
 
 Transparent Huge Page
 ----
