@@ -45,3 +45,8 @@ Domain 2 destroyed
 AnonHugePages:         0 kB
 ```
 [qemu设置方法]:http://pic.dhe.ibm.com/infocenter/lnxinfo/v3r0m0/index.jsp?topic=%2Fliaat%2Fliaattunconfighp.htm
+
+Openstack现状
+-----
+BP已经有人提出，目前在实现中。  
+https://blueprints.launchpad.net/nova/+spec/enable-libvirt-to-use-hugepages
