@@ -13,4 +13,7 @@ MOM
 VDSM和MOM在部署上互相独立存在，VDSM向MOM提供policy使用。并使用MOM的RPC API进行控制。  
 
 
+### MOM内部  
+基于policy和收集的数据对memory overcommit进行控制。  
+![architecture](http://www.ibm.com/developerworks/cn/linux/l-overcommit-kvm-resources/figure2.gif)
 MOM: Memory overcommit management
