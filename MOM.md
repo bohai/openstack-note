@@ -1,5 +1,8 @@
 MOM
 ------
+MOM: Memory overcommit management   
+最初由IBM一名员工开发并在IBM项目中使用。目前ovirt项目也引入了该组件。     
+https://github.com/oVirt/mom  
 ### 功能  
 提供KVM host上基于策略的内存overcommit管理。   
 可以根据从host和guest上收集的数据调整memory overcommit配置，从而达到最优的目的。 
@@ -25,4 +28,3 @@ Policy：策略定义。定义何时应该触发管理动作执行。
 collector：负责收集各种数据。  
 
 
-MOM: Memory overcommit management  
