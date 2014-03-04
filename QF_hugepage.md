@@ -10,6 +10,12 @@ xml设置方法：（告诉hypervisor虚拟机内存使用hugepage分配）
 	<hugepages/>
 </memoryBacking>
 ```
+
++ [qemu设置方法]
+```xml
+-mem-prealloc -mem-path /dev/hugepages/libvirt/qemu 
+```
+
 + 内核参数  
 通过内核参数***/proc/sys/vm/nr_hugepages***修改。
 
@@ -21,3 +27,5 @@ Transparent Huge Page
 通过内核参数***/sys/kernel/mm/redhat_transparent_hugepage/enabled***打开.  
 + 其他Linux系统  
 通过内核参数***/sys/kernel/mm/transparent_hugepage/enabled***打开.  
+
+[qemu设置方法]:http://pic.dhe.ibm.com/infocenter/lnxinfo/v3r0m0/index.jsp?topic=%2Fliaat%2Fliaattunconfighp.htm
