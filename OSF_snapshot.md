@@ -93,6 +93,8 @@ h. 抽取整个block的数据到新的qcow2文件中（后续可以上传到glan
 https://blueprints.launchpad.net/nova/+spec/live-snapshot-vms  
 实现方式：
 通过glance container来存储instance的root盘、内存快照、虚拟机xml信息等。  
+不足：
+只提供基于image的虚拟机的live snapshot,而不提供基于volume的卷的live snapshot。  
 
 -  虚拟机所有盘的快照。  
 该BP还在draft解决，完全没有开始：  
