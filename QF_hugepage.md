@@ -4,7 +4,7 @@ Huge Page
 减小也表尺寸，降低查找缓存（TLB)的cache-miss,加速VM内存转换。  
 默认Page size 4K / Huge Page 2M    
 + libvirt  
-xml设置方法：
+xml设置方法：（告诉hypervisor虚拟机内存使用hugepage分配）
 ```xml
 <memoryBacking>
 	<hugepages/>
