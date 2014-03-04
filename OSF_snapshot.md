@@ -40,14 +40,14 @@ openstack的虚拟机快照只快照root盘，不快照内存/CPU状态以及挂
     +  过程较长（需要先通过存储快照，然后抽取并上传至glance)。
     +  无法充分利用存储本身能力加快快照的创建和使用
 
-+ nova image-create的流程
-    1.  获取token（获取token接口）  
-    2.  查询虚拟机状态（查询接口）  
-    3.  创建虚拟机快照 
-```shell
++ nova image-create的流程   
+    一.  获取token（获取token接口）    
+    二.  查询虚拟机状态（查询接口）    
+    三.  创建虚拟机快照   
+    ```shell
 curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/6c2504f4-efa-47ec-b6f4-06a9fde8a00b/action -X POST -H "X-Auth-Project-Id: admin" -H "User-Agent: python-novaclient" -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token: " -d '{"createImage": {"name": "nova_100_new_01", "metadata": {}}}'
-```
-    4.  volume backed的虚拟机，使用compute_api.snapshot_volume_backed创建虚拟机快照；volume backed以外类型的虚拟机，调用compute_api.snapshot接口创建快照（最终实现在createImage接口） 
+    ```
+    四.  volume backed的虚拟机，使用compute_api.snapshot_volume_backed创建虚拟机快照；volume backed以外类型的虚拟机，调用compute_api.snapshot接口创建快照（最终实现在createImage接口） 
 + createImage接口（创建虚拟机快照）流程   
 ```shell
 底层实现：
