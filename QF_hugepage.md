@@ -48,5 +48,5 @@ AnonHugePages:         0 kB
 
 Openstack现状
 -----
-BP已经有人提出，目前在实现中。  
-https://blueprints.launchpad.net/nova/+spec/enable-libvirt-to-use-hugepages
+BP已经有人提出，目前在实现中。通过metadata实现。    
+https://blueprints.launchpad.net/nova/+spec/enable-libvirt-to-use-hugepages       
