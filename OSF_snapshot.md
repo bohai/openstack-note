@@ -75,6 +75,8 @@ g. persist类型的虚拟机，重新define
 h. 抽取整个block的数据到新的qcow2文件中（后续可以上传到glance上）
 [root@fedora170 data]# qemu-img convert -f qcow2 -O qcow2 -c /data/test/test.qcow2.delta /data/test/test_snapshot.qcow2
 ```
++ compute_api.snapshot_volume_backed流程  
+底层利用driver能力进行volume的快照创建。  
 
 ### 当前快照导入、导出方法
 + 虚拟机快照导出
