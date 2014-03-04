@@ -16,10 +16,13 @@ VDSM和MOM在部署上互相独立存在，VDSM向MOM提供policy使用。并使
 ### MOM内部  
 基于policy和收集的数据对memory overcommit进行控制。  
 ![architecture](http://www.ibm.com/developerworks/cn/linux/l-overcommit-kvm-resources/figure2.gif)
-MOM: Memory overcommit management
 
-其中各组件：
+  
+其中各组件：  
 controller：基于底层接口提供调控能力，比如触发ballon调整,ksm扫描合并。  
 evaluator：基于collector的数据和policy，判断是否要触发管理动作。  
 Policy：策略定义。定义何时应该触发管理动作执行。  
 collector：负责收集各种数据。  
+
+
+MOM: Memory overcommit management  
