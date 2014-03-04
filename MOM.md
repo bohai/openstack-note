@@ -10,6 +10,7 @@ MOM
 ![architecture](http://www.ovirt.org/images/b/b4/Mom-vdsm.jpg)  
 交互图：  
 ![architecture](http://www.ovirt.org/images/e/e6/Mom-flow.png)  
+VDSM和MOM在部署上互相独立存在，VDSM向MOM提供policy使用。并使用MOM的RPC API进行控制。  
 
 
 MOM: Memory overcommit management
