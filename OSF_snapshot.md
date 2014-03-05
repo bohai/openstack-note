@@ -77,6 +77,36 @@ h. 抽取整个block的数据到新的qcow2文件中（后续可以上传到glan
 ```
 + compute_api.snapshot_volume_backed流程  
 底层利用driver能力进行volume的快照创建。  
+快照container的管理方式。
+```xml
+$ glance show 64b5516d-f27e-4262-862e-cb6f39d3499b
+URI: http://186.100.8.144:9292/v1/images/64b5516d-f27e-4262-862e-cb6f39d3499b
+Id: 64b5516d-f27e-4262-862e-cb6f39d3499b
+Public: No
+Protected: No
+Name: volume_snapshot
+Status: active
+Size: 0
+Disk format: 
+Container format: 
+Minimum Ram Required (MB): 0
+Minimum Disk Required (GB): 0
+Owner: 507667477fd840e1a81c1ca7f6f54f69
+Property 'block_device_mapping': [{"instance_uuid": "fbcbe31e-b056-480e-8eab-852ee77defac", "virtual_name": null, "no_device": null, "connection_info": "{\"driver_volume_type\": \"iscsi\", \"serial\": \"70269f98-acf2-43e6-9564-91b824dfb5e4\", \"data\": {\"access_mode\": \"rw\", \"target_discovered\": false, \"encrypted\": false, \"qos_spec\": null, \"device_path\": \"/dev/disk/by-path/ip-186.100.8.144:3260-iscsi-iqn.2010-10.org.openstack:volume-70269f98-acf2-43e6-9564-91b824dfb5e4-lun-1\", \"target_iqn\": \"iqn.2010-10.org.openstack:volume-70269f98-acf2-43e6-9564-91b824dfb5e4\", \"target_portal\": \"186.100.8.144:3260\", \"volume_id\": \"70269f98-acf2-43e6-9564-91b824dfb5e4\", \"target_lun\": 1, \"auth_password\": \"LCJyaFWiokcQM6BX4VZk\", \"auth_username\": \"g5Nthj6bxnS7egxHa4Le\", \"auth_method\": \"CHAP\"}}", "created_at": "2014-03-05T08:44:22.000000", "snapshot_id": "8c547b26-8135-44c0-b2d6-718831ca7ee3", "updated_at": "2014-03-05T08:44:34.000000", "device_name": "vda", "deleted": 0, "volume_size": 1, "volume_id": null, "id": 93, "deleted_at": null, "delete_on_termination": false}]
+Property 'checksum': d972013792949d0d3ba628fbe8685bce
+Property 'min_ram': 512
+Property 'disk_format': qcow2
+Property 'image_name': cirros
+Property 'image_id': ad559bb4-31d5-469f-93b7-0a67546c4a96
+Property 'root_device_name': /dev/vda
+Property 'container_format': bare
+Property 'min_disk': 1
+Property 'size': 13147648
+Created at: 2014-03-05T08:52:46
+Updated at: 2014-03-05T08:52:46
+
+```
+
 
 ### 当前快照导入、导出方法
 + 虚拟机快照导出
