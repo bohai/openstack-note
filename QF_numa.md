@@ -50,8 +50,6 @@ numactl --hardware                    #查看numa node
 ```
 
 
-可以在guest中使用numactl --hardware看到这些node节点。  
-
 CPU/内存[亲和性]设置
 ----
 进程的处理器亲和性（Processor Affinity），即是CPU的绑定设置，是指将进程绑定到特定的一个或多个CPU上去执行，  
