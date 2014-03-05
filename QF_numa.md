@@ -40,6 +40,16 @@ guest识别numa topology的意义在于，guest中的OS可以更好的进行进�
 -smp 8,sockets=1,cores=4,threads=1
 -numa node,nodeid=0,cpus=0-3,mem=1000 -numa node,nodeid=1,cpus=4-7,mem=1000
 ```
++ 确认方法
+```shell
+guest中执行：
+grep "physical id" /proc/cpuinfo      #查看socket
+grep "core id" /proc/cpuinfo          #查看core
+grep "processor" /proc/cpuinfo        #查看总cpu数
+numactl --hardware                    #查看numa node
+```
+
+
 可以在guest中使用numactl --hardware看到这些node节点。  
 
 CPU/内存[亲和性]设置
