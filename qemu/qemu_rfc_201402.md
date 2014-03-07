@@ -41,7 +41,7 @@ qemu配置方法范例：
 -numa node,nodeid=1,cpus=1,memdev=ram-node1 
 ```
 
-+ [RFC PATCH v2 00/12] mc: fault tolerante through	micro-chec
++ [RFC PATCH v2 00/12] mc: fault tolerante through	micro-chec   
 http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg03042.html  
 基于微检查点的FT实现技术。（目前已经有原型实现，还在完善中）  
 
