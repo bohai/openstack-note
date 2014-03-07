@@ -17,15 +17,15 @@ http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg01754.html
 >qemu -enable-kvm -drive file=debian.raw,iops=75,iops_max=10000,if=virtio,cache=none
 
 + [RFC] platform device passthrough  
-Guest OS直接访问host设备得MMIO,DMA regions,以及接受host设备的中断。
+Guest OS直接访问host设备得MMIO,DMA regions,以及接受host设备的中断。  
 http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04666.html
 
 + 支持Intel MPX (Memory Protection Extensions)   
-支持Intel MPX特性（一种硬件辅助技术，目的在于加强指针使用安全性。
+支持Intel MPX特性（一种硬件辅助技术，目的在于加强指针使用安全性。  
 http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04263.html
 
 + [RFC PATCH] block: optimize zero writes with	bdrv_write_zer
-自动使用bdrv_write_zeroes对快设备写0请求进行优化。
+自动使用bdrv_write_zeroes对快设备写0请求进行优化。  
 http://lists.gnu.org/archive/html/qemu-devel/2014-02/msg04134.html  
 
 + Add support for binding guest numa	nodes  
