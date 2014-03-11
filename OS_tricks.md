@@ -45,4 +45,7 @@ mysql>desc table名;
 ```
 pdb支持的指令以及指令详细用法可以通过help查看。
 
+### 邮件搜索  
+http://openstack.markmail.org/
+
 
