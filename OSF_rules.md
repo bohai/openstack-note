@@ -1,2 +1,2 @@
-+ 代码风格
++ 代码风格  
 http://docs.openstack.org/developer/hacking/
