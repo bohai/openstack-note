@@ -48,4 +48,10 @@ pdb支持的指令以及指令详细用法可以通过help查看。
 ### 邮件搜索  
 http://openstack.markmail.org/
 
+### 单元测试  
+```shell
+nosetests want_test_file.name
+nosetests want_test_file.name:method
+```
+
 
