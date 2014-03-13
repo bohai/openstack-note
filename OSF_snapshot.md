@@ -160,6 +160,8 @@ https://blueprints.launchpad.net/nova/+spec/instance-level-snapshots
 https://blueprints.launchpad.net/nova/+spec/linked-snapshot
 + 感觉像是利用linked clone快速clone虚拟机  
 https://blueprints.launchpad.net/nova/+spec/nova-fast-snapshot
++ IBM一个哥们儿提的（关注）
+https://blueprints.launchpad.net/nova/+spec/driver-specific-snapshot
 
 + 关联的一个重要BP  
 https://wiki.openstack.org/wiki/Raksha
