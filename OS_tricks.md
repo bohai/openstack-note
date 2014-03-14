@@ -53,5 +53,10 @@ http://openstack.markmail.org/
 nosetests want_test_file.name
 nosetests want_test_file.name:method
 ```
-
+解决proxy后run_tests.py运行失败的问题：  
+```shell  
+pip install --upgrade -r test-requirements.txt
+pip install --upgrade -r requirements.txt
+然手运行nosetest进行测试。
+```
 
