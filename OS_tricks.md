@@ -51,7 +51,7 @@ http://openstack.markmail.org/
 ### 单元测试  
 ```shell
 nosetests want_test_file.name
-nosetests want_test_file.name:method
+nosetests want_test_file.name:class.method
 ```
 解决proxy后run_tests.py运行失败的问题：  
 ```shell  
