@@ -1,8 +1,10 @@
 review技巧
 -----
 ### 可参考资料 
-1. **
-2. **
++ 代码风格  
+http://docs.openstack.org/developer/hacking/  
++ API规则  
+https://wiki.openstack.org/wiki/APIChangeGuidelines  
 
 ### 具体样例  
 + 无效log/错误的log  
