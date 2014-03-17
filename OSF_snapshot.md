@@ -162,6 +162,8 @@ https://blueprints.launchpad.net/nova/+spec/linked-snapshot
 https://blueprints.launchpad.net/nova/+spec/nova-fast-snapshot
 + IBM一个哥们儿提的（关注）  
 https://blueprints.launchpad.net/nova/+spec/driver-specific-snapshot
++ 带fsfreeze的快照实现 draft阶段
+https://blueprints.launchpad.net/nova/+spec/quiesced-image-snapshots-with-qemu-guest-agent
 
 + 关联的一个重要BP  
 https://wiki.openstack.org/wiki/Raksha
