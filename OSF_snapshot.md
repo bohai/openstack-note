@@ -166,7 +166,10 @@ https://blueprints.launchpad.net/nova/+spec/driver-specific-snapshot
 https://blueprints.launchpad.net/nova/+spec/quiesced-image-snapshots-with-qemu-guest-agent
 
 + 关联的一个重要BP  
-https://wiki.openstack.org/wiki/Raksha
+https://wiki.openstack.org/wiki/Raksha  
+
++ 社区为什么不愿意加入vm snapshot功能  
+http://blog.csdn.net/duan101101/article/details/19424479
 
 ###备注 
 [1]: http://docs.openstack.org/user-guide/content/cli_manage_images.html#glance-image-list 
