@@ -30,9 +30,19 @@ v2/​{tenant_id}​/servers/​{server_id}​/os-volume_attachments
 
 4. 用户将卷挂载给虚拟机  
 
-###代码流程  
+### 代码流程  
 + image metadata支持[virtio-scsi controller]已经实现，目前在review中。预计i3合入。  
 + volume metadata支持discard属性（默认不开启）、bus属性（默认不设置）待开发（xml属性生成）。
+
+### 如何向用户展现
+1. 支持用户打开discard开关  
+2. 触发discard，主要有三种方法
+    1. 对NTFS/ext4有自动discard的，打开discard属性
+    2. 对ext3这种不能自动discard的
+        1. 用户手动触发
+        2. 用户在guest内实现自动触发
+        3. openstack向用户暴露接口，触发guest的trim，需要guest-agent支持
+    
 
 ###笔记
 + volume attach：  
