@@ -12,7 +12,8 @@ libvirt 1.2.1后支持该功能。
 </devices>
 ```
 大部分情况下用户无需指定address。
-### qemu用法
+### qemu用法  
+qemu 1.5以后开始支持。
 ```shell
 -device pvpanic
 ```
