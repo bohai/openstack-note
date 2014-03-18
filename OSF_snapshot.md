@@ -41,6 +41,14 @@ openstack的虚拟机快照只快照root盘，不快照内存/CPU状态以及挂
     +  过程较长（需要先通过存储快照，然后抽取并上传至glance)。
     +  无法充分利用存储本身能力加快快照的创建和使用
 
++ openstack的历史原因  
+openstack目前的快照主要用于制作image,类似于vmware保存虚拟机状态的快照一致未提供。  
+社区反对的原因主要有：  
+    1. 这应该是一种虚拟化技术的feature，不是云计算平台的feature  
+    2. openstack由于底层要支持多种虚拟化的技术，某些虚拟化技术实现这种功能比较困难  
+    3. 创建的VM state snapshot会面临cpu feature不兼容的问题  
+
+
 + nova image-create的流程   
     一.  获取token（获取token接口）    
     二.  查询虚拟机状态（查询接口）    
