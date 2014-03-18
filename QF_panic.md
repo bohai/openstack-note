@@ -15,6 +15,11 @@ panic设备可以让libvirt从qemu guest获取到panic通知。
 ```shell
 -device pvpanic
 ```
+info qtree可以看到如下设备：
+```
+          dev: pvpanic, id ""
+            ioport = 1285
+```
 ### 实现原理
 
 ### openstack上应用
