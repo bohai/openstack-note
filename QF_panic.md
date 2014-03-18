@@ -12,7 +12,9 @@ panic设备可以让libvirt从qemu guest获取到panic通知。
 ```
 大部分情况下用户无需指定address。
 ### qemu用法
-
+```shell
+-device pvpanic
+```
 ### 实现原理
 
 ### openstack上应用
