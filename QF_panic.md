@@ -2,9 +2,9 @@ panic设备
 -----
 panic设备可以让libvirt从qemu guest获取到panic通知。  
 
-### libvirt
+### libvirt用法
 
-### qemu
+### qemu用法
 
 ### 实现原理
 
