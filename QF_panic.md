@@ -3,6 +3,7 @@ panic设备
 panic设备可以让libvirt从qemu guest获取到panic通知。  
 
 ### libvirt用法
+libvirt 1.2.1后支持该功能。
 ```xml
 <devices>
     <panic>
