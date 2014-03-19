@@ -58,6 +58,7 @@ curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/6c
     ```
     四.  volume backed的虚拟机，使用compute_api.snapshot_volume_backed创建虚拟机快照；volume backed以外类型的虚拟机，调用compute_api.snapshot接口创建快照（最终实现在createImage接口） 
 + createImage接口（创建虚拟机快照）流程   
+本质上利用了qemu block stream的能力（或者叫block pull)。
 ```shell
 底层实现：
 a. 清理block设备上次的job信息
