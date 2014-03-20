@@ -7,4 +7,9 @@ role是权限的集合，可以赋予某个user一个role。
 policy直观看是一个json文件，位置在/etc/[SERVICE_CODENAME]/policy.json中。  
 policy.json的格式类似与dict。其中key为action，value未rule。  
 
-### 
+policy.json会由程序读取加载，并用于用户操作的权限验证。  
+
+### 使用
+调用nova/policy.py模块中的enforce()。  
+**似乎由改进的地方**可以通过inotify改进。  
+enforce()会导致policy.json被重新加载，也就是说修改权限不需要重启服务。  
