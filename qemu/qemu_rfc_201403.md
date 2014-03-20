@@ -18,7 +18,14 @@ Qemu
   a. 利用kernel的memory截获API进行实现（内核工作还在进行中）  
   b. 利用postcopy migrate技术实现。   
 
-### 
+https://www.mail-archive.com/kvm@vger.kernel.org/msg100029.html
+### Drop in_use from BlockDriverState	and enable point-in-time snapshot exporting over NBD
+支持PIT快照通过NBD暴露以及解除。
+
+http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg01345.html 
+
+### block/json: Add JSON protocol driver
+http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg00192.html
 
 其他
 -----
