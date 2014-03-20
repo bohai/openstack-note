@@ -1,6 +1,6 @@
 Qemu
 -----
-### VM live snapshot proposal
+### [RFC]VM live snapshot proposal
 + UVP的live snapshot方案。  
 大致过程：
   1. pause虚拟机
