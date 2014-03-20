@@ -9,5 +9,14 @@ marker：上次显示的最后一个的id。
 使用change-since查询某个时间后，变化的条目。  
 
 
-### limits
+### limits  
++ rate limit
++ absolute limit
++ 查询limit
+
+### Version
+
+### extensions
+
+
 
