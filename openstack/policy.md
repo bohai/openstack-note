@@ -13,3 +13,7 @@ policy.json会由程序读取加载，并用于用户操作的权限验证。
 调用nova/policy.py模块中的enforce()。  
 **似乎由改进的地方**可以通过inotify改进。  
 enforce()会导致policy.json被重新加载，也就是说修改权限不需要重启服务。  
+
+### 代码参考
+compute/api.py  
+unlock()--->check_policy()----->policy.enforce()   
