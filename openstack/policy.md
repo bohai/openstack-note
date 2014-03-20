@@ -17,3 +17,7 @@ enforce()会导致policy.json被重新加载，也就是说修改权限不需要
 ### 代码参考
 compute/api.py  
 unlock()--->check_policy()----->policy.enforce()   
+
+
+### 待验证
+修改policy，发送API消息验证。
