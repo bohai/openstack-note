@@ -7,7 +7,7 @@ pci hotplug
 2.  
 3.  
 4.  
-### 问题
+### 问题  
 1. 如何查看vm中的pci设备与host的pic设备的关系
 2. 
 
