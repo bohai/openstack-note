@@ -9,8 +9,8 @@ pci hotplug
 4.  虚拟机上虚拟设备的热拔插。  
 
 ### 问题  
-1. 如何查看vm中的pci设备与host的pic设备的关系
-2. 
+1. 如何查看vm中的pci设备与host的pic设备的关系？  
+2. pci hotplug对flavor的影响？对计费的影响？rebuild/evalute时如何处理丢失？  
 
 ### test
 
