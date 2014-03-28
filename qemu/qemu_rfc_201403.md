@@ -19,7 +19,7 @@ Qemu
   b. 利用postcopy migrate技术实现。   
 
 https://www.mail-archive.com/kvm@vger.kernel.org/msg100029.html
-### Drop in_use from BlockDriverState	and enable point-in-time snapshot exporting over NBD
+### enable point-in-time snapshot exporting over NBD
 支持PIT快照通过NBD暴露以及解除。
 
 http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg01345.html 
