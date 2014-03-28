@@ -25,7 +25,7 @@ https://www.mail-archive.com/kvm@vger.kernel.org/msg100029.html
 http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg01345.html 
 
 ### block/json: Add JSON protocol driver
-用途通过文件名指定块设备的option。
+用途通过文件名指定块设备的option。  
 http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg00192.html
 
 其他
