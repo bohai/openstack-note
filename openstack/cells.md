@@ -4,9 +4,36 @@ cells为用户提供了一种以分布式风格Scacle Opensack的方式。用户
 两者相比，cells更像是scale-out, 后者更像是scacle-up。cells目标是支持非常大的规模。  
 ***nova cells 目前仍是实验性质的***
 ### 配置过程
-详细配置过程请参考[配置文档]：
-1. 
-2. 
+详细配置过程请参考[配置文档]：  
++ 修改nova.conf配置top-cell
+```
+[DEFAULT]
+compute_api_class=nova.compute.cells_api.ComputeCellsAPI
+...
+[cells]
+enable=True
+name=api
+```
++ 修改nova.conf配置child-cell
+```
+[DEFAULT]
+# Disable quota checking in child cells. Let API cell do it exclusively.
+quota_driver=nova.quota.NoopQuotaDriver
+[cells]
+enable=True
+name=cell1
+```
++ 配置数据库
+```
+in the API cell:
+# nova-manage cell create --name=cell1 --cell_type=child --username=cell1_user
+--password=cell1_passwd --hostname=10.0.1.10 --port=5673 --virtual_host=
+cell1_vhost --woffset=1.0 --wscale=1.0
+in the child cell
+# nova-manage cell create --name=api --cell_type=parent --username=api1_user
+--password=api1_passwd --hostname=10.0.0.10 --port=5672 --virtual_host=
+api_vhost --woffset=1.0 --wscale=1.0
+```
 
 ### 参考
 [配置文档]:http://docs.openstack.org/havana/config-reference/content/
