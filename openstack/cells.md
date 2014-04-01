@@ -34,6 +34,9 @@ in the child cell:
 --password=api1_passwd --hostname=10.0.0.10 --port=5672 --virtual_host=
 api_vhost --woffset=1.0 --wscale=1.0
 ```
++ 配置scheduler
+
+### 消息流
 
 ### 参考
 [配置文档]:http://docs.openstack.org/havana/config-reference/content/
