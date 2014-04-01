@@ -29,7 +29,7 @@ in the API cell:
 # nova-manage cell create --name=cell1 --cell_type=child --username=cell1_user
 --password=cell1_passwd --hostname=10.0.1.10 --port=5673 --virtual_host=
 cell1_vhost --woffset=1.0 --wscale=1.0
-in the child cell
+in the child cell: 
 # nova-manage cell create --name=api --cell_type=parent --username=api1_user
 --password=api1_passwd --hostname=10.0.0.10 --port=5672 --virtual_host=
 api_vhost --woffset=1.0 --wscale=1.0
