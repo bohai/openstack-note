@@ -4,10 +4,12 @@ cells为用户提供了一种以分布式风格Scacle Opensack的方式。用户
 两者相比，cells更像是scale-out, 后者更像是scacle-up。cells目标是支持非常大的规模。  
 ***nova cells 目前仍是实验性质的***
 ### 配置过程
-详细参考[配置文档]：
+详细配置过程请参考[配置文档]：
+1. 
+2. 
 
 ### 参考
-[配置文档]：http://docs.openstack.org/havana/config-reference/content/
+[配置文档]:http://docs.openstack.org/havana/config-reference/content/
 
 
 
