@@ -48,6 +48,7 @@ a. 如何进入cell的消息流程
         super(ComputeCellsAPI, self).unrescue(context, instance)
         self._cast_to_cells(context, instance, 'unrescue')
 ```
+备注：从代码看目前非cell部署中很多操作在cell中实际上是不支持的。（待实际确认）  
 b. cell内消息路由过程
   ddd
 
