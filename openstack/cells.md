@@ -37,6 +37,11 @@ api_vhost --woffset=1.0 --wscale=1.0
 + 配置scheduler
 
 ### 消息流
+1. 如何进入cell的消息流程  
+   从如上compute_api_class配置可以看出消息进入了nova.compute.cells_api.ComputeCellsAPI。
+   非cell配置情况下，API消息会调用nova.compute.api.API。
+2. cell内消息路由过程
+  ddd
 
 ### 参考
 [配置文档]:http://docs.openstack.org/havana/config-reference/content/
