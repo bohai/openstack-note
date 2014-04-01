@@ -48,10 +48,12 @@ a. 如何进入cell的消息流程
         super(ComputeCellsAPI, self).unrescue(context, instance)
         self._cast_to_cells(context, instance, 'unrescue')
 ```
-备注：从代码看目前非cell部署中很多操作在cell中实际上是不支持或者有问题的。（待实际确认）  
-b. cell内消息路由过程
-  ddd
-
+备注：从代码看目前非cell部署中很多操作在cell中实际上是不支持或者有问题的。（可能理解不正确，待实际确认）  
+b. cell内消息路由过程  
+  cells_api(1)->cell's rpcapi(2)->cell's manager(3)->next hop(4)->compute_api(5)
+  (3): 判断消息是否该在本cell处理并处理，否则寻找下一跳的cell处理。  
+  (4): 重复2，3的步骤。  
+  (5): 最终完成消息的处理。  
 ### 参考
 [配置文档]:http://docs.openstack.org/havana/config-reference/content/
 
