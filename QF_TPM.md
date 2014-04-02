@@ -19,3 +19,6 @@ TPM安全芯片用途十分广泛，配合专用软件可以实现以下用途�
 + 加密硬盘的任意分区。  
   我们可以加密本本上的任意一个硬盘分区，您可以将一些敏感的文件放入该分区以策安全。  
   其实有些本本厂商采用的一键恢复功能，就是该用途的集中体现之一（其将系统镜像放在一个TPM加密的分区中）。  
+
+### TPM结构  
+[tpm_image]:http://upload.wikimedia.org/wikipedia/commons/thumb/b/be/TPM.svg/580px-TPM.svg.png
