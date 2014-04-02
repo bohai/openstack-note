@@ -22,4 +22,4 @@ TPM安全芯片用途十分广泛，配合专用软件可以实现以下用途�
 
 ### TPM结构  
 ![Alt text](http://upload.wikimedia.org/wikipedia/commons/thumb/b/be/TPM.svg/580px-TPM.svg.png)
-[tpm_image]:http://upload.wikimedia.org/wikipedia/commons/thumb/b/be/TPM.svg/580px-TPM.svg.png
+
