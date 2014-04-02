@@ -21,4 +21,5 @@ TPM安全芯片用途十分广泛，配合专用软件可以实现以下用途�
   其实有些本本厂商采用的一键恢复功能，就是该用途的集中体现之一（其将系统镜像放在一个TPM加密的分区中）。  
 
 ### TPM结构  
+![Alt text](http://upload.wikimedia.org/wikipedia/commons/thumb/b/be/TPM.svg/580px-TPM.svg.png)
 [tpm_image]:http://upload.wikimedia.org/wikipedia/commons/thumb/b/be/TPM.svg/580px-TPM.svg.png
