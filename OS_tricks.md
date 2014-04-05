@@ -59,4 +59,15 @@ pip install --upgrade -r test-requirements.txt
 pip install --upgrade -r requirements.txt
 然手运行nosetest进行测试。
 ```
-
+### 代码提交
++ 修改加提交代码流程
+git checkout -b 分知名（bp名或bug名） origin/master
+修改代码
+git commit
+git commit --amend
+git review
++ 第n次修改代码过程
+修改代码
+git commit
+git reabse -i HEAD~2   合并两次提交(squash新的commit)
+git review
