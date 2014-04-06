@@ -12,3 +12,9 @@ https://wiki.openstack.org/wiki/APIChangeGuidelines
 + API使用错误  
 对某个API的返回使用错误。  
 使用旧的，废弃的API。   
++ 逻辑表达式（性能最优）   
+优先判断不等。  
+```xml
+if (fixedip.virtual_interface.address not in macs) and \
+   (fixedip.virtual_interface.address != vif_address):
+```
