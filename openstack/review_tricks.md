@@ -14,7 +14,7 @@ https://wiki.openstack.org/wiki/APIChangeGuidelines
 使用旧的，废弃的API。   
 + 逻辑表达式（性能最优）   
 优先判断不等。  
-```xml
+```python
 if (fixedip.virtual_interface.address not in macs) and \
    (fixedip.virtual_interface.address != vif_address):
 ```
