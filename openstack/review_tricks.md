@@ -13,12 +13,12 @@ https://wiki.openstack.org/wiki/APIChangeGuidelines
 对某个API的返回使用错误。  
 使用旧的，废弃的API。   
 + 逻辑表达式（性能最优）   
-错误  
+错误   
 ```python
 if (fixedip.virtual_interface.address not in macs) and \
    (fixedip.virtual_interface.address != vif_address):
 ```
-正确
+正确    
 ```python
 if (fixedip.virtual_interface.address != vif_address) and \
    (fixedip.virtual_interface.address not in macs):
