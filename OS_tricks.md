@@ -71,3 +71,6 @@ git review
 git commit  
 git reabse -i HEAD~2   合并两次提交(squash新的commit)  
 git review  
+
+### tempest
+http://www.ibm.com/developerworks/cn/cloud/library/1403_liuyu_openstacktempest/
