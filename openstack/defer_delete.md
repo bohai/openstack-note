@@ -79,6 +79,6 @@ POST v2/​{tenant_id}​/servers/​{server_id}​/action
     "restore": null
 }
 ```
-+ 实现原理
++ 实现原理   
 实现原理比较简单，通过虚拟机数据库中的状态进行软删除控制。  
 通过定时任务进行虚拟机的删除。  
