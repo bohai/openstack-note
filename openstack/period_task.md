@@ -44,7 +44,6 @@ def periodic_task(*args, **kwargs):
         return f
     ...
 ```
-+ 周期性任务如何被调度？
 + 周期性任务如何被管理？  
 首先看类的继承关系：
 ```python
@@ -82,3 +81,4 @@ class PeriodicTasks(object):
                 cls._periodic_tasks.append((name, task))
     ...
 ```
++ 周期性任务如何被调度？
