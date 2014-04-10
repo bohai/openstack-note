@@ -61,8 +61,9 @@ scrub_time = 43200
 # (integer value)
 #reclaim_instance_interval=0
 ```
-该值为0，则立刻删除。不为0，则为软删除。在该时间到达后，才真正删除虚拟机。  
+该值为0，则立刻删除。不为0，则为软删除。  
 在该时间到达前，可以通过API将虚拟机找回。  
+周期性任务_reclaim_queued_deletes会定期检查，真正删除已经到达时间的虚拟机。
 
 相关API：
 ```
