@@ -63,10 +63,14 @@ class PeriodicTasks(object):
     __metaclass__ = _PeriodicTasksMeta
 
     def run_periodic_tasks(self, context, raise_on_error=False):
+        ...
+        for task_name, task in self._periodic_tasks:
+            #执行所有周期性任务
     ...
 ```
-由上我们可以看到，周期性任务类使用了元类_PeriodicTasksMeta。
-在元类中做了什么呢？
+由上我们可以看到，周期性任务类使用了元类_PeriodicTasksMeta。  
+在元类中做了什么呢？  
+我们可以看到在元类中，将所有周期性任务收集到_periodic_tasks列表中。
 ```python
     ...
        for value in cls.__dict__.values():
