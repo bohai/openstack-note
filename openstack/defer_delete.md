@@ -40,7 +40,12 @@ scrub_time = 43200
 ```
 
 备注：目前image找回功能的接口还在review中，目前仍不可用。  
-+ 实现原理
++ 实现原理  
+实现原理很简单。当打开延迟删除开关后，对image的删除不会立刻触发动作，
+而只是记录的状态为pending_delete和删除时间。  
+另外glance有个scrubber的清理服务，会周期性检查pending_delete的image是否到期，
+到期则进行删除动作。 
+
 
 #### glance镜像的删除保护
 + 用法
