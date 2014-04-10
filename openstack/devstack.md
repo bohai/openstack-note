@@ -1,5 +1,6 @@
 ALL IN ONE:
 ---
+devstack通过外网安装openstack。  
 ```shel
 1. 配置外网访问，repo
 2. 安装前配置
@@ -14,6 +15,8 @@ cd devstack
 3. local.conf定制
 拷贝并修改local.conf到stack.sh同级目录
 
-4. 安装
+4. 修改localrc，修改git库协议为http
+
+5. 安装
 ./stack.sh
 ```
