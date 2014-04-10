@@ -1,5 +1,5 @@
 ALL IN ONE:
----
+----
 devstack通过外网安装openstack。  
 ```shel
 1. 配置外网访问，repo
