@@ -45,7 +45,7 @@ def periodic_task(*args, **kwargs):
     ...
 ```
 + 周期性任务如何被调度？
-+ 周期性任务如何被管理？
++ 周期性任务如何被管理？  
 首先看类的继承关系：
 ```python
 class ComputeManager(manager.Manager):
