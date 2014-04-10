@@ -108,5 +108,10 @@ manager最终调用周期性任务类中的谁在调用run_periodic_tasks方法�
         return self.run_periodic_tasks(context, raise_on_error=raise_on_error)
 ```
 #### 写个例子
-
+```python
+#nova/manager.py
+    @periodic_task.periodic_task
+    def _hello_world(self, context):
+        LOG.debug(_("hello period task"))
+```
 
