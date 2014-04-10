@@ -18,6 +18,7 @@ openstack周期性任务浅析
 + decorator中做了什么？
 对周期性任务的参数进行初始配置。
 ```python
+def periodic_task(*args, **kwargs):
     def decorator(f):
         # Test for old style invocation
         if 'ticks_between_runs' in kwargs:
