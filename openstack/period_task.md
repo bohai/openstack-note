@@ -42,3 +42,6 @@ def periodic_task(*args, **kwargs):
         return f
     ...
 ```
++ 周期性任务如何被调度？
++ 周期性任务如何被管理？
+
