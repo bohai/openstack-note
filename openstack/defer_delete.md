@@ -49,9 +49,20 @@ scrub_time = 43200
 
 #### glance镜像的删除保护
 + 用法
+
 + 实现原理
 
 
 #### nova虚拟机的软删除
 + 用法
+通过nova.conf，设置回收已删除虚拟机的间隔。  
+```xml
+# Interval in seconds for reclaiming deleted instances
+# (integer value)
+#reclaim_instance_interval=0
+```
+该值为0，则立刻删除。不为0，则为软删除。在该时间到达后，才真正删除虚拟机。  
+在改时间到达前，可以通过API将虚拟机找回。  
+
 + 实现原理
+
