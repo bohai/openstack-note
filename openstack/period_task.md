@@ -2,7 +2,7 @@ openstack周期性任务浅析
 ------
 我想从以下几个方面分析openstack的周期性任务实现。  
 ####  如何添加一个周期性任务  
-在模块的manger.py中增加periodic_task装饰的周期性函数。
+在模块的manger.py中增加periodic_task装饰的周期性函数。  
 每个调度周期运行一次：
 ```python
     @periodic_task.periodic_task
