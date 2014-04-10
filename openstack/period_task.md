@@ -7,12 +7,14 @@ openstack周期性任务浅析
 ```python
     @periodic_task.periodic_task
     def _instance_usage_audit(self, context):
+        ...
 ```
 指定运行间隔运行：
 ```python
     @periodic_task.periodic_task(
         spacing=CONF.running_deleted_instance_poll_interval)
     def _cleanup_running_deleted_instances(self, context):
+        ...
 ```
 ####  周期性任务原理与实现  
 + decorator中做了什么？
