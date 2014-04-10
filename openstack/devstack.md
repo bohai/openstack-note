@@ -2,9 +2,11 @@ ALL IN ONE:
 ----
 devstack通过外网安装openstack。  
 ```shel
-1. 配置ccproxy外网访问，配置163的fedora repo
+1. 配置ccproxy外网访问
 
-2. 安装前配置
+2. 拷贝163的fedora repo到/etc/yum.repos.d/
+
+3. 安装前配置
 adduser stack
 sudo stack
 apt-get install sudo -y || yum install -y sudo
@@ -13,11 +15,11 @@ sudo apt-get install git -y || yum install -y git
 git clone https://github.com/openstack-dev/devstack.git
 cd devstack
 
-3. local.conf定制
+4. local.conf定制
 拷贝并修改local.conf到stack.sh同级目录
 
-4. 修改localrc，修改git库协议为http
+5. 修改localrc，修改git库协议为http
 
-5. 安装
+6. 安装
 ./stack.sh
 ```
