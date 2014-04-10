@@ -23,4 +23,25 @@ cd devstack
 
 6. 安装
 ./stack.sh
+
+7. 关闭防火墙
+setenforce 0
+service iptables stop
+chkconfig iptables off
+
+8. 服务随主机启动
+chkconfig rabbitmq-server on
+service rabbitmq-server start
+chkconfig httpd on
+service httpd start
+chkconfig mysqld on
+service mysqld start
+chkconfig openvswitch on
+service openvswitch start
+
+9. 重启后处理
+恢复卷组和准备cinder-volume： 
+losetup -f /opt/stack/data/stack-volumes-backing-file 
+rejoin-stack.sh
+
 ```
