@@ -16,7 +16,8 @@ git clone https://github.com/openstack-dev/devstack.git
 cd devstack
 
 4. local.conf定制
-拷贝并修改local.conf到stack.sh同级目录
+拷贝local.conf到stack.sh同级目录
+修改local.conf
 
 5. 修改localrc，修改git库协议为http
 
