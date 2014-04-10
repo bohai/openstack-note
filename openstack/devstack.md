@@ -2,7 +2,8 @@ ALL IN ONE:
 ----
 devstack通过外网安装openstack。  
 ```shel
-1. 配置外网访问，repo
+1. 配置ccproxy外网访问，配置163的fedora repo
+
 2. 安装前配置
 adduser stack
 sudo stack
