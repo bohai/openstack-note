@@ -84,7 +84,7 @@ Image is protected
 需要先将属性“protected”修改为“False“才能删除。  
 
 #### nova虚拟机的软删除
-+ 用法
++ 用法   
 通过nova.conf，设置回收已删除虚拟机的间隔。  
 ```xml
 # Interval in seconds for reclaiming deleted instances
