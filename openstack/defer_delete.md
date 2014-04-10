@@ -48,8 +48,36 @@ scrub_time = 43200
 
 
 #### glance镜像的删除保护
-+ 用法
-
++ 用法  
+设置镜像保护是个admin操作，操作方法见如下：  
+```shell
+[root@controller ~(keystone_admin)]# glance image-update --is-protected True centos_wc
++------------------+--------------------------------------+
+| Property         | Value                                |
++------------------+--------------------------------------+
+| checksum         | 2f7476ac2fe077979d2f0cda7640d1a8     |
+| container_format | bare                                 |
+| created_at       | 2014-04-03T10:45:19                  |
+| deleted          | False                                |
+| deleted_at       | None                                 |
+| disk_format      | raw                                  |
+| id               | a7f49865-0388-48f1-a547-f6f23066fb4f |
+| is_public        | False                                |
+| min_disk         | 0                                    |
+| min_ram          | 0                                    |
+| name             | centos_wc                            |
+| owner            | 86196260e1694d0cbb5049cfba3883f8     |
+| protected        | True                                 |
+| size             | 10737418240                          |
+| status           | active                               |
+| updated_at       | 2014-04-10T19:00:29                  |
++------------------+--------------------------------------+
+[root@controller ~(keystone_admin)]# glance image-delete centos_wc
+Request returned failure status.
+403 Forbidden
+Image is protected
+    (HTTP 403): Unable to delete image centos_wc
+```
 + 实现原理
 
 
