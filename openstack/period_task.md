@@ -57,3 +57,11 @@ class Manager(base.Base, periodic_task.PeriodicTasks):
 class PeriodicTasks(object):
 ...
 ```
+周期性任务类只提供给了一个方法：
+```python
+class PeriodicTasks(object):
+    __metaclass__ = _PeriodicTasksMeta
+
+    def run_periodic_tasks(self, context, raise_on_error=False):
+    ...
+```
