@@ -62,7 +62,21 @@ scrub_time = 43200
 #reclaim_instance_interval=0
 ```
 该值为0，则立刻删除。不为0，则为软删除。在该时间到达后，才真正删除虚拟机。  
-在改时间到达前，可以通过API将虚拟机找回。  
+在该时间到达前，可以通过API将虚拟机找回。  
 
+相关API：
+```
+# 强制删除（会对虚拟机立刻删除）
+POST v2/​{tenant_id}​/servers/​{server_id}​/action
+{
+    "forceDelete": null
+}
+
+# 找回
+POST v2/​{tenant_id}​/servers/​{server_id}​/action
+{
+    "restore": null
+}
+```
 + 实现原理
 
