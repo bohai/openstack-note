@@ -107,3 +107,6 @@ manager最终调用周期性任务类中的谁在调用run_periodic_tasks方法�
         """Tasks to be run at a periodic interval."""
         return self.run_periodic_tasks(context, raise_on_error=raise_on_error)
 ```
+写个例子
+----
+
