@@ -83,4 +83,26 @@ class PeriodicTasks(object):
 ```
 + 周期性任务如何被触发调度？  
 谁在调用run_periodic_tasks方法？  
-
+service创建timer，定时触发周期性任务的调度。  
+```python
+#nova/service.py
+    def start(self):
+            ...
+            self.tg.add_dynamic_timer(self.periodic_tasks,
+                                     initial_delay=initial_delay,
+                                     periodic_interval_max=
+                                        self.periodic_interval_max)
+            ...
+            
+    def periodic_tasks(self, raise_on_error=False):
+        """Tasks to be run at a periodic interval."""
+        ctxt = context.get_admin_context()
+        return self.manager.periodic_tasks(ctxt, raise_on_error=raise_on_error)            
+```
+manager最终调用周期性任务类中的谁在调用run_periodic_tasks方法。   
+```python
+#nova/manager.py
+    def periodic_tasks(self, context, raise_on_error=False):
+        """Tasks to be run at a periodic interval."""
+        return self.run_periodic_tasks(context, raise_on_error=raise_on_error)
+```
