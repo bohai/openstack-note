@@ -81,4 +81,6 @@ class PeriodicTasks(object):
                 cls._periodic_tasks.append((name, task))
     ...
 ```
-+ 周期性任务如何被调度？
++ 周期性任务如何被触发调度？  
+谁在调用run_periodic_tasks方法？  
+
