@@ -72,6 +72,7 @@ class PeriodicTasks(object):
 我们可以看到在元类代码中，将所有周期性任务收集到_periodic_tasks列表中。  
 我们在上边周期性任务类中可以看到，也使用了该列表进行任务调度。  
 ```python
+#periodic_task.py中元类_PeriodicTasksMeta
     ...
        for value in cls.__dict__.values():
             if getattr(value, '_periodic_task', False):
