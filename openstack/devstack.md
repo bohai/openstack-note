@@ -46,7 +46,7 @@ losetup -f /opt/stack/data/stack-volumes-backing-file
 rejoin-stack.sh
 
 ```
-命令执行
+controller命令执行
 ----
 创建keystonerc_admin文件
 ```keystonerc_admin
@@ -56,7 +56,7 @@ export OS_PASSWORD=admin
 export OS_AUTH_URL=http://186.100.8.215:35357/v2.0/
 export PS1='[\u@\h \W(keystone_admin)]\$ '
 ```
-引入keystone_admin文件
+从keystone_admin文件导入环境变量
 ```shell
 source keystonerc_admin
 ```
