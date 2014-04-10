@@ -78,7 +78,7 @@ Request returned failure status.
 Image is protected
     (HTTP 403): Unable to delete image centos_wc
 ```
-+ 实现原理
++ 实现原理   
 通过image的属性“protected”进行控制。  
 删除前检查该属性，未保护则可以删除。保护则不可以删除。   
 需要先将属性“protected”修改为“False“才能删除。  
