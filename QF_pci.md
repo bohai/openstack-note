@@ -1,5 +1,12 @@
 pci passthrough
 ----
+
+pci passthrough(VFIO)
+----
+
+pci sr-iov
+----
+
 pci hotplug
 ----
 ### [应用场景]
