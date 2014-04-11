@@ -25,5 +25,5 @@ Apache2.0 licence，部分代码使用了专利技术。
 商业使用必须获得专利许可。  
 
 ####  IBM PRS项目（非开源）    
-IBM PRS (Platform Resource Scheduler) 项目
+IBM PRS (Platform Resource Scheduler) 项目  
 http://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=AN&subtype=CA&htmlfid=897/ENUS213-590&appname=USN
