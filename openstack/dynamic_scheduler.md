@@ -14,5 +14,6 @@ https://github.com/openstack/gantt
 似乎目前已经废弃，不再更新。   
 http://openstack-neat.org    
 
-###  IBM PRS (Platform Resource Scheduler) 项目  
+###  IBM PRS项目（非开源）    
+IBM PRS (Platform Resource Scheduler) 项目
 http://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=AN&subtype=CA&htmlfid=897/ENUS213-590&appname=USN
