@@ -5,7 +5,7 @@ pci passthrough
 + 使用场景
   - 提升性能（如直通网卡和显卡）  
   - 保证通信质量（避免数据丢失或丢祯）
-+ 用法  
++ 用法[1]  
 需要CPU支持VT-d。主板也支持该技术。  
   - 预先配置：  
     + 打开bios中的VT-d设置。
@@ -16,11 +16,14 @@ pci passthrough
     ```# virsh nodedev-list --tree |grep pci```
     + 获取设备xml   
     ```# virsh nodedev-dumpxml pci_8086_3a6c```
-    + detach设备
+    + detach设备  
     ```# virsh nodedev-dettach pci_8086_3a6c```
-    + 修改虚拟机xml文件 
-    + 告诉主机不要再使用该设备
+    + 修改虚拟机xml文件   
+    + 告诉主机不要再使用该设备  
     ```$ readlink /sys/bus/pci/devices/0000\:00\:1d.7/driver```
+    + 设置selinux  
+    ```$ setsebool -P virt_manage_sysfs 1```
+    + 启动虚拟机
 
 pci passthrough(VFIO)
 ----
@@ -50,3 +53,4 @@ IOMMU
 
 
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
+[1]:http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/chap-Virtualization-PCI_passthrough.html
