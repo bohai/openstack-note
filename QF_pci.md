@@ -24,7 +24,7 @@ pci passthrough
     ```$ readlink /sys/bus/pci/devices/0000\:00\:1d.7/driver```
     + 设置selinux  
     ```$ setsebool -P virt_manage_sysfs 1```
-    + 启动虚拟机
+    + 启动虚拟机  
 
 pci passthrough(VFIO)[2]
 ----
