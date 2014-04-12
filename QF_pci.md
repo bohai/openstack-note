@@ -16,7 +16,11 @@ pci passthrough
     ```# virsh nodedev-list --tree |grep pci```
     + 获取设备xml   
     ```# virsh nodedev-dumpxml pci_8086_3a6c```
-    + detach设备（# virsh nodedev-dettach pci_8086_3a6c ）
+    + detach设备
+    ```# virsh nodedev-dettach pci_8086_3a6c```
+    + 修改虚拟机xml文件 
+    + 告诉主机不要再使用该设备
+    ```$ readlink /sys/bus/pci/devices/0000\:00\:1d.7/driver```
 
 pci passthrough(VFIO)
 ----
