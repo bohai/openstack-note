@@ -21,4 +21,8 @@ pci hotplug
 
 ### test
 
+IOMMU
+----
+![IOMMU](http://baike.baidu.com/picview/3100269/3100269/0/d872d69593e4397bd0135e7c.html?fr=lemma)
+
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
