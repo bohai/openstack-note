@@ -1,5 +1,12 @@
 pci passthrough
 ----
++ 概念
+  - 允许guest排他使用host上的某个PCI设备，就像将该设备物理连接到guest上一样。  
++ 使用场景
+  - 提升性能（如直通网卡和显卡）  
+  - 保证通信质量（避免数据丢失或丢祯）
++ 用法
+  - 
 
 pci passthrough(VFIO)
 ----
