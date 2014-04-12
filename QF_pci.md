@@ -10,20 +10,12 @@ pci passthrough
   - 预先配置：  
     + 打开bios中的VT-d设置。
     + 激活kernel中参数配置
-      ```default=0
-        timeout=5
-        splashimage=(hd0,0)/grub/splash.xpm.gz
-        hiddenmenu
-        title Fedora Server (2.6.18-190.el5)
-                root (hd0,0)
-                kernel /vmlinuz-2.6.18-190.el5 ro root=/dev/VolGroup00/LogVol00 rhgb quiet intel_iommu=on
-                initrd /initrd-2.6.18-190.el5.img
-      ```
+      ```kernel /vmlinuz-2.6.18-190.el5 ro root=/dev/VolGroup00/LogVol00 rhgb quiet intel_iommu=on```
   - 通过virsh添加PCI设备  
     + 识别设备  
-    ```# virsh nodedev-list --tree |grep pci）```
+    ```# virsh nodedev-list --tree |grep pci```
     + 获取设备xml   
-    （# virsh nodedev-dumpxml pci_8086_3a6c）
+    ```# virsh nodedev-dumpxml pci_8086_3a6c```
     + detach设备（# virsh nodedev-dettach pci_8086_3a6c ）
 
 pci passthrough(VFIO)
