@@ -6,10 +6,27 @@ pci passthrough
   - 提升性能（如直通网卡和显卡）  
   - 保证通信质量（避免数据丢失或丢祯）
 + 用法
-  - 
+需要CPU支持VT-d。主板也支持该技术。
+预先配置：
+  - 打开bios中的VT-d设置。
+  - 激活kernel中参数配置
+```
+default=0
+timeout=5
+splashimage=(hd0,0)/grub/splash.xpm.gz
+hiddenmenu
+title Fedora Server (2.6.18-190.el5)
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-190.el5 ro root=/dev/VolGroup00/LogVol00 rhgb quiet intel_iommu=on
+        initrd /initrd-2.6.18-190.el5.img
+```
+通过virsh添加PCI设备：
+
 
 pci passthrough(VFIO)
 ----
+需要CPU支持VT-d。主板也支持该技术。
+
 
 pci sr-iov
 ----
