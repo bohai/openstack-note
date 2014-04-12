@@ -1,15 +1,15 @@
 pci passthrough
 ----
-+ 概念
++ 概念  
   - 允许guest排他使用host上的某个PCI设备，就像将该设备物理连接到guest上一样。  
 + 使用场景
   - 提升性能（如直通网卡和显卡）  
   - 保证通信质量（避免数据丢失或丢祯）
-+ 用法
-需要CPU支持VT-d。主板也支持该技术。
-预先配置：  
-  - 打开bios中的VT-d设置。
-  - 激活kernel中参数配置
++ 用法  
+需要CPU支持VT-d。主板也支持该技术。  
+  - 预先配置：  
+    + 打开bios中的VT-d设置。
+    + 激活kernel中参数配置
 ```
 default=0
 timeout=5
@@ -20,7 +20,7 @@ title Fedora Server (2.6.18-190.el5)
         kernel /vmlinuz-2.6.18-190.el5 ro root=/dev/VolGroup00/LogVol00 rhgb quiet intel_iommu=on
         initrd /initrd-2.6.18-190.el5.img
 ```
-通过virsh添加PCI设备：
+  - 通过virsh添加PCI设备：
 
 
 pci passthrough(VFIO)
