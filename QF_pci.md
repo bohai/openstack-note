@@ -30,7 +30,9 @@ pci passthrough(VFIO)[2]
 ----
 VFIO是pci passthrough的一种新技术。kernel3.6/qemu1.4以后支持。    
 相对于传统方式，VFIO对UEFI支持更好。
-VFIO技术实现了用户空间直接访问设备。
+VFIO技术实现了用户空间直接访问设备。无须root特权，更安全，功能更多。
+http://lwn.net/Articles/509153/
+http://lwn.net/Articles/474088/
 
 pci sr-iov
 ----
