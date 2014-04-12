@@ -4,7 +4,8 @@ pci passthrough
   - 允许guest排他使用host上的某个PCI设备，就像将该设备物理连接到guest上一样。  
 + 使用场景
   - 提升性能（如直通网卡和显卡）  
-  - 保证通信质量（避免数据丢失或丢祯）
+  - 降低延迟（避免数据丢失或丢祯）  
+  - 直接利用bare-metal上设备的驱动 
 + 用法[1]  
 需要CPU支持VT-d。主板也支持该技术。  
   - 预先配置：  
@@ -25,10 +26,11 @@ pci passthrough
     ```$ setsebool -P virt_manage_sysfs 1```
     + 启动虚拟机
 
-pci passthrough(VFIO)
+pci passthrough(VFIO)[2]
 ----
-需要CPU支持VT-d。主板也支持该技术。
-
+VFIO是pci passthrough的一种新技术。kernel3.6/qemu1.4以后支持。    
+相对于传统方式，VFIO对UEFI支持更好。
+VFIO技术实现了用户空间直接访问设备。
 
 pci sr-iov
 ----
@@ -49,8 +51,8 @@ pci hotplug
 
 IOMMU
 ----
-![iommu](http://imgt3.bdstatic.com/it/u=3939070475,3428034962&fm=21&gp=0.jpg)
-
+![good](http://c.hiphotos.baidu.com/baike/w%3D268/sign=c02c322ea8d3fd1f3609a53c084f25ce/d31b0ef41bd5ad6e9f63c5ea81cb39dbb6fd3c13.jpg)
 
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
 [1]:http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/chap-Virtualization-PCI_passthrough.html
+[2]:http://www.redhat.com/archives/libvir-list/2013-March/msg00514.html
