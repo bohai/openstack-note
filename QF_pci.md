@@ -37,11 +37,14 @@ VFIO可以用于实现高效的用户态驱动。在虚拟化场景可以用于d
 通过用户态配置IOMMU接口，可以将DMA地址空间映射限制在进程虚拟空间中。  
 这对高性能驱动和虚拟化场景device passthrough尤其重要。  
 
-相对于传统方式，VFIO对UEFI支持更好。
-VFIO技术实现了用户空间直接访问设备。无须root特权，更安全，功能更多。
+相对于传统方式，VFIO对UEFI支持更好。  
+VFIO技术实现了用户空间直接访问设备。无须root特权，更安全，功能更多。  
 http://lwn.net/Articles/509153/
 http://lwn.net/Articles/474088/
 https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf1754ee936a/entry/vfio?lang=en
+
++ 操作方法
+
 
 pci sr-iov
 ----
