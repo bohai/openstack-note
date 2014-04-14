@@ -28,7 +28,7 @@ pci passthrough
 
 pci passthrough(VFIO)[2]
 ----
-VFIO在kernel3.6/qemu1.4以后支持
+VFIO在kernel3.6/qemu1.4以后支持,目前只支持PCI设备。  
 VFIO是一套用户态驱动框架，提供两种基本服务：    
   + 向用户态提供设备访问接口  
   + 向用户态提供配置IOMMU接口  
