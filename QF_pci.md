@@ -82,6 +82,7 @@ Virtual Machine Device Queues[4]。
 ![VMDQ](http://windowsitpro.com/content/content/142153/networkoptimizationvmdqsriovsml.jpg)
 根据图示可以看出VMDQ将原来VMM中L2 virtual switch实现的功能通过硬件实现。  
 VMM只需要进行数据复制即可使用。降低了VMM的开销，提供了吞吐能力。  
+VMware的NetQueue同样也利用了VMDq技术，实现了两倍以上的吞吐量提升
 
 SR-IOV则更加彻底，绕过了virtual switch。通过DMA将数据直接给虚拟机使用。性能更高。
 
