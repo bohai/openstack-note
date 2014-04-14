@@ -44,7 +44,7 @@ http://lwn.net/Articles/474088/
 https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf1754ee936a/entry/vfio?lang=en
 
 + 操作方法
-
+  参考http://blog.csdn.net/richardysteven/article/details/9008971
 pci hotplug
 ----
 + [应用场景]
