@@ -45,37 +45,6 @@ https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf175
 
 + 操作方法
 
-
-pci SR-IOV
-----
-Single Root I/O Virtualization  
-SR-IOV解决软件模拟PCI设备效率低，直接将PCI设备直通又有扩展性问题（一个server上可以插的PCI卡数有限）。  
-通过硬件方式实现了PCI设备的虚拟化。    
-#### SR-IOV 中的两种新功能类型是：  
-
-+ 物理功能 (Physical Function, PF)  
-用于支持 SR-IOV 功能的 PCI 功能，如 SR-IOV 规范中定义。PF 包含 SR-IOV 功能结构，用于管理 SR-IOV 功能。PF 是全功能的 PCIe 功能，可以像其他任何 PCIe 设备一样进行发现、管理和处理。PF 拥有完全配置资源，可以用于配置或控制 PCIe 设备。
-
-+ 虚拟功能 (Virtual Function, VF)  
-与物理功能关联的一种功能。VF 是一种轻量级 PCIe 功能，可以与物理功能以及与同一物理功能关联的其他 VF 共享一个或多个物理资源。VF 仅允许拥有用于其自身行为的配置资源。
-
-#### 优点
-  - 性能－从虚拟机环境直接访问硬件。
-  - 成本降低－节省的资本和运营开销包括：
-    + 节能
-    + 减少了适配器数量
-    + 简化了布线
-    + 减少了交换机端口
-
-#### 使用(以intel 82576网卡为例）  
-  - bios打开vt-d
-  - kernel启动参数(仅intel cpu需要)增加”intel_iommu=on"
-  - 删除igb模块（modprobe -r igb)
-  - 设置VF个数(modprobe igb max_vfs=2)
-  - 可以看到有VF设备产生  
-  ```02:10.0 Ethernet controller: Intel Corporation 82576 Virtual Function (rev 01)```
-  - 使用VF设备进行PCI直通或者虚拟网卡  
-  
 pci hotplug
 ----
 + [应用场景]
@@ -107,10 +76,53 @@ IOMMU：input/output memory management unit。
   一般来说，由于内存地址不同，虚拟机中的操作系统无法直接访问host上的设备。  
 通过IOMMU，可以将设备地址在虚拟机中和host中映射为相同的支持，供虚拟机使用。这种做法也可以缓解IO delay。
 
-VMDQ
+VMDQ[3]
 ----
-Virtual Machine Device Queues。  
+Virtual Machine Device Queues[4]。  
 ![VMDQ](http://windowsitpro.com/content/content/142153/networkoptimizationvmdqsriovsml.jpg)
+根据图示可以看出VMDQ将原来VMM中L2 virtual switch实现的功能通过硬件实现。  
+VMM只需要进行数据复制即可使用。降低了VMM的开销，提供了吞吐能力。  
+
+SR-IOV则更加彻底，绕过了virtual switch。通过DMA将数据直接给虚拟机使用。性能更高。
+
+pci SR-IOV
+----
+Single Root I/O Virtualization  
+SR-IOV解决软件模拟PCI设备效率低，直接将PCI设备直通又有扩展性问题（一个server上可以插的PCI卡数有限）。  
+通过硬件方式实现了PCI设备的虚拟化。    
+#### SR-IOV 中的两种新功能类型是：  
+
++ 物理功能 (Physical Function, PF)  
+用于支持 SR-IOV 功能的 PCI 功能，如 SR-IOV 规范中定义。PF 包含 SR-IOV 功能结构，用于管理 SR-IOV 功能。PF 是全功能的 PCIe 功能，可以像其他任何 PCIe 设备一样进行发现、管理和处理。PF 拥有完全配置资源，可以用于配置或控制 PCIe 设备。
+
++ 虚拟功能 (Virtual Function, VF)  
+与物理功能关联的一种功能。VF 是一种轻量级 PCIe 功能，可以与物理功能以及与同一物理功能关联的其他 VF 共享一个或多个物理资源。VF 仅允许拥有用于其自身行为的配置资源。
+
+#### 优点
+  - 性能－从虚拟机环境直接访问硬件。
+  - 成本降低－节省的资本和运营开销包括：
+    + 节能
+    + 减少了适配器数量
+    + 简化了布线
+    + 减少了交换机端口
+
+#### 缺点
+  + 需要硬件支持（CPU，主板，网卡，OS）
+  + 影响虚拟机迁移功能  
+
+#### 使用(以intel 82576网卡为例）  
+  - bios打开vt-d
+  - kernel启动参数(仅intel cpu需要)增加”intel_iommu=on"
+  - 删除igb模块（modprobe -r igb)
+  - 设置VF个数(modprobe igb max_vfs=2)
+  - 可以看到有VF设备产生  
+  ```02:10.0 Ethernet controller: Intel Corporation 82576 Virtual Function (rev 01)```
+  - 使用VF设备进行PCI直通或者虚拟网卡  
+  
+
+
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
 [1]:http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/chap-Virtualization-PCI_passthrough.html
 [2]:http://www.redhat.com/archives/libvir-list/2013-March/msg00514.html
+[3]:http://windowsitpro.com/virtualization/q-are-vmdq-and-sr-iov-performing-same-function
+[4]:http://www.intel.cn/content/www/cn/zh/virtualization/vmdq-technology-paper.html
