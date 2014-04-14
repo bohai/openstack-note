@@ -74,7 +74,7 @@ https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf175
     cd /sys/bus/pci/devices/0000:0d:00.0/
     readlink iommu_group    #查看iommu_group名字
     ll iommu_group/devices  #查看iommu_group下设备
-    2. 需要将iommu_group下所有设备添加  
+    2. 需要将iommu_group下所有设备unbind并添加到iommu_group中  
     echo 0000:0d:00.0 > /sys/bus/pci/devices/0000:0d:00.0/driver/unbind   
     echo 1180 e823 > /sys/bus/pci/drivers/vfio-pci/new_id   
   ```
