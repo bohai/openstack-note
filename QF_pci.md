@@ -72,6 +72,9 @@ SR-IOV 中的两种新功能类型是：
   - kernel启动参数(仅intel cpu需要)增加”intel_iommu=on"
   - 删除igb模块（modprobe -r igb)
   - 设置VF个数(modprobe igb max_vfs=2)
+  - 可以看到有VF设备产生
+  ```02:10.0 Ethernet controller: Intel Corporation 82576 Virtual Function (rev 01)```
+  - 使用VF设备进行PCI直通或者虚拟网卡  
   
 pci hotplug
 ----
