@@ -46,7 +46,7 @@ https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf175
 + 操作方法
 
 
-pci sr-iov
+pci SR-IOV
 ----
 Single Root I/O Virtualization  
 SR-IOV解决软件模拟PCI设备效率低，直接将PCI设备直通又有扩展性问题（一个server上可以插的PCI卡数有限）。  
