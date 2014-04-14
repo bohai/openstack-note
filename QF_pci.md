@@ -80,6 +80,10 @@ IOMMU：input/output memory management unit。
   一般来说，由于内存地址不同，虚拟机中的操作系统无法直接访问host上的设备。  
 通过IOMMU，可以将设备地址在虚拟机中和host中映射为相同的支持，供虚拟机使用。这种做法也可以缓解IO delay。
 
+VMDQ
+----
+
+
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
 [1]:http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/chap-Virtualization-PCI_passthrough.html
 [2]:http://www.redhat.com/archives/libvir-list/2013-March/msg00514.html
