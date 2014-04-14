@@ -92,7 +92,7 @@ pci hotplug
 
 IOMMU
 ----
-![good](http://c.hiphotos.baidu.com/baike/w%3D268/sign=c02c322ea8d3fd1f3609a53c084f25ce/d31b0ef41bd5ad6e9f63c5ea81cb39dbb6fd3c13.jpg)   
+![IOMMU](http://c.hiphotos.baidu.com/baike/w%3D268/sign=c02c322ea8d3fd1f3609a53c084f25ce/d31b0ef41bd5ad6e9f63c5ea81cb39dbb6fd3c13.jpg)   
 IOMMU：input/output memory management unit。  
 连接DMA io bus和主存，完成从设备虚拟地址到物理地址的映射。以及提供对故障设备的内存保护的功能。  
 + 优点
@@ -110,7 +110,7 @@ IOMMU：input/output memory management unit。
 VMDQ
 ----
 Virtual Machine Device Queues。  
-
+![VMDQ](http://windowsitpro.com/content/content/142153/networkoptimizationvmdqsriovsml.jpg)
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
 [1]:http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/chap-Virtualization-PCI_passthrough.html
 [2]:http://www.redhat.com/archives/libvir-list/2013-March/msg00514.html
