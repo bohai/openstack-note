@@ -51,7 +51,7 @@ pci SR-IOV
 Single Root I/O Virtualization  
 SR-IOV解决软件模拟PCI设备效率低，直接将PCI设备直通又有扩展性问题（一个server上可以插的PCI卡数有限）。  
 通过硬件方式实现了PCI设备的虚拟化。    
-SR-IOV 中的两种新功能类型是：  
+#### SR-IOV 中的两种新功能类型是：  
 
 + 物理功能 (Physical Function, PF)  
 用于支持 SR-IOV 功能的 PCI 功能，如 SR-IOV 规范中定义。PF 包含 SR-IOV 功能结构，用于管理 SR-IOV 功能。PF 是全功能的 PCIe 功能，可以像其他任何 PCIe 设备一样进行发现、管理和处理。PF 拥有完全配置资源，可以用于配置或控制 PCIe 设备。
@@ -59,7 +59,7 @@ SR-IOV 中的两种新功能类型是：
 + 虚拟功能 (Virtual Function, VF)  
 与物理功能关联的一种功能。VF 是一种轻量级 PCIe 功能，可以与物理功能以及与同一物理功能关联的其他 VF 共享一个或多个物理资源。VF 仅允许拥有用于其自身行为的配置资源。
 
-+ 优点
+#### 优点
   - 性能－从虚拟机环境直接访问硬件。
   - 成本降低－节省的资本和运营开销包括：
     + 节能
@@ -67,7 +67,7 @@ SR-IOV 中的两种新功能类型是：
     + 简化了布线
     + 减少了交换机端口
 
-+ 使用(以intel 82576网卡为例）  
+#### 使用(以intel 82576网卡为例）  
   - bios打开vt-d
   - kernel启动参数(仅intel cpu需要)增加”intel_iommu=on"
   - 删除igb模块（modprobe -r igb)
