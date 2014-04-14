@@ -67,6 +67,12 @@ SR-IOV 中的两种新功能类型是：
     + 简化了布线
     + 减少了交换机端口
 
++ 使用(以intel 82576网卡为例）  
+  - bios打开vt-d
+  - kernel启动参数(仅intel cpu需要)增加”intel_iommu=on"
+  - 删除igb模块（modprobe -r igb)
+  - 设置VF个数(modprobe igb max_vfs=2)
+  
 pci hotplug
 ----
 + [应用场景]
