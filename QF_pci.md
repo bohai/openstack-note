@@ -48,6 +48,8 @@ https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf175
 
 pci sr-iov
 ----
+Single Root I/O Virtualization  
+
 
 pci hotplug
 ----
@@ -82,7 +84,7 @@ IOMMU：input/output memory management unit。
 
 VMDQ
 ----
-
+Virtual Machine Device Queues。  
 
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
 [1]:http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/chap-Virtualization-PCI_passthrough.html
