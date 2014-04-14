@@ -12,19 +12,40 @@ pci passthrough
     + 打开bios中的VT-d设置。
     + 激活kernel中参数配置
       ```kernel /vmlinuz-2.6.18-190.el5 ro root=/dev/VolGroup00/LogVol00 rhgb quiet intel_iommu=on```
-  - 通过virsh添加PCI设备  
-    + 识别设备  
-    ```# virsh nodedev-list --tree |grep pci```
-    + 获取设备xml   
+  - 直通配置方法
+    + libvirt
+    ```
+    1. 识别设备  
+    # virsh nodedev-list --tree |grep pci
+    2. 获取设备xml   
     ```# virsh nodedev-dumpxml pci_8086_3a6c```
-    + detach设备  
+    3. detach设备  
     ```# virsh nodedev-dettach pci_8086_3a6c```
-    + 修改虚拟机xml文件   
-    + 告诉主机不要再使用该设备  
-    ```$ readlink /sys/bus/pci/devices/0000\:00\:1d.7/driver```
-    + 设置selinux  
-    ```$ setsebool -P virt_manage_sysfs 1```
-    + 启动虚拟机  
+    4. 修改虚拟机xml文件(将dumpxml查询到的bus,slot,function填入） 
+    <devices>
+     ......
+     <hostdev mode='subsystem' type='pci' managed='yes'>
+       <source>
+         <address domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
+       </source>
+     </hostdev>
+     ......
+    </devices>
+    5. 启动虚拟机  
+    ```
+    + qemu
+    ```
+    1. unbind pci设备  
+      modprobe pci_stub
+      lspci -D -nn查询pci设备(domain,slot,bus,function)和(vendor id, device id )
+      以设备(01:00.0, vendor & device ID 8086:10b9)为例：
+      echo "8086 10b9" > /sys/bus/pci/drivers/pci-stub/new_id
+      echo 0000:01:00.0 > /sys/bus/pci/devices/0000:01:00.0/driver/unbind
+      echo 0000:01:00.0 > /sys/bus/pci/drivers/pci-stub/bind
+    2. 启动虚拟机
+      -device pci-assign,host=01:00.0
+    ```
+http://www.linux-kvm.org/page/How_to_assign_devices_with_VT-d_in_KVM
 
 pci passthrough(VFIO)[2]
 ----
