@@ -28,11 +28,20 @@ pci passthrough
 
 pci passthrough(VFIO)[2]
 ----
-VFIO是pci passthrough的一种新技术。kernel3.6/qemu1.4以后支持。    
+VFIO在kernel3.6/qemu1.4以后支持
+VFIO是一套用户态驱动框架，提供两种基本服务：    
+  + 向用户态提供设备访问接口  
+  + 向用户态提供配置IOMMU接口  
+
+VFIO可以用于实现高效的用户态驱动。在虚拟化场景可以用于device passthrough。  
+通过用户态配置IOMMU接口，可以将DMA地址空间映射限制在进程虚拟空间中。  
+这对高性能驱动和虚拟化场景device passthrough尤其重要。  
+
 相对于传统方式，VFIO对UEFI支持更好。
 VFIO技术实现了用户空间直接访问设备。无须root特权，更安全，功能更多。
 http://lwn.net/Articles/509153/
 http://lwn.net/Articles/474088/
+https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf1754ee936a/entry/vfio?lang=en
 
 pci sr-iov
 ----
