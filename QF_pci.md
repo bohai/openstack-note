@@ -65,6 +65,23 @@ http://lwn.net/Articles/474088/
 https://www.ibm.com/developerworks/community/blogs/5144904d-5d75-45ed-9d2b-cf1754ee936a/entry/vfio?lang=en
 
 + 操作方法
+  + 安装kernel module   
+    sudo modprobe vfio  
+    sudo modprobe vfio-pci   
+  + 设备unbind
+  ```
+    1. 查看iommu_group及其下所有设备
+    cd /sys/bus/pci/devices/0000:0d:00.0/
+    readlink iommu_group    #查看iommu_group名字
+    ll iommu_group/devices  #查看iommu_group下设备
+    2. 需要将iommu_group下所有设备添加  
+    echo 0000:0d:00.0 > /sys/bus/pci/devices/0000:0d:00.0/driver/unbind   
+    echo 1180 e823 > /sys/bus/pci/drivers/vfio-pci/new_id   
+  ```
+  + 启动虚拟机
+  ```
+    -device vfio-pci,host=0000:03:00.0
+  ```
   参考http://blog.csdn.net/richardysteven/article/details/9008971
 pci hotplug
 ----
