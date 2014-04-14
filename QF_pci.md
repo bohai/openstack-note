@@ -53,7 +53,7 @@ pci hotplug
 
 IOMMU
 ----
-![good](http://c.hiphotos.baidu.com/baike/w%3D268/sign=c02c322ea8d3fd1f3609a53c084f25ce/d31b0ef41bd5ad6e9f63c5ea81cb39dbb6fd3c13.jpg)
+![good](http://c.hiphotos.baidu.com/baike/w%3D268/sign=c02c322ea8d3fd1f3609a53c084f25ce/d31b0ef41bd5ad6e9f63c5ea81cb39dbb6fd3c13.jpg)   
 IOMMU：input/output memory management unit。  
 连接DMA io bus和主存，完成从设备虚拟地址到物理地址的映射。以及提供对故障设备的内存保护的功能。  
 + 优点
