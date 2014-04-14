@@ -54,6 +54,17 @@ pci hotplug
 IOMMU
 ----
 ![good](http://c.hiphotos.baidu.com/baike/w%3D268/sign=c02c322ea8d3fd1f3609a53c084f25ce/d31b0ef41bd5ad6e9f63c5ea81cb39dbb6fd3c13.jpg)
+IOMMU：input/output memory management unit。  
+连接DMA io bus和主存，完成从设备虚拟地址到物理地址的映射。以及提供对故障设备的内存保护的功能。  
++ 优点
+  - 分配大块连续的物理地址    
+  - 使旧设备（32bit设备）可以使用高位地址。（可以改善内存使用，提高性能）  
+  - 内存保护，避免设备使用不属于它的地址  
+  - 提供硬件中断remapping功能  
++ 缺点
+  - 地址转换和管理开销带来的性能降级   
+  - 消耗物理内存  
+
 
 [应用场景]:https://lists.linux-foundation.org/pipermail/hotplug_sig/2005-August/001202.html
 [1]:http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/chap-Virtualization-PCI_passthrough.html
