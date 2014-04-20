@@ -62,7 +62,14 @@ Qemu 2.0
 
 Block devices和工具
 ----
-
++ 网络块设备驱动可以以共享库模块方式产生（“--enable-modules”）
++ 对raw设备使用“qemu-img convert"，qemu-img将使用host storage的“discard”指令代替写0。
++ “qemu-img convert"可以指定”-S 0“进行预分配。
++ ”qemu-img convert"可以使用host storage的hints来加速转换。
++ "qemu-img convert", "qemu-img create", "qemu-img amend" 支持多个“-o"参数
++ libcurl有bit-rotted问题，已经被修复。
++ 一个新的”quorum“驱动（支持冗余存储）被引入。
++ QEMU可以使用libnfs直接访问NFSv3共享存储。
 
 
 
