@@ -43,8 +43,15 @@ service openvswitch start
 9. 重启后处理
 恢复卷组和准备cinder-volume： 
 losetup -f /opt/stack/data/stack-volumes-backing-file 
+删除残留的sock文件：  
+rm -rf /var/lib/mysql/mysql.sock
+重新启动：
 rejoin-stack.sh
-
+关闭防火墙：
+systemctl stop firewalld.service  #fedora   
+setenforce 0  
+service iptables stop
+chkconfig iptables off
 ```
 controller命令执行
 ----
