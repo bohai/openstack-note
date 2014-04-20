@@ -52,4 +52,35 @@ Qemu 2.0
 + BSD系统上支持“netmap”新后端
 
 #### Block device  
++ 在线快照合并(...-commit)可以用于合并镜像的活跃层到一个快照中。
++ 如果必要，在线、离线快照（“commit”）将resize目标image。
++ iscsi、Gluster后端支持快照合并
++ “query-block-stats"提供统计快照链中所有的后端文件
++ virtio-blk试验下支持M:N线程模拟   
+  如果指定x-dataplane=on，你可以使用”-object iothread“创建io线程以及通过”x-iothread"属性指定线程。
+  可以通过“query-iothreads”查询iothread。
+
+Block devices和工具
+----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
