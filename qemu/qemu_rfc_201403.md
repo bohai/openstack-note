@@ -1,6 +1,6 @@
 Qemu
 -----
-### [RFC]VM live snapshot proposal
+#### [RFC]VM live snapshot proposal
 + UVP的live snapshot方案。  
 大致过程：
   1. pause虚拟机
@@ -19,16 +19,16 @@ Qemu
   b. 利用postcopy migrate技术实现。   
 
 https://www.mail-archive.com/kvm@vger.kernel.org/msg100029.html
-### enable point-in-time snapshot exporting over NBD
+#### enable point-in-time snapshot exporting over NBD
 支持PIT快照通过NBD暴露以及解除。
 
 http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg01345.html 
 
-### block/json: Add JSON protocol driver
+#### block/json: Add JSON protocol driver
 用途通过文件名指定块设备的option。  
 http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg00192.html
 
-[RFC 0/8] bus-less device hotplug
+#### [RFC 0/8] bus-less device hotplug
 试验性的。实现bus-less的设备热插
 http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg04177.html
 
