@@ -74,3 +74,6 @@ git review
 
 ### tempest
 http://www.ibm.com/developerworks/cn/cloud/library/1403_liuyu_openstacktempest/
+
+### 修改openstack所属公司  
+https://review.openstack.org/#/c/87957/
