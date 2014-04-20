@@ -28,6 +28,11 @@ http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg01345.html
 用途通过文件名指定块设备的option。  
 http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg00192.html
 
+[RFC 0/8] bus-less device hotplug
+试验性的。实现bus-less的设备热插
+http://lists.gnu.org/archive/html/qemu-devel/2014-03/msg04177.html
+
+
 其他
 -----
 Cache qos monitoring   
