@@ -1,6 +1,8 @@
 openstack shelve/unshelve/stop浅析
 ----
 
+
+
 ```
 [root@localhost devstack(keystone_admin)]# nova list --all-tenants
 +--------------------------------------+------+--------+------------+-------------+------------------+
