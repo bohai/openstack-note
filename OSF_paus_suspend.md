@@ -9,3 +9,8 @@ suspend/unsuspend:
 一般用于维护以及不太常用的虚拟机。  
 实际上底层调用的libvirt的managedSave接口。  
 在这之前会卸载虚拟机的所有pci设备。  
+
+
+lock/unlock:
+设置虚拟机的lock状态，通过修改数据库中字段实现。  
+lock状态的虚拟机几乎不可以做任何操作。  
