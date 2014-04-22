@@ -45,6 +45,11 @@ pci passthrough
     2. 启动虚拟机
       -device pci-assign,host=01:00.0
     ```
++ 如何将直通设备对应   
+  host上直通设备与虚拟机中设备对应关系确定方法。    
+  可以通过hostdev中增加address(不是source中的address)确定设备在虚拟机中的挂载路径。    
+  虚拟机种通过lspci查看即可对应起来。  
+
 http://www.linux-kvm.org/page/How_to_assign_devices_with_VT-d_in_KVM
 
 pci passthrough(VFIO)[2]
