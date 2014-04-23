@@ -17,13 +17,13 @@ lock状态的虚拟机几乎不可以做任何操作。
 通过装饰器@check_instance_lock对方法入口检查。  
 
 
-+ migrate/resize/confirm_resize   
++ migrate/resize 
   migrate和resize都依赖于self.compute_api.resize函数。  
   差别在于resize会指定新的flavor，migrate只是迁移位置。  
   位置依靠scheduler自动选择，目前不能手工指定。   
   + migrate
     
-  + resize
+  + resize/confirmResize/revertResize
 
 
 + rebuild/evacuate    
