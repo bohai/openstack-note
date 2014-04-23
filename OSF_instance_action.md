@@ -22,3 +22,7 @@ lock状态的虚拟机几乎不可以做任何操作。
 
 
 + rebuild/evacuate
+rebuild操作可以近似理解为重装系统。  
+用户可以指定image对虚拟机更换系统。  
+内部处理大致为：Shutdown, Re-Image, and then Reboot 。   
+serverRef和
