@@ -22,16 +22,17 @@ lock状态的虚拟机几乎不可以做任何操作。
 
 
 + rebuild/evacuate    
+  两者底层实际上是一个处理函数。  
   rebuild操作可以近似理解为重装系统。  
   
   内部处理大致为：Shutdown, Re-Image, and then Reboot 。   
   serverRef和IP地址保持不变。但是虚拟机中的所有注入信息和软件、配置会丢失。  
   rebuild可以重新指定image, IP, 注入信息， 密码等内容。  
-  rebuild仅支持active和stopped状态的虚拟机。  
+  rebuild仅支持active和stopped、ERROR状态的虚拟机。  
 
   evacuate操作用户host故障，我们在其他节点重新启动。  
 
   evacuate为上层进行HA提供基础能力。  
-
+  evacuate对非共享存储相当于重建，对共享存储才相当于HA。
 
 
