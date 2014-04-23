@@ -18,3 +18,7 @@ lock状态的虚拟机几乎不可以做任何操作。
 
 
 + migrate/resize
+
+
+
++ rebuild/evacuate
