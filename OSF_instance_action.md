@@ -24,7 +24,9 @@ lock状态的虚拟机几乎不可以做任何操作。
   + migrate
     
   + resize/confirmResize/revertResize
-
+    resize会保留原虚拟机一定时间（一般24小时），可以进行回滚操作。或者confirm操作，  
+    confirm操作会删除原虚拟机。  
+    resize底层使用了快照能力。  
 
 + rebuild/evacuate    
   两者底层实际上是一个处理函数（self.compute_rpcapi.rebuild_instance）。  
