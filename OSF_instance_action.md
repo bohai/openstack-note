@@ -23,7 +23,7 @@ lock状态的虚拟机几乎不可以做任何操作。
   位置依靠scheduler自动选择，目前不能手工指定。   
   + migrate
     
-  + resize/confirmResize/revertResize
+  + resize/confirmResize/revertResize   
     resize会保留原虚拟机一定时间（一般24小时），可以进行回滚操作。或者confirm操作，  
     confirm操作会删除原虚拟机。  
     resize底层使用了快照能力。  
