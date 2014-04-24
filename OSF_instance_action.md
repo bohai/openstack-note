@@ -44,4 +44,9 @@ lock状态的虚拟机几乎不可以做任何操作。
     evacuate为上层进行HA提供基础能力。  
     evacuate对非共享存储相当于重建，对共享存储才相当于通常意义上的HA。
 
-
++ backup/createImage
+  两者本质上都利用了snapshot能力。将虚拟机进行snapshot然后，传送glance上进行管理。
+  + bakcup
+    ff
+  + createImage
+    dd
