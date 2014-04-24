@@ -52,4 +52,5 @@ lock状态的虚拟机几乎不可以做任何操作。
     其中backup-type指定了备份类型，rotation提供了指定备份数的能力。  
     对backup-type相同的备份，最多保留rotation个备份。会替换最旧的备份。   
   + createImage   
-    dd
+    可以对active，stopped，pause，suspend状态的虚拟机进行操作。  
+    底层实际上也是利用snapshot的能力。   
