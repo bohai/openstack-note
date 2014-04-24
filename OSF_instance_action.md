@@ -21,6 +21,7 @@ lock状态的虚拟机几乎不可以做任何操作。
   migrate和resize本质上都是在做冷迁移。  
   差别在于resize会指定新的flavor，migrate只是迁移位置。  
   位置依靠scheduler自动选择，目前不能手工指定。   
+  只支持对active和stop状态的虚拟机操作。   
   + migrate
     
   + resize/confirmResize/revertResize   
