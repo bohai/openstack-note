@@ -46,7 +46,7 @@ lock状态的虚拟机几乎不可以做任何操作。
 
 + backup/createImage
   两者本质上都利用了snapshot能力。将虚拟机进行snapshot然后，传送glance上进行管理。
-  + bakcup
+  + bakcup   
     ff
-  + createImage
+  + createImage   
     dd
