@@ -47,6 +47,9 @@ lock状态的虚拟机几乎不可以做任何操作。
 + backup/createImage
   两者本质上都利用了snapshot能力。将虚拟机进行snapshot然后，传送glance上进行管理。
   + bakcup   
-    ff
+    bakcup只支持active和stopped状态虚拟机进行操作。  
+    该接口为上层周期性备份虚拟机提供了原子能力。  
+    其中backup-type指定了备份类型，rotation提供了指定备份数的能力。  
+    对backup-type相同的备份，最多保留rotation个备份。会替换最旧的备份。   
   + createImage   
     dd
