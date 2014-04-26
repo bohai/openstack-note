@@ -60,4 +60,6 @@ curl -i http://186.100.8.214:8774/v2/86196260e1694d0cbb5049cfba3883f8/servers/c6
 hyperv trim:
 http://books.google.com.hk/books?id=JWSPAQAAQBAJ&pg=PT278&lpg=PT278&dq=microsoft+Hyper-V,trim&source=bl&ots=y8dNXk_yET&sig=4ASuCyHMsn2-sNogJZhZfRLAWYk&hl=en&sa=X&ei=9L9bU7esL4noiAeGr4CYBw&ved=0CFMQ6AEwBjgK#v=onepage&q=microsoft%20Hyper-V%2Ctrim&f=false
 
+http://msdn.microsoft.com/en-us/library/windows/desktop/hh848053%28v=vs.85%29.aspx
+
 
