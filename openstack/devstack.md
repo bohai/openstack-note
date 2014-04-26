@@ -13,7 +13,7 @@ echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 sudo apt-get install git -y || yum install -y git
 git clone https://github.com/openstack-dev/devstack.git
 cd devstack
-su stack
+
 
 4. local.conf定制
 拷贝local.conf到stack.sh同级目录
@@ -22,6 +22,9 @@ su stack
 5. 修改localrc，修改git库协议为http
 
 6. 安装
+cd devstack
+chown -R stack:stack devstack
+su stack
 ./stack.sh
 
 7. 关闭防火墙
