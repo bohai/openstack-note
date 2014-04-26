@@ -64,4 +64,6 @@ http://msdn.microsoft.com/en-us/library/windows/desktop/hh848053%28v=vs.85%29.as
 
 https://workinghardinit.wordpress.com/tag/unmap/
 
+http://bradkingsley.com/automatic-trim-and-unmap-with-windows-server-2012-r2/
+
 
