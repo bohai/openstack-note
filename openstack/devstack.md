@@ -3,6 +3,7 @@ ALL IN ONE:
 devstack通过外网安装openstack。  
 ```shel
 1. 配置ccproxy外网访问
+不要忘记配置本机proxy例外。  
 
 2. 拷贝163的fedora repo到/etc/yum.repos.d/
 
