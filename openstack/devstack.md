@@ -76,12 +76,12 @@ source keystonerc_admin
 Q&A
 ----
 1.
-failed to create /opt/stack/horizon/openstack_dashboard/local/
+问题：failed to create /opt/stack/horizon/openstack_dashboard/local/
+解决：执行setenforce 0
 
-未执行setenforce 0
-
-2. 清理screen
-screen -wipe
+2. 
+问题：清理screen
+解决：screen -wipe
 
 
 
