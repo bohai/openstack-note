@@ -72,3 +72,17 @@ export PS1='[\u@\h \W(keystone_admin)]\$ '
 source keystonerc_admin
 ```
 然后就可以执行命令，如nova list
+
+Q&A
+----
+1.
+failed to create /opt/stack/horizon/openstack_dashboard/local/
+
+未执行setenforce 0
+
+2. 清理screen
+screen -wipe
+
+
+
+
