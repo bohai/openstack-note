@@ -54,3 +54,9 @@ lock状态的虚拟机几乎不可以做任何操作。
   + createImage   
     可以对active，stopped，pause，suspend状态的虚拟机进行操作。  
     底层实际上也是利用snapshot的能力。   
+
++ diagnostic
+  提供对虚拟机的磁盘读写，网络读写，cpu,内存使用等信息，用于进行故障诊断等目的。    
+
+
+
