@@ -11,3 +11,8 @@ cache方法提供了image目录创建，调用create_image方法创建image, 完
 create_image方法提供了image下载，根据backend类型不同进行backing_image创建的能力。  
 backend类主要提供对Raw，Qcow2, Lvm, Rbd的对象生成能力。  
 
+
+cache方法的调用流：
+
+cache方法《------_create_image方法《------------------(rescue/finish_migration/spawn)
+cache方法《------_create_images_and_backing方法《-----(hard_reboot/pre_livemigration)
