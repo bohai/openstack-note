@@ -17,9 +17,9 @@
    可以运行./unstack.sh, ./stack.sh解决
 7. 系统重启后，需要运行rejoin.sh，运行前需要重新恢复卷组
    losetup -f /opt/stack/data/stack-volumes-backing-file
-8. 安装完成后发现卷容量较小，可以使用如下方法调整
-   devstack安装默认lvm后端容量为10G。 
-   后续可以通过以下方式修改：
+8. 安装完成后发现卷容量较小，可以使用如下方法调整  
+   devstack安装默认lvm后端容量为10G。   
+   后续可以通过以下方式修改：  
    1. qemu-img create -f raw <file_name> 100G
    2. losetup -f <file_name>
    3. pvcreate <loop_device>
