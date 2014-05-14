@@ -36,7 +36,10 @@
    重新启动libvirtd   
 11. 控制节点意外掉电后重启，mysql启动失败，同时导致neutron-server无法启动   
    rm -rf /var/lib/mysql/mysql.sock然后重启节点
-
+12. 出现错误：failed to create /opt/stack/horizon/openstack_dashboard/local/   
+   解决：执行setenforce 0  
+13. 关闭devstack的所有screen   
+   解决：screen -wipe
 
 
 
