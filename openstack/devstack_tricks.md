@@ -11,9 +11,9 @@
    FLUSH PRIVILEGES;  
    quit  
    service mysqld stop  
-5. devstack默认卷容量比较小（10G),安装时可以调整（stack用户下导入该环境变量）
-   export VOLUME_BACKING_FILE_SIZE=102500M
-6. 安装openstack需要访问pypi网站，超时失败的话  
+5. devstack默认卷容量比较小（10G),安装时可以调整（stack用户下导入该环境变量）  
+   export VOLUME_BACKING_FILE_SIZE=102500M  
+6. 安装openstack需要访问pypi网站，超时失败的话    
    可以运行./unstack.sh, ./stack.sh解决
 7. 系统重启后，需要运行rejoin.sh，运行前需要重新恢复卷组  
    losetup -f /opt/stack/data/stack-volumes-backing-file  
