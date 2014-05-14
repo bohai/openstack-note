@@ -29,6 +29,13 @@
    $ wget http://python-distribute.org/distribute_setup.py  
    $ python distribute_setup.py  
    详细参考http://stackoverflow.com/questions/7110360/easy-install-and-pip-doesnt-work  
+10. 启动虚拟机失败，错误“some rules could not be created for interface vnet0”
+   原因： 
+   关闭防火墙后没有重新启动libvirtd 
+   解决办法： 
+   重新启动libvirtd 
+
+
 
 
 
