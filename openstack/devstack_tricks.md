@@ -23,7 +23,7 @@
    1. qemu-img create -f raw <file_name> 100G
    2. losetup -f <file_name>
    3. pvcreate <loop_device>
-   4. vgextend <vg_name>
+   4. vgextend <vg_name>  
    注：vg_name可以通过vgdisplay显示。
 
 
