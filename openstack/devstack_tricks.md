@@ -34,7 +34,8 @@
    关闭防火墙后没有重新启动libvirtd   
    解决办法：   
    重新启动libvirtd   
-
+11. 控制节点意外掉电后重启，mysql启动失败，同时导致neutron-server无法启动   
+   rm -rf /var/lib/mysql/mysql.sock然后重启节点
 
 
 
