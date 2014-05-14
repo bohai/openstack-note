@@ -25,6 +25,10 @@
    3. pvcreate <loop_device>
    4. vgextend <vg_name>  
    注：vg_name可以通过vgdisplay显示。
+9. 安装时pip显示”No module named pkg resources“错误  
+   $ wget http://python-distribute.org/distribute_setup.py  
+   $ python distribute_setup.py  
+   详细参考http://stackoverflow.com/questions/7110360/easy-install-and-pip-doesnt-work  
 
 
 
