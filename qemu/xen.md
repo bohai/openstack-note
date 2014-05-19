@@ -18,3 +18,8 @@ chkconfig xen-watchdog on
 [root@fedora vm]# xl list  
 Name                                        ID   Mem VCPUs      State   Time(s)  
 Domain-0                                     0 40375    24     r-----     100.2  
+
+
+参考：  
+http://wiki.xenproject.org/wiki/Compiling_Xen_From_Source  
+https://wiki.openstack.org/wiki/CodeReviewGuidelines 
