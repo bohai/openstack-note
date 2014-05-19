@@ -14,7 +14,7 @@ chkconfig xencommons on
 chkconfig xendomains on  
 chkconfig xen-watchdog on  
 8. 重启系统  
-9. xl list显示成功
-[root@fedora vm]# xl list
-Name                                        ID   Mem VCPUs      State   Time(s)
-Domain-0                                     0 40375    24     r-----     100.2
+9. xl list显示成功  
+[root@fedora vm]# xl list  
+Name                                        ID   Mem VCPUs      State   Time(s)  
+Domain-0                                     0 40375    24     r-----     100.2  
