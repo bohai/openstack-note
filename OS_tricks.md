@@ -43,6 +43,8 @@ mysql>desc table名;
           import pdb
           pdb.set_trace()
 ```
++ openstack  
+可以使用上述方法2，添加2行代码。然后手工运行服务。  
 pdb支持的指令以及指令详细用法可以通过help查看。
 
 ### 邮件搜索  
