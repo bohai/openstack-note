@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-STACK_TEMPLATE="/template/db"
+STACK_TEMPLATE="/etc/template/db"
 ROOT_PASSWORD="admin"
 HOST_OLD_IP="186.100.30.214"
 HOST_NEW_IP="186.100.30.215"
