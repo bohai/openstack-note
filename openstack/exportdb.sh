@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-STACK_TEMPLATE="/etc/template"
+STACK_TEMPLATE="/etc/template/db/"
 
 mysqldump -u root -padmin cinder    > ${STACK_TEMPLATE}/cinder.sql
 mysqldump -u root -padmin glance    > ${STACK_TEMPLATE}/glance.sql
