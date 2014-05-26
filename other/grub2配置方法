@@ -1,0 +1,4 @@
+1. 修改/etc/grub.d/下的配置文件
+比如增加40_customzie文件
+
+2. 运行grub2-config更新/boot/grub2/grub.cfg文件
