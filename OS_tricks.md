@@ -47,6 +47,12 @@ mysql>desc table名;
 可以使用上述方法2，添加2行代码。然后手工运行服务。  
 pdb支持的指令以及指令详细用法可以通过help查看。
 
+### pdb调试unit test
+1. 如上增加pdb代码
+2. 运行nosetests
+   "nosetests volume/test_cinder.py --nocapture"
+
+
 ### 邮件搜索  
 http://openstack.markmail.org/
 
@@ -61,6 +67,7 @@ pip install --upgrade -r test-requirements.txt
 pip install --upgrade -r requirements.txt
 然手运行nosetest进行测试。
 ```
+
 ### 代码提交
 + 修改加提交代码流程
 git checkout -b 分知名（bp名或bug名） origin/master  
