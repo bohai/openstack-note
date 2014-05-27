@@ -51,7 +51,8 @@ pdb支持的指令以及指令详细用法可以通过help查看。
 1. 如上增加pdb代码  
 2. 运行nosetests  
    "nosetests volume/test_cinder.py --nocapture"
-
+备注：
+在unit test中增加打印代码，也要“--nocapture"才能正常打印。  
 
 ### 邮件搜索  
 http://openstack.markmail.org/
