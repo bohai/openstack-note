@@ -68,6 +68,13 @@ pip install --upgrade -r test-requirements.txt
 pip install --upgrade -r requirements.txt
 然手运行nosetest进行测试。
 ```
+```
+现在最新的运行单元测试的方法：
+tox -e py27
+tox -e pep8
+安装tox时注意，1.7的tox存在bug，因此使用如下命令按照
+pip install --upgrade "tox>=1.6,<1.7"
+```
 
 ### 代码提交
 + 修改加提交代码流程
