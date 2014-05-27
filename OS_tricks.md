@@ -48,8 +48,8 @@ mysql>desc table名;
 pdb支持的指令以及指令详细用法可以通过help查看。
 
 ### pdb调试unit test
-1. 如上增加pdb代码
-2. 运行nosetests
+1. 如上增加pdb代码  
+2. 运行nosetests  
    "nosetests volume/test_cinder.py --nocapture"
 
 
