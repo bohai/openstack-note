@@ -94,3 +94,9 @@ http://www.ibm.com/developerworks/cn/cloud/library/1403_liuyu_openstacktempest/
 
 ### 修改openstack所属公司  
 https://review.openstack.org/#/c/87957/
+
+###  os-update_readonly_flag
+```shell
+curl -i http://186.100.8.138:8776/v1/60c9922640794828b62f1663682154c8/volumes/da4f85f3-df06-4065-a435-1eed077cb4be/action -X POST -H "X-Auth-Project-Id: admin" -H "User-Agent: python-cinderclient" -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token: token" -d '{"os-update_readonly_flag": {"readonly": true}}'
+```
+
