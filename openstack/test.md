@@ -29,6 +29,14 @@ openstack对sphinx的扩展
 mock的实现原理也很简单，一般使用类似mokey patch的方式实现。  
 + ***mox***        
 基于java的easymock提供的python mock对象框架（基本上已经停止维护）
+Mox的执行流程：
+	* Create mock (in record mode)
+	* Set up expectations
+	* Put mock into replay mode
+	* Run test
+	* Verify expected interactions with the mock occurred
+mox与mock功能类似，都是用来做函数或者类的mock。
+
 ```
 Mock方法和属性：
 >>> # Mock
@@ -37,7 +45,6 @@ Mock方法和属性：
 >>> my_mock.some_attribute = "value"
 >>> assertEqual("calculated value", my_mock.some_method())
 >>> assertEqual("value", my_mock.some_attribute)
-
 
 >>> # Mox
 >>> my_mock = mox.MockAnything()
