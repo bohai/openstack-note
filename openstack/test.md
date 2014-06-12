@@ -126,9 +126,9 @@ True
   + 扩展的同时保持兼容性  
   + python多版本的兼容性
 + ***tox***   
-通用的虚拟环境管理和测试命令行工具。  
-配置可以看工程下的tox.ini文件。tox.ini可以通过tox-quickstart生成。  
-命令执行，如：“tox -e py26", "tox -e pep8"
+通用的虚拟环境管理和测试命令行工具。    
+配置可以看工程下的tox.ini文件。tox.ini可以通过tox-quickstart生成。     
+命令执行，如：“tox -e py26", "tox -e pep8"   
 执行单元测试的时候，顺便生成单元测试报告，并检查测试覆盖率，并生成覆盖率报告。直接执行tox是不行的，只能进行单元测试，需要给tox增加扩展参数，如下：tox -- --cover-erase -- --with-coverage -- --cover-html
 
 
