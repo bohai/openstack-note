@@ -16,7 +16,7 @@ mysql接口的python实现
 postgresql接口的python实现
 + pylint       
 对python进行静态分析、检查的工具
-+ python-subunit 
++ python-subunit   
 subunit是测试结果的流协议。python-subunit是它的python实现。
 + sphinx      
 文档生成工具（基于Restructed格式）
