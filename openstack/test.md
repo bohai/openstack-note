@@ -75,7 +75,7 @@ Mock方法和属性：
 >>> mox.Verify(my_mock)
 
 ```
-+ fixtures  
++ ***fixtures***  
 翻译为“夹具”，顾名思义提供了状态重用等的抽象机制。
 + ***testtools***   
 对python标准单元测试框架的扩展。为什么使用？
