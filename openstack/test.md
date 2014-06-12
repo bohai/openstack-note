@@ -24,6 +24,11 @@ subunit是测试结果的流协议。python-subunit是它的python实现。
 openstack对sphinx的扩展
 + testrepository  
 测试结果的数据库。主要在覆盖率测试时使用。
++ mock       
+对所测试的函数的外部依赖函数进行模拟替换。3.3以后已经是python标准库。
+mock的实现原理也很简单，一般使用类似mokey patch的方式实现。  
++ mox        
+基于java的easymock提供的python mock对象框架（基本上已经停止维护）
 
 
 
