@@ -77,6 +77,41 @@ Mock方法和属性：
 ```
 + ***fixtures***  
 翻译为“夹具”，顾名思义提供了状态重用等的抽象机制。
+```
+---------------myfixture.py-----------------------
+import testtools
+import unittest
+import fixtures
+class NoddyFixture(fixtures.Fixture):
+    def setUp(self):
+        super(NoddyFixture, self).setUp()
+        self.frobnozzle = 42
+        self.addCleanup(delattr, self, 'frobnozzle')
+
+
+class NoddyTest(testtools.TestCase, fixtures.TestWithFixtures):
+    def test_example(self):
+        fixture = self.useFixture(NoddyFixture())
+        self.assertEqual(42, fixture.frobnozzle)
+
+result = unittest.TestResult()
+_ = NoddyTest('test_example').run(result)
+print (result.wasSuccessful())
+
+-----------------运行结果------------------------
+[root@centoo65 data]# python myfixtures.py
+True
+ 
+-----------常用fixture-------------------------
+>>> import fixtures
+>>> a = fixtures.TempDir()
+>>> a.setUp()
+>>> print a.path
+/tmp/tmpWB8EmF
+>>> quit()
+----------------------------------------------
+其他参见PolicyFixture
+```
 + ***testtools***   
 对python标准单元测试框架的扩展。为什么使用？
   + 更好的断言    比如支持assertThat扩展
