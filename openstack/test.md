@@ -132,8 +132,12 @@ True
 执行单元测试的时候，顺便生成单元测试报告，并检查测试覆盖率，并生成覆盖率报告。直接执行tox是不行的，只能进行单元测试，需要给tox增加扩展参数，如下：tox -- --cover-erase -- --with-coverage -- --cover-html
 
 
-### 实际
+### 类说明
+test.py
+test.TestCase继承于testtools.TestCase。
+test.NoDBTestCase继承于test.TestCase。
 
+test.TestCase中大量使用了fixture对环境进行初始化。（比如DB，Policy等）
 ### 实例
 
 
