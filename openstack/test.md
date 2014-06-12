@@ -133,11 +133,11 @@ True
 
 
 ### 类说明
-test.py
-test.TestCase继承于testtools.TestCase。
-test.NoDBTestCase继承于test.TestCase。
+test.py   
+test.TestCase继承于testtools.TestCase。  
+test.NoDBTestCase继承于test.TestCase。   
 
-test.TestCase中大量使用了fixture对环境进行初始化。（比如DB，Policy等）
+test.TestCase中大量使用了fixture对环境进行初始化。（比如DB，Policy等）   
 ### 实例
 
 
