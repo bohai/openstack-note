@@ -133,11 +133,13 @@ True
 
 
 ### 类说明
-test.py   
+顶级目录test.py中：   
 test.TestCase继承于testtools.TestCase。  
 test.NoDBTestCase继承于test.TestCase。   
 
 test.TestCase中大量使用了fixture对环境进行初始化。（比如DB，Policy等）   
 ### 实例
+以增加虚拟机多状态查询API为例，需要增加哪些测试项目呢？
+
 
 
