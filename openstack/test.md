@@ -27,15 +27,15 @@ openstack对sphinx的扩展
 + ***mock***       
 对所测试的函数的外部依赖函数进行模拟替换。3.3以后已经是python标准库。
 mock的实现原理也很简单，一般使用类似mokey patch的方式实现。  
-+ mox        
++ ***mox***        
 基于java的easymock提供的python mock对象框架（基本上已经停止维护）
-+ testtools   
++ ***testtools***   
 对python标准单元测试框架的扩展。为什么使用？
   + 更好的断言    比如支持assertThat扩展
   + 更详细的debug信息  比如支持addDetails的信息
   + 扩展的同时保持兼容性  
   + python多版本的兼容性
-+ tox   
++ ***tox***   
 通用的虚拟环境管理和测试命令行工具。
 
 
