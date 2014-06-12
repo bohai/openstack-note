@@ -29,6 +29,53 @@ openstack对sphinx的扩展
 mock的实现原理也很简单，一般使用类似mokey patch的方式实现。  
 + ***mox***        
 基于java的easymock提供的python mock对象框架（基本上已经停止维护）
+```
+Mock方法和属性：
+>>> # Mock
+>>> my_mock = mock.Mock()
+>>> my_mock.some_method.return_value = "calculated value"
+>>> my_mock.some_attribute = "value"
+>>> assertEqual("calculated value", my_mock.some_method())
+>>> assertEqual("value", my_mock.some_attribute)
+
+
+>>> # Mox
+>>> my_mock = mox.MockAnything()
+>>> my_mock.some_method().AndReturn("calculated value")
+'calculated value'
+>>> my_mock.some_attribute = "value"
+>>> mox.Replay(my_mock)
+>>> assertEqual("calculated value", my_mock.some_method())
+>>> assertEqual("value", my_mock.some_attribute)
+
+部分mock（对已有对象的某个方法进行mock）：
+>>> # Mock
+>>> SomeObject.some_method = mock.Mock(return_value='value')
+>>> assertEqual("value", SomeObject.some_method())
+
+>>> # Mox
+>>> my_mock = mox.MockObject(SomeObject)
+>>> my_mock.some_method().AndReturn("value")
+'value'
+>>> mox.Replay(my_mock)
+>>> assertEqual("value", my_mock.some_method())
+>>> mox.Verify(my_mock)
+
+抛出异常：
+>>> # Mock
+>>> my_mock = mock.Mock()
+>>> my_mock.some_method.side_effect = SomeException("message")
+>>> assertRaises(SomeException, my_mock.some_method)
+
+>>> # Mox
+>>> my_mock = mox.MockAnything()
+>>> my_mock.some_method().AndRaise(SomeException("message"))
+>>> mox.Replay(my_mock)
+>>> assertRaises(SomeException, my_mock.some_method)
+>>> mox.Verify(my_mock)
+
+```
+
 + ***testtools***   
 对python标准单元测试框架的扩展。为什么使用？
   + 更好的断言    比如支持assertThat扩展
