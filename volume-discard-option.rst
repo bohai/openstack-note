@@ -113,16 +113,7 @@ Work Items
 Dependencies
 ============
 
-* Include specific references to specs and/or blueprints in cinder, or in other
-  projects, that this one either depends on or is related to.
-
-* If this requires functionality of another project that is not currently used
-  by Cinder (such as the glance v2 API when we previously only required v1),
-  document that fact.
-
-* Does this feature require any new library dependencies or code otherwise not
-  included in OpenStack? Or does it depend on a specific version of library?
-
+None
 
 Testing
 =======
