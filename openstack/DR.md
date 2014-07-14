@@ -46,14 +46,14 @@ Openstack的DR整体架构如下图。
 至于是否会是一个新的项目，目前并没有规划。目前主要关注于在nova/cinder/补齐功能，编排主要通过heat实现。   
 后续可能成为一个独立项目甚至独立与openstack的项目。  
 ![openstack_dr](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyFULL-512x326.pnghttps://wiki.openstack.org/wiki/File:DR.png)
-+ 功能
++ 功能   
 fail over(灾难后切换备节点）  
 fail back(主站点故障恢复后切换会主站点）  
 test(容灾演练)  
-+ 方案介绍
++ 方案介绍   
 目前没有详细的方案。只有一个hight level的设计。   
 现在还在gap识别，补齐阶段。  
-+ 现状
++ 现状   
 目前主要集中在用例分析、整体框架设计阶段。   
 具体的实现主要集中在cinder侧元数据、业务数据同步相关。但是进展不乐观。   
 
