@@ -34,7 +34,8 @@ AWS的方案从用户场景看有如下几类：
 + standby   
 相对较贵的一种容灾方案，RTO时间(<1hrs)最好。  
 使用replicate/mirror方式进行业务数据同步。  
-虚拟机一直运行中。  
+容灾端虚拟机一直运行中，但是不提供服务。  
+这种方案分两类，一类是容灾端虚拟机与生产端虚拟机等量，切换后所能提供的业务容量相同。另一种是容灾端保持较小的容量，切换后能提供业务能力但是业务容量较小，需要再进行扩展。
 ![standby1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandby-Normal-512x326.png)
 ![standby2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyLOW-512x326.png)
 ![standby3](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyFULL-512x326.png)
