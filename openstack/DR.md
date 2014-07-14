@@ -61,6 +61,8 @@ test(容灾演练)
 1. https://wiki.openstack.org/wiki/DisasterRecovery
 2. https://wiki.openstack.org/w/images/4/49/Openstack_disaster_recovery_-_openstack_meetup.pdf
 3. http://redhatstackblog.redhat.com/2013/11/26/disaster-recovery-enablement-in-openstack/
+4. http://blog.celingest.com/en/2013/03/05/disaster-recovery-in-aws/  
+5. http://blog.celingest.com/en/2013/03/19/disaster-recovery-aws-high-availability-architectures/   
 
 
 
