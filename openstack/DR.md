@@ -42,3 +42,4 @@ AWS的方案从用户场景看有如下几类：
 
 ### Openstack容灾    
 
+![openstack_dr](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyFULL-512x326.pnghttps://wiki.openstack.org/wiki/File:DR.png
