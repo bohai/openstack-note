@@ -39,5 +39,6 @@ AWS的方案从用户场景看有如下几类：
 ![standby1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandby-Normal-512x326.png)
 ![standby2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyLOW-512x326.png)
 ![standby3](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyFULL-512x326.png)
+
 ### Openstack容灾    
 
