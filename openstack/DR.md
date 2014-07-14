@@ -20,10 +20,13 @@ HA主要处理单组件的故障，DR则是应对大规模的故障。
 ### AWS容灾方案  
 AWS的方案从用户场景看有如下几类：  
 + cold  
-ffff
+是三种方案中费用最低，RTO最长(>1 day)的方案。  
+使用S3做数据备份，灾难发生时，重新申请虚拟机，利用备份数据恢复。  
+数据备份可以使用普通的http, vpn, aws directconnect等链接，快照/备份技术进行业务数据的同步。  
 ![cold1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsBackupRestore1-512x281.png)
 ![cold2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsBackupRestore2-512x380.png)
 + pilot light   
+
 ![pilot light1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsPilotLightOff-512x336.png)
 ![pilot light2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsPilotLightOn-512x326.png)
 + standby   
