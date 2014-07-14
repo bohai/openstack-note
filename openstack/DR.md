@@ -8,5 +8,7 @@ RTO(Recovery Point Time): 指灾难发生后，业务恢复所需的时间。
 ![architecture](http://redhatstackblog.files.wordpress.com/2013/11/recovery-point-objective-and-recover-time-objective.png)  
 
 + 容灾的分类  
-按RTO时间分：cold, warm, hot  
-按业务数据同步技术：基于主机复制，基于阵列复制，基于存储网络，基于虚拟机内代理，基于应用本身能力（如数据库复制能力）  
+按RTO分：cold, warm, standby   
+按RPO分：同步同步，异步同步，离线同步  
+按业务数据同步技术：基于主机复制，基于阵列复制，基于存储网络，基于虚拟机内代理，基于应用本身能力（如数据库复制能力） 
+
