@@ -8,3 +8,5 @@ RTO(Recovery Point Time): 指灾难发生后，业务恢复所需的时间。
 ![architecture](http://redhatstackblog.files.wordpress.com/2013/11/recovery-point-objective-and-recover-time-objective.png)  
 
 + 容灾的分类
+按RTO时间分：cold, warm, hot  
+按
