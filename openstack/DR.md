@@ -45,7 +45,7 @@ AWS的方案从用户场景看有如下几类：
 Openstack的DR整体架构如下图。  
 至于是否会是一个新的项目，目前并没有规划。目前主要关注于在nova/cinder/补齐功能，编排主要通过heat实现。   
 后续可能成为一个独立项目甚至独立与openstack的项目。  
-![openstack_dr_arch](ttps://wiki.openstack.org/wiki/File:DR.png)
+![openstack_dr_arch](https://wiki.openstack.org/wiki/File:DR.png)
 + 功能   
 fail over(灾难后切换备节点）  
 fail back(主站点故障恢复后切换会主站点）  
