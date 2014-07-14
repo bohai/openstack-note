@@ -18,6 +18,13 @@ HA主要处理单组件的故障，DR则是应对大规模的故障。
 从云的角度看，HA是一个云环境内保障业务持续性的机制。DR是多个云环境间保障业务持续性的机制。  
 
 ### AWS容灾方案  
+AWS的方案从用户场景看有如下几类：  
++ cold
+![architecture](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsBackupRestore1-512x281.png)
++ pilot light
+![architecture](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsPilotLightOff-512x336.png)
++ standby
+
 
 ### Openstack容灾    
 
