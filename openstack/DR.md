@@ -28,10 +28,13 @@ AWS的方案从用户场景看有如下几类：
 + pilot light   
 相对经济的一种容灾方案，RTO时间(<4hrs)一般。  
 使用replicate/mirror方式进行业务数据同步。  
-容灾端
+容灾端虚拟机在灾难发生后启动。  
 ![pilot light1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsPilotLightOff-512x336.png)
 ![pilot light2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsPilotLightOn-512x326.png)
 + standby   
+相对较贵的一种容灾方案，RTO时间(<1hrs)最好。  
+使用replicate/mirror方式进行业务数据同步。  
+虚拟机一直运行中。  
 ![standby1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandby-Normal-512x326.png)
 ![standby2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyLOW-512x326.png)
 ![standby3](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/FullyWorkingLCStandbyFaultyFULL-512x326.png)
