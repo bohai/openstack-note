@@ -57,6 +57,10 @@ test(容灾演练)
 目前主要集中在用例分析、整体框架设计阶段。   
 具体的实现主要集中在cinder侧元数据、业务数据同步相关。但是进展不乐观。   
 
+### 参考   
+1. https://wiki.openstack.org/wiki/DisasterRecovery
+2. https://wiki.openstack.org/w/images/4/49/Openstack_disaster_recovery_-_openstack_meetup.pdf
+3. http://redhatstackblog.redhat.com/2013/11/26/disaster-recovery-enablement-in-openstack/
 
 
 
