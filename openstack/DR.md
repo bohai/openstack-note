@@ -26,7 +26,9 @@ AWS的方案从用户场景看有如下几类：
 ![cold1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsBackupRestore1-512x281.png)
 ![cold2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsBackupRestore2-512x380.png)
 + pilot light   
-
+相对经济的一种容灾方案，RTO时间(<4hrs)一般。  
+使用replicate/mirror方式进行业务数据同步。  
+容灾端
 ![pilot light1](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsPilotLightOff-512x336.png)
 ![pilot light2](http://cdn.blog.celingest.com/wp-content/uploads/2013/03/AwsPilotLightOn-512x326.png)
 + standby   
