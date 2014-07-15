@@ -36,3 +36,4 @@ host_ip = 186.100.21.221
 #datastore_regex = NOT DEFINED  
 cluster_name = c1            #可以支持配置多个cluster   
 ```
++ 镜像的使用  
