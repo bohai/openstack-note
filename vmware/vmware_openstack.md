@@ -46,6 +46,7 @@ datastore_regex datastore配置格式，指定可以使用的datastore。
 从上边图示部分可以看出，镜像从Glance上下载到Vmware的datastore上。  
 过程是在compute节点上调用glance API下载镜像然后使用VMware的API将镜像写到datastore上。  
 这样一个传输过程无疑是耗费compute资源并且低效的。  
+Cinder中基于镜像创建卷过程与此类似，这里不再赘述。  
 ```python
 #virt/vmwareapi/vmware_images.py
 def fetch_image(context, image, instance, **kwargs):
