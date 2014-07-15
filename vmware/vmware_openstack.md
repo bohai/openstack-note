@@ -25,7 +25,7 @@ VCDriver中每个cluster都要有一个Datastore进行配置和使用。
 ![VCDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image011.png)
 ![VCD_arch](http://varchitectthoughts.files.wordpress.com/2013/06/vsphere-with-nova-arch.jpeg)
 + 接入方法  
-nova.conf文件的配置：（可以看到指定了cluseter c1接入）  
+nova.conf文件的配置。（使用VCDriver将c1集群接入）  
 ```xml
 [DEFAULT]  
 compute_driver = vmwareapi.VMwareVCDriver  
@@ -36,6 +36,12 @@ host_ip = 186.100.21.221
 #datastore_regex = NOT DEFINED  
 cluster_name = c1            #可以支持配置多个cluster   
 ```
+解释：  
+compute_driver指定所使用的Driver。  
+host_password/username/ip 用于连接vcenter server。
+cluseter_name 指定所管理的Vmware集群，从Havana版开始可以指定多个。    
+datastore_regex 指定datastore匹配格式。  
+
 + 镜像的使用  
 从上边图示部分可以看出，镜像从Glance上下载到Vmware的datastore上。  
 过程是在compute节点上调用glance API下载镜像然后使用VMware的API将镜像写到datastore上。  
