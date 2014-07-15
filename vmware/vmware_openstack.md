@@ -26,6 +26,7 @@ VCDriver中每个cluster都要有一个Datastore进行配置和使用。
 ![VCD_arch](http://varchitectthoughts.files.wordpress.com/2013/06/vsphere-with-nova-arch.jpeg)
 + 接入方法  
 nova.conf文件的配置：（可以看到指定了cluseter c1接入）  
+```xml
 [DEFAULT]  
 compute_driver = vmwareapi.VMwareVCDriver  
 [vmware]  
@@ -34,4 +35,4 @@ host_username = Administrator@vsphere.local
 host_ip = 186.100.21.221  
 #datastore_regex = NOT DEFINED  
 cluster_name = c1            #可以支持配置多个cluster   
-
+```
