@@ -41,6 +41,7 @@ cluster_name = c1            #可以支持配置多个cluster
 过程是在compute节点上调用glance API下载镜像然后使用VMware的API将镜像写到datastore上。  
 这样一个传输过程无疑是耗费compute资源并且低效的。  
 ```python
+#virt/vmwareapi/vmware_images.py
 def fetch_image(context, image, instance, **kwargs):
     """Download image from the glance image server."""
     LOG.debug(_("Downloading image %s from glance image server") % image,
