@@ -63,3 +63,5 @@ def fetch_image(context, image, instance, **kwargs):
     LOG.debug(_("Downloaded image %s from glance image server") % image,
               instance=instance)
 ```
+更加理想的方式，是将datastore作为glance的后端，这些创建虚拟机时就不用如此下载镜像。  
+目前社区已经有类似的BP设想。  
