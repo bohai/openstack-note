@@ -19,5 +19,6 @@ ESXDriver限制，每个nova-compute服务仅支持一台ESXi主机。
 目前每个compute节点只能同时支持一种hypervisor。
 Grizzly每个compute服务只能支持一个VCenter集群，Havana版本已经去除了这个限制。  
 VCDriver中每个cluster都要有一个Datastore进行配置和使用。  
+由于cluster作为一个hypervisor整体呈现，也带来了资源跨ESXi节点的问题，具体来说就是作为Hypervisor整体呈现的CPU、内存资源很充足，但是创建虚拟机是发现任何一个节点的资源都不满足虚拟机需要的情况。    
 ![VCDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image011.png)
 ![VCD_arch](http://varchitectthoughts.files.wordpress.com/2013/06/vsphere-with-nova-arch.jpeg)
