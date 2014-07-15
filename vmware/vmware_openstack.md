@@ -11,7 +11,7 @@ ESXDriver与其他Hypervisor的接入方式略有差别。
 主要有以下缺点：  
 与KVM等不同，VM跑在ESXi上，并非nova-compute所在节点。
 ESXDriver限制，每个nova-compute服务仅支持一台ESXi主机。  
-不支持VCenter上高级特性，比如DRS。
+不支持VCenter上高级特性，比如DRS。   
 ![ESXDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image007.png)
 ![nova_ESX](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image009.png)
 ### VCDriver  
