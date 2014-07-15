@@ -37,3 +37,4 @@ host_ip = 186.100.21.221
 cluster_name = c1            #可以支持配置多个cluster   
 ```
 + 镜像的使用  
+从上边图示部分可以看出，镜像从Glance上下载到Vmware的datastore上。  
