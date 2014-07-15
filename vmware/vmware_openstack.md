@@ -14,11 +14,24 @@ ESXDriver限制，每个nova-compute服务仅支持一台ESXi主机。
 不支持VCenter上高级特性，比如DRS。   
 ![ESXDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image007.png)
 ![nova_ESX](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image009.png)
-### VCDriver  
+### VCDriver 
++ 介绍
 本文主要介绍VCDriver方式接入。这种方式将集群作为Hypervisor接入，自然就拥有了HA，DRS，VMotion能力。      
 目前每个compute节点只能同时支持一种hypervisor。
 Grizzly每个compute服务只能支持一个VCenter集群，Havana版本已经去除了这个限制。  
 VCDriver中每个cluster都要有一个Datastore进行配置和使用。  
 由于cluster作为一个hypervisor整体呈现，也带来了资源跨ESXi节点的问题，具体来说就是作为Hypervisor整体呈现的CPU、内存资源很充足，但是创建虚拟机是发现任何一个节点的资源都不满足虚拟机需要的情况。    
++ 接入图示  
 ![VCDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image011.png)
 ![VCD_arch](http://varchitectthoughts.files.wordpress.com/2013/06/vsphere-with-nova-arch.jpeg)
++ 接入方法  
+nova.conf文件的配置：（可以看到指定了cluseter c1接入）  
+[DEFAULT]  
+compute_driver = vmwareapi.VMwareVCDriver  
+[vmware]  
+host_password = Huawei-123  
+host_username = Administrator@vsphere.local  
+host_ip = 186.100.21.221  
+#datastore_regex = NOT DEFINED  
+cluster_name = c1            #可以支持配置多个cluster   
+
