@@ -7,7 +7,9 @@ ESXDriver方式导致的Vmware一些集群特性的丢失，VCDriver方式则解
 VCDriver更多的体现了Vmware与Openstack的互补，一方面是VMware现有的存量很大，而且很多企业应用并非按照云的思想开发；另一方面新的应用多以云的思想开发。这也符合当前各厂商对混合云趋势的共识。  
 
 ### ESXDriver  
-ESXDriver与其他Hypervisor的接入方式类似。当时nova compute与hypervisor存在一对多的关系？？。  
+ESXDriver与其他Hypervisor的接入方式类似。nova compute与hypervisor存在一对一的关系。  
+
+![ESXDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image007.png)
 
 ### VCDriver  
 本文主要介绍VCDriver方式接入。  
