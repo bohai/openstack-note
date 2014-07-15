@@ -15,5 +15,7 @@ ESXDriver限制，每个nova-compute服务仅支持一台ESXi主机。
 ![ESXDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image007.png)
 ![nova_ESX](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image009.png)
 ### VCDriver  
-本文主要介绍VCDriver方式接入。    
+本文主要介绍VCDriver方式接入。   
+目前每个compute节点只能同时支持一种hypervisor,每个compute服务只能支持一个VCenter集群。  
+VCDriver中每个cluster都要有一个Datastore进行配置和使用。  
 ![VCDriver](http://openstack-huawei.github.io/images/blog/openstack-vsphere/image011.png)
