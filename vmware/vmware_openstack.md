@@ -40,7 +40,7 @@ cluster_name = c1            #可以支持配置多个cluster
 compute_driver指定所使用的Driver。  
 host_password/username/ip 用于连接vcenter server。
 cluseter_name 指定所管理的Vmware集群，从Havana版开始可以指定多个。    
-datastore_regex 指定datastore匹配格式。  
+datastore_regex datastore配置格式，指定可以使用的datastore。  
 
 + 镜像的使用  
 从上边图示部分可以看出，镜像从Glance上下载到Vmware的datastore上。  
