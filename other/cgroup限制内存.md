@@ -24,28 +24,28 @@ cgexec -g memory:test mongod -port 27017 --bind_ip 127.0.0.1 --dbpath /var/lib/m
 2014-07-18T23:21:56.790+0800 [conn2] getmore test.my_collection cursorid:34538199491 ntoreturn:0 keyUpdates:0 numYields:88 locks(micros) r:142113 nreturned:95595 reslen:4194301 244ms  
 Killed  
 
-数据查询：
-[root@centos data]# cat mongotestList.py
-import pymongo
-import time
+数据查询：  
+[root@centos data]# cat mongotestList.py  
+import pymongo  
+import time  
+ 
+client = pymongo.MongoClient("localhost", 27017)  
+db = client.test  
+print db.name  
+print db.my_collection  
 
-client = pymongo.MongoClient("localhost", 27017)
-db = client.test
-print db.name
-print db.my_collection
+for item in db.my_collection.find():  
+    print item  
 
-for item in db.my_collection.find():
-    print item
+数据插入：  
+[root@centos data]# cat mongotest2.py  
+import pymongo  
+import time  
 
-数据插入：
-[root@centos data]# cat mongotest2.py
-import pymongo
-import time
+client = pymongo.MongoClient("localhost", 27017)  
+db = client.test  
+print db.name  
+print db.my_collection  
 
-client = pymongo.MongoClient("localhost", 27017)
-db = client.test
-print db.name
-print db.my_collection
-
-while True:
-    db.my_collection.save({time.ctime(): time.time()})
+while True:  
+    db.my_collection.save({time.ctime(): time.time()})  
