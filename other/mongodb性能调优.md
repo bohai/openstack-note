@@ -22,7 +22,7 @@ http://www.csdn.net/article/2012-11-15/2811920-mongodb-quan-gong-lue
 
 ### 水平扩展
 通过Sharding 分片进行水平扩展。   
-
+http://www.lemge.com/index.php?c=news_index_c&l=YToxOntzOjE6ImkiO3M6NToiMTQ5MzEiO30%3D&m=ld#blz-insite
 
 ### Nosql分类
 http://www.lemge.com/index.php?c=news_index_c&m=ld&l=YToxOntzOjE6ImkiO3M6NToiMTU5MjQiO30=
