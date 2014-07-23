@@ -15,3 +15,6 @@ http://www.mongodb.com/presentations/mongosv-2012/mongodb-performance-tuning
 http://docs.mongodb.org/manual/reference/program/mongostat/  
 http://docs.mongodb.org/manual/tutorial/evaluate-operation-performance/  
 http://docs.mongodb.org/manual/core/write-performance/  
+
+核心开发者谈调优：   
+http://www.csdn.net/article/2012-11-15/2811920-mongodb-quan-gong-lue  
