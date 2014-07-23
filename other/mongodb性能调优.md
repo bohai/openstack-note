@@ -18,3 +18,7 @@ http://docs.mongodb.org/manual/core/write-performance/
 
 核心开发者谈调优：   
 http://www.csdn.net/article/2012-11-15/2811920-mongodb-quan-gong-lue  
+
+
+### 水平扩展
+通过Sharding 分片进行水平扩展。   
