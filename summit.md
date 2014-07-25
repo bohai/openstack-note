@@ -21,8 +21,8 @@ Products, Tools & Services
 
 OpenStack's vibrant ecosystem and the different ways to consume it are among it's greatest strengths. In this track, you'll hear about the latest products, tools and services from the OpenStack ecosystem.
 
-Practices of availability for Openstack in Telecom scenario
+Practices of reliability & availability for Openstack in Telecom scenario
 
-Share the practices experience in improving availability for Openstack in telecom scenario.
+Share the practices experience in improving reliability & availability for Openstack in telecom scenario.
  
-Many organizations choose OpenStack for it’s distributed architecture and ability to deliver Infrastructure-as-a-Service environment for scale-out applications to run on top of it, for private on premise clouds or public clouds. It is quite common for OpenStack to run mission critical applications. How to provide the cloud solution with enterprise Level availability based on Openstack? Here we share the experience based on the practices of Huawei in telecom scenario.
+Many organizations choose OpenStack for it’s distributed architecture and ability to deliver Infrastructure-as-a-Service environment for scale-out applications to run on top of it, for private on premise clouds or public clouds. It is quite common for OpenStack to run mission critical applications. How to provide the cloud solution with enterprise Level reliability & availability based on Openstack? Here we share the experience based on the practices of Huawei in telecom scenario.
