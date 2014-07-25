@@ -17,6 +17,11 @@
 3.选择内容难度
 4.内容摘要
 
+Products, Tools & Services
+
+OpenStack's vibrant ecosystem and the different ways to consume it are among it's greatest strengths. In this track, you'll hear about the latest products, tools and services from the OpenStack ecosystem.
+
+Practices of availability for Openstack in Telecom scenario
 
 Share the practices experience in improving availability for Openstack in telecom scenario.
  
