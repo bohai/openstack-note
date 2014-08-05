@@ -35,6 +35,7 @@ Kpatch主要有四个组件。
 6.  改变函数与动态分配数据间的交互的patch可能存在安全性问题。  
   
 ### 不重启更新kernel （RHEL/Centos)  
+<pre>
 # uname -r   
 2.6.32-71.29.1.el6.i686  
 Ok, we have to patch:
@@ -56,11 +57,12 @@ The system will “restart without restarting”..something like a fast reboot, 
 
 # uname -r
 2.6.32-220.4.1.el6.i686
+</pre>
 
-参考：
-http://www.zdnet.com/kernelcare-new-no-reboot-linux-patching-system-7000029127/
-http://korovamilky.tumblr.com/post/16460518079/running-new-linux-kernel-without-rebooting
-http://rhelblog.redhat.com/2014/02/26/kpatch/
-https://github.com/dynup/kpatch
+参考：  
+http://www.zdnet.com/kernelcare-new-no-reboot-linux-patching-system-7000029127/  
+http://korovamilky.tumblr.com/post/16460518079/running-new-linux-kernel-without-rebooting  
+http://rhelblog.redhat.com/2014/02/26/kpatch/  
+https://github.com/dynup/kpatch  
 
 
