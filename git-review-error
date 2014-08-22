@@ -1,0 +1,26 @@
+[root@centos nova]# git-review -d 115602
+Traceback (most recent call last):
+  File "/usr/bin/git-review", line 10, in <module>
+    sys.exit(main())
+  File "/usr/lib/python2.6/site-packages/git_review/cmd.py", line 1160, in main
+    local_branch = fetch_review(options.changeidentifier, branch, remote)
+  File "/usr/lib/python2.6/site-packages/git_review/cmd.py", line 866, in fetch_review
+    parse_exc=ReviewInformationNotFound)
+  File "/usr/lib/python2.6/site-packages/git_review/cmd.py", line 416, in query_reviews
+    parse_exc=parse_exc)
+  File "/usr/lib/python2.6/site-packages/git_review/cmd.py", line 484, in query_reviews_over_ssh
+    "--format=JSON %s" % query)
+  File "/usr/lib/python2.6/site-packages/git_review/cmd.py", line 152, in run_command_exc
+    raise klazz(rc, output, argv, env)
+git_review.cmd.CannotQueryPatchSet: Cannot query patchset information
+The following command failed with exit code 255
+    "ssh -xp29418 boh.ricky@review.openstack.org gerrit query --format=JSON --current-patch-set change:115602"
+-----------------------
+ssh: connect to host review.openstack.org port 29418: Network is unreachable
+-----------------------
+[root@centos nova]# git review
+Problem running 'git remote update gerrit'
+Fetching gerrit
+ssh: connect to host review.openstack.org port 29418: Network is unreachable
+fatal: The remote end hung up unexpectedly
+error: Could not fetch gerrit
