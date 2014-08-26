@@ -1,0 +1,6 @@
+外网实验室无法git-review提交代码的解决方法：
+
+1、使用非凡vpn网络加速器来代理目的至review.openstack.org的流量
+软件下载地址：http://www.ffvpn.com
+账户及密码信息获取地址：http://www.ffvpn.com/freetrial 
+缺点：每30分钟变化一次密码，需要重新获取密码并再次登录
