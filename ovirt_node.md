@@ -11,3 +11,6 @@
 
 参考：  
 http://www.ovirt.org/images/2/2f/Ovirt-node.pdf  
+http://www.ibm.com/developerworks/cn/linux/l-cn-ovirt/  
+http://www.ibm.com/developerworks/cn/linux/1306_qiaoly_ovirtnode/index.html  
+
