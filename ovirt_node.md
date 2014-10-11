@@ -1,6 +1,9 @@
 1. ovirt-node简介  
-   1.1 ovirt-node在RHEV中的地位  
+   1.1 ovirt-node在RHEV中的地位    
+ovirt-node是Redhat ovirt项目中的一个子项目。ovirt项目的商业版本就是RHEV。ovirt-node目标是提供一个精简的面向裸金属安装的
+hypervisor。ovirt-node基于fedora定制，也支持基于centos/rhel定制。  
    1.2 ovirt-node的功能  
+
 2. ovirt-node安装  
    2.1 ovirt-node的安装过程  
    2.2 ovirt-node的安装界面  
