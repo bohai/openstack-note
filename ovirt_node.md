@@ -5,6 +5,8 @@ ovirt-node是Redhat ovirt项目中的一个子项目。ovirt项目的商业版�
 hypervisor。ovirt-node基于fedora定制，也支持基于centos/rhel定制。  
 ovirt-node在RHEV中的位置类似于ESXi在VMWARE虚拟化方案中的位置。
 ![ovirt_arch][1]   
+ovirt-node在整个ovirt中作为运行Guest的Host OS使用。ovirt-node本身包含了host安装配置升级的UI界面。  
+ovirt-node中可以集成VDSM作为ovirt-engine在ovirt-node上的代理。  
 ![ovirt_node_arch][2]   
 2. ovirt-node定制  
    3.1 ovirt-node的ISO出包方式  
