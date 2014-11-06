@@ -38,6 +38,7 @@ setenforce 0
 service iptables stop
 chkconfig iptables off
 systemctl stop firewalld.service
+（更好的办法是firewall-cmd --add-service=http）打开端口。
 
 8. 服务随主机启动
 chkconfig rabbitmq-server on
