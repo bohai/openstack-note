@@ -23,6 +23,9 @@ cd devstack
 5. 修改localrc，修改git库协议为http
 
 5.1. 使用国内的pypi库
+~/.pip/pip.conf
+[global]
+index-url = http://pypi.douban.com/simple
 
 6. 安装
 cd devstack
