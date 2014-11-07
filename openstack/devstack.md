@@ -7,6 +7,11 @@ devstack通过外网安装openstack。
 
 2. 拷贝163的fedora repo到/etc/yum.repos.d/
 
+2.1. 使用国内的pypi库
+~/.pip/pip.conf
+[global]
+index-url = http://pypi.douban.com/simple
+
 3. 安装前配置
 adduser stack
 apt-get install sudo -y || yum install -y sudo
@@ -21,11 +26,6 @@ cd devstack
 修改local.conf
 
 5. 修改localrc，修改git库协议为http
-
-5.1. 使用国内的pypi库
-~/.pip/pip.conf
-[global]
-index-url = http://pypi.douban.com/simple
 
 6. 安装
 cd devstack
