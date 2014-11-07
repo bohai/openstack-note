@@ -38,7 +38,12 @@ setenforce 0
 service iptables stop
 chkconfig iptables off
 systemctl stop firewalld.service
-（更好的办法是firewall-cmd --add-service=http）打开端口。
+（更好的办法是通过firewall-cmd打开端口
+#打开horizon使用的http端口
+firewall-cmd --add-service=http
+#打开novnc端口
+firewall-cmd --add-port=6080/tcp
+firewall-cmd --add-port=6080/tcp)。
 
 8. 服务随主机启动
 chkconfig rabbitmq-server on
