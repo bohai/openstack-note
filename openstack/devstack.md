@@ -43,7 +43,7 @@ systemctl stop firewalld.service
 firewall-cmd --add-service=http
 #打开novnc端口
 firewall-cmd --add-port=6080/tcp
-firewall-cmd --add-port=6080/tcp)。
+firewall-cmd --add-port=6081/tcp)。
 
 8. 服务随主机启动
 chkconfig rabbitmq-server on
