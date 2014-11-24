@@ -94,6 +94,11 @@ Q&A
 问题：清理screen
 解决：screen -wipe
 
+3. "No module named MySQLdb"
+yum install mariadb-devel.x86_64
+
+4. "error <my_config.h> MUST be included first"
+删除代码中该行
 
 
 
