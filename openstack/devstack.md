@@ -100,5 +100,6 @@ yum install mariadb-devel.x86_64
 4. "error <my_config.h> MUST be included first"
 删除代码中该行
 
-
+5. fedora镜像下载失败：
+修改stackrc先禁止下载，然后手工下载上传。
 
