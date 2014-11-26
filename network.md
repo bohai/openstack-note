@@ -60,25 +60,28 @@ ovs_version: "1.11.0"
 ”br-int“网桥现在有了一个新的port"qvocb64ea96-9f" 连接VM，并且被标记为vlan1。虚拟机的每个网卡都需要对应在"br-int”网桥上创建一个port。
 
 OVS中另一个有用的命令是dump-flows，以下为例子：  
+<pre><code>
 # ovs-ofctl dump-flows br-int
 NXST_FLOW reply (xid=0x4):
 cookie=0x0, duration=735.544s, table=0, n_packets=70, n_bytes=9976,idle_age=17, priority=3,in_port=1,dl_vlan=1000 actions=mod_vlan_vid:1,NORMAL
 cookie=0x0, duration=76679.786s, table=0, n_packets=0, n_bytes=0,idle_age=65534, hard_age=65534, priority=2,in_port=1 actions=drop
 cookie=0x0, duration=76681.36s, table=0, n_packets=68, n_bytes=7950,idle_age=17, hard_age=65534, priority=1 actions=NORMAL
+</code></pre>
 如上所述，VM相连的port使用了Vlan tag 1。然后虚拟机网络（eth2)上的port使用tag1000。OVS会修改VM和物理网口间所有package的vlan。在openstack中，OVS
  agent 控制open vswitch中的flows，用户不需要进行操作。如果你想了解更多的如何控制open vswitch中的流，可以参考http://openvswitch.org中对ovs-ofctl的描述。
 
-Network Namespaces (netns)
+### Network Namespaces (netns)  
 网络namespace是linux上一个很cool的特性，它的用途很多。在openstack网络中被广泛使用。网络namespace是拥有独立的网络配置隔离容器，并且该网络不能被其他名字空间看到。网络名字空间可以被用于封装特殊的网络功能或者在对网络服务隔离的同时完成一个复杂的网络设置。在Oracle OpenStack Tech Preview中我们使用最新的R3企业版内核，该内核提供给了对netns的完整支持。
 
 通过如下例子我们展示如何使用netns命令控制网络namespaces。
 定义一个新的namespace:
+<pre><code>
 # ip netns add my-ns
 # ip netns list
 my-ns
-
+</code></pre>
 我们说过namespace是一个隔离的容器，我们可以在namspace中进行各种操作，比如ifconfig命令。
-
+<pre><code>
 # ip netns exec my-ns ifconfig -a
 lo        Link encap:Local Loopback
           LOOPBACK  MTU:16436 Metric:1
@@ -86,9 +89,11 @@ lo        Link encap:Local Loopback
           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
 collisions:0 txqueuelen:0
           RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+</code></pre>
 我们可以在namespace中运行任何命令，比如对debug非常有用的tcddump命令，我们使用ping、ssh、iptables命令。
 连接namespace和外部：
 连接到namespace和namespace直接连接的方式有很多，我们主要聚集在openstack中使用的方法。openstack使用了OVS和网络namespace的组合。OVS定义接口，然后我们将这些接口加入namespace中。
+<pre><code>
 # ip netns exec my-ns ifconfig -a
 lo        Link encap:Local Loopback
           LOOPBACK  MTU:65536 Metric:1
@@ -103,14 +108,10 @@ my-port   Link encap:Ethernet HWaddr 22:04:45:E2:85:21
           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
 collisions:0 txqueuelen:0
           RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+</code></pre>
 现在我们可以增加更多的ports到OVS bridge，并且连接到其他namespace或者其他设备比如物理网卡。Neutron使用网络namespace来实现网络服务，如DHCP、routing、gateway、firewall、load balance等。下一篇文章我们会讨论更多细节 。
 
-Linux bridge and veth pairs
-
-Veth pairs are used extensively throughout the network setup in OpenStack and are also a good tool to debug a network problem. Veth pairs are simply a virtual wire and so veths always come in pairs. Typically one side of the veth pair will connect to a bridge and the other side to another bridge or simply left as a usable interface.
-In this example we will create some veth pairs, connect them to bridges and test connectivity. This example is using regular Linux server and not an OpenStack node:
-Creating a veth pair, note that we define names for both ends:
-
+### Linux bridge and veth pairs   
 Linux bridge用于连接OVS port和虚拟机。ports负责连通OVS bridge和linux bridge或者两者与虚拟机。linux bridage主要用于安全组增强。安全组通过iptables实现，iptables只能用于linux bridage而非OVS bridage。
 
 
