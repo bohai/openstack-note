@@ -115,5 +115,50 @@ collisions:0 txqueuelen:0
 ### Linux bridge and veth pairs   
 Linux bridge用于连接OVS port和虚拟机。ports负责连通OVS bridge和linux bridge或者两者与虚拟机。linux bridage主要用于安全组增强。安全组通过iptables实现，iptables只能用于linux bridage而非OVS bridage。
 
+Veth pairs are used extensively throughout the network setup in OpenStack and are also a good tool to debug a network problem. Veth pairs are simply a virtual wire and so veths always come in pairs. Typically one side of the veth pair will connect to a bridge and the other side to another bridge or simply left as a usable interface.
 
+In this example we will create some veth pairs, connect them to bridges and test connectivity. This example is using regular Linux server and not an OpenStack node:
+Creating a veth pair, note that we define names for both ends:
+
+Veth对在openstack网络中大量使用，也是debug网络问题的很好工具。Veth对是一个简单的虚拟网线，所以一般成对出现。通常Veth对的一端连接到bridge，另一端连接到另一个bridge或者留下在作为一个网口使用。
+
+这个例子中，我们将创建一些veth对，把他们连接到bridge上并测试联通性。这个例子用于通常的Linux服务器而非openstack节点：
+创建一个veth对，注意我们定义了两端的名字：
+<pre><code>
+# ip link add veth0 type veth peer name veth1
+
+# ifconfig -a
+
+.
+
+.
+
+veth0     Link encap:Ethernet HWaddr 5E:2C:E6:03:D0:17
+
+          BROADCAST MULTICAST  MTU:1500 Metric:1
+
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+
+collisions:0 txqueuelen:1000
+
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+veth1     Link encap:Ethernet HWaddr E6:B6:E2:6D:42:B8
+
+          BROADCAST MULTICAST  MTU:1500 Metric:1
+
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+
+collisions:0 txqueuelen:1000
+
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+.
+
+.
+</code></pre>
 
