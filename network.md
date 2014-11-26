@@ -114,3 +114,4 @@ Creating a veth pair, note that we define names for both ends:
 Linux bridge用于连接OVS port和虚拟机。ports负责连通OVS bridge和linux bridge或者两者与虚拟机。linux bridage主要用于安全组增强。安全组通过iptables实现，iptables只能用于linux bridage而非OVS bridage。
 
 
+https://blogs.oracle.com/ronen/entry/diving_into_openstack_network_architecture
