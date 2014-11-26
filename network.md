@@ -1,3 +1,4 @@
+原文地址： https://blogs.oracle.com/ronen/entry/diving_into_openstack_network_architecture
 ### 前言   
 openstack网络功能强大同时也相对更复杂。本系列文章通过Oracle OpenStack Tech
 Preview介绍openstack的配置，通过各种场景和例子说明openstack各种不同的网络组件。
@@ -115,4 +116,4 @@ collisions:0 txqueuelen:0
 Linux bridge用于连接OVS port和虚拟机。ports负责连通OVS bridge和linux bridge或者两者与虚拟机。linux bridage主要用于安全组增强。安全组通过iptables实现，iptables只能用于linux bridage而非OVS bridage。
 
 
-https://blogs.oracle.com/ronen/entry/diving_into_openstack_network_architecture
+
