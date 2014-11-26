@@ -161,4 +161,15 @@ collisions:0 txqueuelen:1000
 
 .
 </code></pre>
+To make the example more meaningful we will create the following setup:
 
+veth0 => veth1 => br-eth3 => eth3 ======> eth2 on another Linux server
+
+br-eth3 – a regular Linux bridge which will be connected to veth1 and eth3
+
+eth3 – a physical interface with no IP on it, connected to a private network
+
+eth2 – a physical interface on the remote Linux box connected to the private network and configured with the IP of 50.50.50.1
+
+Once we create the setup we will ping 50.50.50.1 (the remote IP) through veth0 to test that the connection is up: 
+为了让例子更有意义，我们将创建如下配置：
