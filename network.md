@@ -1,5 +1,6 @@
-前言
-openstack网络功能强大同时也相对更复杂。本系列文章通过Oracle OpenStack Tech Preview介绍openstack的配置，通过各种场景和例子说明openstack各种不同的网络组件。
+### 前言   
+openstack网络功能强大同时也相对更复杂。本系列文章通过Oracle OpenStack Tech
+Preview介绍openstack的配置，通过各种场景和例子说明openstack各种不同的网络组件。
 本文的目的在于提供openstack网络架构的全景图并展示各个模块是如何一起协作的。这对openstack的初学者以及希望理解openstack网络原理的人会非常有帮助。
 首先，我们先讲解下一些基础并举例说明。
 
@@ -10,11 +11,9 @@ openstack网络功能强大同时也相对更复杂。本系列文章通过Oracl
 
 第一篇文章会略长，我们将聚焦于openstack网络的一些基本概念。我们将讨论open vswitch、network namespaces、linux bridge、veth pairs等几个组件。注意这里不打算全面介绍这些组件，只是为了理解openstack网络架构。可以通过网络上的其他资源进一步了解这些组件。
 
-Open vSwitch (OVS)
-In the Oracle OpenStack Tech Preview OVS is used to connect virtual machines to the physical port (in our case eth2) as shown in the deployment diagram. OVS contains bridges and ports, the OVS bridges are different from the Linux bridge (controlled by the brctl command) which are also used in this setup. To get started let’s view the OVS structure, use the following command:
-
+### Open vSwitch (OVS)   
 在Oracle OpenStack Tech Preview中用于连接虚拟机和物理网口（如上例中的eth2)，就像上边部署图所示。OVS包含bridages和ports，OVS bridges不同于与linux bridge（使用brctl命令创建）。让我们先看下OVS的结构，使用如下命令：
-
+<pre><code>
 # ovs-vsctl show
 7ec51567-ab42-49e8-906d-b854309c9edf
     Bridge br-int
@@ -32,10 +31,11 @@ In the Oracle OpenStack Tech Preview OVS is used to connect virtual machines to 
         Port "phy-br-eth2"
             Interface "phy-br-eth2"
 ovs_version: "1.11.0"
-
+</code></pre>
 我们看到标准的部署在compute node上的OVS，拥有两个网桥，每个有若干相关联的port。上边的例子是在一个没有任何虚拟机的计算节点上。我们可以看到eth2连接到个叫br-eth2的网桥上，我们还看到两个叫“int-br-eth2"和”phy-br-eth2“的port，事实上是一个veth pair，作为虚拟网线连接两个bridages。我们会在后边讨论veth paris。
 
 当我们创建一个虚拟机，br-int网桥上会创建一个port，这个port最终连接到虚拟机（我们会在后边讨论这个连接）。这里是启动一个虚拟机后的OVS结构：
+<pre><code>
 # ovs-vsctl show
 efd98c87-dc62-422d-8f73-a68c2a14e73d
     Bridge br-int
@@ -56,7 +56,7 @@ efd98c87-dc62-422d-8f73-a68c2a14e73d
         Port "eth2"
             Interface "eth2"
 ovs_version: "1.11.0"
-
+</code></pre>
 ”br-int“网桥现在有了一个新的port"qvocb64ea96-9f" 连接VM，并且被标记为vlan1。虚拟机的每个网卡都需要对应在"br-int”网桥上创建一个port。
 
 OVS中另一个有用的命令是dump-flows，以下为例子：  
