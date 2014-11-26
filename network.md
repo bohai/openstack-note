@@ -115,11 +115,6 @@ collisions:0 txqueuelen:0
 ### Linux bridge and veth pairs   
 Linux bridge用于连接OVS port和虚拟机。ports负责连通OVS bridge和linux bridge或者两者与虚拟机。linux bridage主要用于安全组增强。安全组通过iptables实现，iptables只能用于linux bridage而非OVS bridage。
 
-Veth pairs are used extensively throughout the network setup in OpenStack and are also a good tool to debug a network problem. Veth pairs are simply a virtual wire and so veths always come in pairs. Typically one side of the veth pair will connect to a bridge and the other side to another bridge or simply left as a usable interface.
-
-In this example we will create some veth pairs, connect them to bridges and test connectivity. This example is using regular Linux server and not an OpenStack node:
-Creating a veth pair, note that we define names for both ends:
-
 Veth对在openstack网络中大量使用，也是debug网络问题的很好工具。Veth对是一个简单的虚拟网线，所以一般成对出现。通常Veth对的一端连接到bridge，另一端连接到另一个bridge或者留下在作为一个网口使用。
 
 这个例子中，我们将创建一些veth对，把他们连接到bridge上并测试联通性。这个例子用于通常的Linux服务器而非openstack节点：
@@ -161,15 +156,59 @@ collisions:0 txqueuelen:1000
 
 .
 </code></pre>
-To make the example more meaningful we will create the following setup:
 
-veth0 => veth1 => br-eth3 => eth3 ======> eth2 on another Linux server
-
-br-eth3 – a regular Linux bridge which will be connected to veth1 and eth3
-
-eth3 – a physical interface with no IP on it, connected to a private network
-
-eth2 – a physical interface on the remote Linux box connected to the private network and configured with the IP of 50.50.50.1
-
-Once we create the setup we will ping 50.50.50.1 (the remote IP) through veth0 to test that the connection is up: 
 为了让例子更有意义，我们将创建如下配置：
+<pre><code>
+veth0 => veth1 =>br-eth3 => eth3 ======> eth2 on another Linux server
+</code></pre>
+br-eht3: 一个基本的Linux bridge，连接veth1和eth3
+eth3:    一个没有设定IP的物理网口，该网口连接着斯有网络
+eth2:    远端Linux服务器上的一个物理网口，连接着私有网络并且被配置了IP（50.50.50.1）
+一旦我们创建了这个配置，我们将通过veth0 ping 50.50.50.1这个远端IP，从而测试网络联通性：
+<pre><code>
+
+
+# brctl addbr br-eth3
+
+# brctl addif br-eth3 eth3
+
+# brctl addif br-eth3 veth1
+
+# brctl show
+
+bridge name     bridge id               STP enabled     interfaces
+
+br-eth3         8000.00505682e7f6       no              eth3
+
+                                                        veth1
+
+# ifconfig veth0 50.50.50.50
+
+# ping -I veth0 50.50.50.51
+
+PING 50.50.50.51 (50.50.50.51) from 50.50.50.50 veth0: 56(84) bytes of data.
+
+64 bytes from 50.50.50.51: icmp_seq=1 ttl=64 time=0.454 ms
+
+64 bytes from 50.50.50.51: icmp_seq=2 ttl=64 time=0.298 ms
+</code></pre>
+
+如果命名不像例子中这么显而易见，导致我们无法支持veth设备的两端，我们可以使用ethtool命令查询。ethtool命令返回index号，通过ip link命令查看对应的设备： 
+<pre><code>
+# ethtool -S veth1
+
+NIC statistics:
+
+peer_ifindex: 12
+
+# ip link
+
+.
+
+.
+
+12: veth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+</code></pre>
+
+### 总结  
+文章中，我们快速了解了OVS/网络namespaces/Linux bridges/veth对。这些组件在openstack网络架构中大量使用，理解这些组件有助于我们理解不同的网络场景。下篇文章中，我们会了解虚拟机之间/虚拟机与外部网络之间如何进行通信。
