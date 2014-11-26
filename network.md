@@ -7,7 +7,7 @@ Preview介绍openstack的配置，通过各种场景和例子说明openstack各�
 根据最新的icehouse版用户调查，基于open vswitch插件的Neutron在生产环境和POC环境都被广泛使用，所以在这个系列的文章中我们主要分析这种openstack网络的配置。当然，我们知道openstack网络支持很多种配置，尽管neutron+open vswitch是最常用的配置，但是我们从未说它是最好或者最高效的一种方式。Neutron+open vswitch仅仅是一个例子，对任何希望理解openstack网络的人是一个很好的切入点。即使你打算使用其他类型的网络配置比如使用不同的neutron插件或者根本不使用neutron，这篇文章对你理解openstack网络仍是一个很好的开始。
 
 我们在例子中使用的配置是Oracle OpenStack Tech Preview所提供的一种配置。安装它非常简单，并且它是一个很好的参考。在这种配置中，我们在所有服务器上使用eth2作为虚拟机的网络，所有虚拟机流量使用这个网卡。Oracle OpenStack Tech Preview使用VLAN进行L2隔离，进而提供租户和网络隔离，下图展示了我们如何进行配置和部署：
-
+![setup2](https://blogs.oracle.com/ronen/resource/setup2.jpg)
 
 第一篇文章会略长，我们将聚焦于openstack网络的一些基本概念。我们将讨论open vswitch、network namespaces、linux bridge、veth pairs等几个组件。注意这里不打算全面介绍这些组件，只是为了理解openstack网络架构。可以通过网络上的其他资源进一步了解这些组件。
 
