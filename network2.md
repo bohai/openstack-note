@@ -115,3 +115,92 @@ qdhcp-5f833617-6179-4797-b7c0-7d420d84040c
 
        valid_lft forever preferred_lft forever
 </code></pre>
+我们发下在namespace下有两个网络接口，一个是loop设备，另一个叫“tap26c9b807-7c”。这个接口设置了IP地址10.10.10.3，他会接收dhcp请求（后边会讲）。接下来我们来跟踪下“tap26c9b807-7c”的网络连接性。我们从OVS上看下这个接口所连接的OVS网桥"br-int"。
+<pre><code>
+# ovs-vsctl show
+8a069c7c-ea05-4375-93e2-b9fc9e4b3ca1
+    Bridge "br-eth2"
+        Port "br-eth2"
+            Interface "br-eth2"
+                type: internal
+        Port "eth2"
+            Interface "eth2"
+        Port "phy-br-eth2"
+            Interface "phy-br-eth2"
+    Bridge br-ex
+        Port br-ex
+            Interface br-ex
+                type: internal
+    Bridge br-int
+        Port "int-br-eth2"
+            Interface "int-br-eth2"
+        Port "tap26c9b807-7c"
+            tag: 1
+            Interface "tap26c9b807-7c"
+                type: internal
+        Port br-int
+            Interface br-int
+                type: internal
+    ovs_version: "1.11.0"
+</code></pre>
+由上可知，veth pair的两端“int-br-eth2” 和 "phy-br-eth2"，这个veth pari连接两个OVS网桥"br-eth2"和"br-int"。上一篇文章中，我们解释过如何通过ethtool命令查看veth pairs的两端。就如下边的例子：
+<pre><code>
+# ethtool -S int-br-eth2
+NIC statistics:
+     peer_ifindex: 10
+.
+.
+ 
+#ip link
+.
+.
+10: phy-br-eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+.
+.
+</code></pre>
+注意“phy-br-eth2”连接到网桥"br-eth2"，这个网桥的一个网口是物理网卡eth2。这意味着我们创建的网络创建了一个连接到了物理网卡eth2的namespace。eth2所在的虚拟机网络会连接所有的虚拟机的。
+##### 关于网络隔离:  
+Openstack支持创建多个隔离的网络，也可以使用多种机制完成网络间的彼此隔离。这些隔离机制包括VLANs/VxLANs/GRE tunnels，这个在我们部署openstack环境时配置。本文中我们选择了VLANs。当使用VLAN标签作为隔离机制，Neutron会从预定义好的VLAN池中选择一个VLAN标签，并分配给一个新创建的network。通过分配VLAN标签给network，Neutron允许在一个物理网卡上创建多个隔离的网络。与其他的平台的最大的区别是，用户不需要负责管理VLAN如何分配给networks。Neutron会负责管理分配VLAN标签，并负责回收。在我们的例子中，net1使用VLAN标签1000，这意味着连接到该网络的虚拟机，发出的包会被打上VLAN标签1000然后发送到物理网络中。对namespace也是同样的，如果我们希望namespace连接到某个特定网络，我们需要确保这个namespace发出的/接收的包被正确的打上了标签。
+
+在上边的例子中，namespace中的网络接口“tap26c9b807-7c”被分配了VLAN标签1。如果我们从OVS观察下，会发现VLAN1会被改为VLAN1000，当包进入eth2所在的uxniji网络。反之亦然。我们通过OVS的dump-flows命令可以看到进入虚拟机网络的网络包在br-eth2上进行了VLAN标签的修改:
+<pre><code>
+#  ovs-ofctl dump-flows br-eth2
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=18669.401s, table=0, n_packets=857, n_bytes=163350, idle_age=25, priority=4,in_port=2,dl_vlan=1 actions=mod_vlan_vid:1000,NORMAL
+ cookie=0x0, duration=165108.226s, table=0, n_packets=14, n_bytes=1000, idle_age=5343, hard_age=65534, priority=2,in_port=2 actions=drop
+ cookie=0x0, duration=165109.813s, table=0, n_packets=1671, n_bytes=213304, idle_age=25, hard_age=65534, priority=1 actions=NORMAL
+</code></pre>
+从网络接口到namespace我们看到VLAN标签的修改如下：  
+<pre><code>
+#  ovs-ofctl dump-flows br-int
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=18690.876s, table=0, n_packets=1610, n_bytes=210752, idle_age=1, priority=3,in_port=1,dl_vlan=1000 actions=mod_vlan_vid:1,NORMAL
+ cookie=0x0, duration=165130.01s, table=0, n_packets=75, n_bytes=3686, idle_age=4212, hard_age=65534, priority=2,in_port=1 actions=drop
+ cookie=0x0, duration=165131.96s, table=0, n_packets=863, n_bytes=160727, idle_age=1, hard_age=65534, priority=1 actions=NORMAL
+ </code></pre>
+ 
+总之，当用户创建network，neutrong会创建一个namespace，这个namespace通过OVS连接到虚拟机网络。OVS还负责namespace与虚拟机网络之间VLAN标签的修改。现在，让我们看下创建虚拟机时，发生了什么？虚拟机是怎么连接到虚拟机网络的？
+### Use case #2: Launch a VM  
+从Horizon或者命令行创建并启动一个虚拟机，下图是从Horzion创建的例子： 
+![launch-instance](https://blogs.oracle.com/ronen/resource/launch-instance.png)    
+挂载网络并启动虚拟机： 
+![attach-network](https://blogs.oracle.com/ronen/resource/attach-network.png)  
+一旦虚拟机启动并运行，我们发下nova支持给虚拟机绑定IP：  
+<pre><code>
+# nova list
++--------------------------------------+--------------+--------+------------+-------------+-----------------+
+| ID                                   | Name         | Status | Task State | Power State | Networks        |
++--------------------------------------+--------------+--------+------------+-------------+-----------------+
+| 3707ac87-4f5d-4349-b7ed-3a673f55e5e1 | Oracle Linux | ACTIVE | None       | Running     | net1=10.10.10.2 |
++--------------------------------------+--------------+--------+------------+-------------+-----------------+
+</code></pre>
+The nova list command shows us that the VM is running and that the IP 10.10.10.2 is assigned to this VM. Let’s trace the connectivity from the VM to VM network on eth2 starting with the VM definition file. The configuration files of the VM including the virtual disk(s), in case of ephemeral storage, are stored on the compute node at/var/lib/nova/instances/<instance-id>/. Looking into the VM definition file ,libvirt.xml,  we see that the VM is connected to an interface called “tap53903a95-82” which is connected to a Linux bridge called “qbr53903a95-82”:
+nova list命令显示虚拟机在运行中，并被分配了IP 10.10.10.2。我们通过虚拟机定义文件，查看下虚拟机与虚拟机网络之间的连接性。
+虚拟机的配置文件在目录/var/lib/nova/instances/<instance-id>/下可以找到。通过查看虚拟机定义文件，libvirt.xml，
+<pre><code>
+<interface type="bridge">
+      <mac address="fa:16:3e:fe:c7:87"/>
+      <source bridge="qbr53903a95-82"/>
+      <target dev="tap53903a95-82"/>
+    </interface>
+</code></pre>
