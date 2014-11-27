@@ -234,12 +234,14 @@ qbr53903a95-82          8000.7e7f3282b836       no              qvb53903a95-82
     ovs_version: "1.11.0"
  </code></pre>
  
- As we showed earlier “br-int” is connected to “br-eth2” on OVS using the veth pair int-br-eth2,phy-br-eth2 and br-eth2 is connected to the physical interface eth2. The whole flow end to end looks like this:
+我们之前看过，OVS网桥“br-int"连接到"br-eth2"，通过veth pair（int-br-eth2,phy-br-eth2 ），br-eth2连接到物理网卡eth2。整个流入如下：  
+<pre><code>
+VM  ->  tap53903a95-82 (virtual interface)  ->  qbr53903a95-82 (Linux bridge)  ->  qvb53903a95-82 (interface connected from Linux bridge to OVS bridge br-int)  ->  int-br-eth2 (veth one end)  ->  phy-br-eth2 (veth the other end)  ->  eth2 physical interface.
+</code></pre>
+与虚拟机相连的Linux bridage主要用于基于Iptables的安全组设置。安全组用于对虚拟机的网络隔离进行增强，由于iptables不能用于OVS网桥，因此我们使用了Linux网桥。后边我们会看到Linux网桥的规则设置。  
 
-VM è tap53903a95-82 (virtual interface)è qbr53903a95-82 (Linux bridge) è qvb53903a95-82 (interface connected from Linux bridge to OVS bridge br-int) è int-br-eth2 (veth one end) è phy-br-eth2 (veth the other end) è eth2 physical interface.
-
-The purpose of the Linux Bridge connecting to the VM is to allow security group enforcement with iptables. Security groups are enforced at the edge point which are the interface of the VM, since iptables nnot be applied to OVS bridges we use Linux bridge to apply them. In the future we hope to see this Linux Bridge going away rules. 
-
-VLAN tags: As we discussed in the first use case net1 is using VLAN tag 1000, looking at OVS above we see that qvo41f1ebcf-7c is tagged with VLAN tag 3. The modification from VLAN tag 3 to 1000 as we go to the physical network is done by OVS  as part of the packet flow of br-eth2 in the same way we showed before.
-
-To summarize, when a VM is launched it is connected to the VM network through a chain of elements as described here. During the packet from VM to the network and back the VLAN tag is modified.
+VLAN tags:我们在第一个use case中提到过，net1使用VLAN标签1000，通过OVS我们看到qvo41f1ebcf-7c使用VLAN标签3。VLAN标签从3到1000的转换在OVS中完成，通过br-eth2中实现。 
+总结如下，虚拟机通过一组网络设备连入虚拟机网络。虚拟机和网络之间，VLAN标签被修改。
+### Use case #3: Serving a DHCP request coming from the virtual machine
+In the previous use cases we have shown that both the namespace called dhcp-<some id> and the VM end up connecting to the physical interface eth2  on their respective nodes, both will tag their packets with VLAN tag 1000.We saw that the namespace has an interface with IP of 10.10.10.3. Since the VM and the namespace are connected to each other and have interfaces on the same subnet they can ping each other, in this picture we see a ping from the VM which was assigned 10.10.10.2 to the namespace:
+![vm-console](https://blogs.oracle.com/ronen/resource/vm-console.png)
