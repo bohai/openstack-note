@@ -47,8 +47,8 @@ Created a new network:
 .
 </code></pre>
 
-For this exercise we have created a public network with the IP range 180.180.180.0/24 accessible from eth3. This public network is provided from the datacenter side and has a gateway at 180.180.180.1 which connects it to the datacenter network. To connect this network to our OpenStack deployment we will create a subnet on our “my-public” network with the same IP range and tell Neutron what is its gateway:
-在上边的练习中，我们创建了一个public network，IP范围是180.180.180.0/24，通过eth3接入。
+在上边的练习中，我们创建了一个public network，IP范围是180.180.180.0/24，通过eth3接入。这个public network存在于datacenter中，通过gateway 180.180.180.1可以连接到datacenter网络。为了将这个网络与Openstack环境相连，我们需要创建一个叫“my-public"的network，
+这个network有相同的IP范围，而且需要告诉neutron这个网络的gateway。
 
 ![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
 
@@ -72,16 +72,19 @@ Created a new subnet:
 +------------------+------------------------------------------------------+
 </code></pre>
 
-Next we need to connect the router to our newly created public network, we do this using the following command:
+然后，我们需要将router接如我们新创建的public network,使用下列命令创建：
 
 <pre><code>
 # neutron router-gateway-set my-router my-public
 Set gateway for router my-router
 </pre></code>
 
-Note: We use the term “public network” for two things, one is the actual public network available from the datacenter (180.180.180.0/24) for clarity we’ll call this network “external public network”. The second place we use the term “public network” is within OpenStack for the network we call “my-public” which is the interface network inside the OpenStack deployment. We also refer to two “gateways”, one of them is the gateway used by the external public network (180.180.180.1) and another is the gateway interface on the router (180.180.180.2).
+注意：我们在两种情况下使用术语“public network",一个是datacenter中真实的public network，为了区分我们把它（180.180.180.0/24）叫做"external public network"。另一个是openstack中我们使用的"public network"，我们称之为“my-public"的接口网络。
+我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。
 
 After performing the operation above the router which had two interfaces is also connected to a third interface which is called gateway (this is the router gateway). A router can have multiple interfaces, to connect to regular internal subnets, and one gateway to connect to the “my-public” network. A common mistake would be to try to connect the public network as a regular interface, the operation can succeed but no connection will be made to the external world. After we have created a public network, a subnet and connected them to the router we the network topology view will look like this:
+
+
 
 Looking into the router’s namespace we see that another interface was added with an IP on the 180.180.180.0/24 network, this IP is 180.180.180.2 which is the router gateway interface:
 
