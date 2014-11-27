@@ -129,3 +129,59 @@ Those two pieces will assure that a request from a VM trying to reach the public
 # ip netns exec qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 1
  </code></pre>
+
+### Use case #6: Attaching a floating IP to a VM   
+
+Now that the VMs can access the public network we would like to take the next step allow an external client to access the VMs inside the OpenStack deployment, we will do that using a floating IP. A floating IP is an IP provided by the public network which the user can assign to a particular VM making it accessible to an external client.
+
+To create a floating IP, the first step is to connect the VM to a public network as we have shown in the previous use case. The second step will be to generate a floating IP from command line:
+
+<pre><code>
+# neutron floatingip-create public
+Created a new floatingip:
++---------------------+--------------------------------------+
+| Field               | Value                                |
++---------------------+--------------------------------------+
+| fixed_ip_address    |                                      |
+| floating_ip_address | 180.180.180.3                        |
+| floating_network_id | 5eb99ac3-905b-4f0e-9c0f-708ce1fd2303 |
+| id                  | 25facce9-c840-4607-83f5-d477eaceba61 |
+| port_id             |                                      |
+| router_id           |                                      |
+| tenant_id           | 9796e5145ee546508939cd49ad59d51f     |
++---------------------+--------------------------------------+
+ </code></pre>
+The user can generate as many IPs as are available on the “my-public” network. Assigning the floating IP can be done either from the GUI or from command line, in this example we go to the GUI:
+
+![connect-floatingip](https://blogs.oracle.com/ronen/resource/openstack-public-network/connect-floatingip.png)
+
+Under the hood we can look at the router namespace and see the following additional lines in the iptables of the router namespace:
+
+<pre><code>
+-A neutron-l3-agent-OUTPUT -d 180.180.180.3/32 -j DNAT --to-destination 20.20.20.2
+-A neutron-l3-agent-PREROUTING -d 180.180.180.3/32 -j DNAT --to-destination 20.20.20.2
+-A neutron-l3-agent-float-snat -s 20.20.20.2/32 -j SNAT --to-source 180.180.180.3
+ </code></pre>
+These lines are performing the NAT operation for the floating IP. In this case if and incoming request arrives and its destination is 180.180.180.3 it will be translated to 20.20.20.2 and vice versa.
+
+Once a floating IP is associated we can connect to the VM, it is important to make sure there are security groups rule which will allow this for example:
+<pre><code>
+nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
+  </code></pre>
+  
+Those will allow ping and ssh.
+
+Iptables is a sophisticated and powerful tool, to better understand all the bits and pieces on how the chains are structured in the different tables we can look at one of the many iptables tutorials available online and read more to understand any specific details.
+
+Summary
+
+This post was about connecting VMs in the OpenStack deployment to a public network. It shows how using namespaces and routing tables we can route not only inside the OpenStack environment but also to the outside world.
+
+This will also be the last post in the series for now. Networking is one of the most complicated areas in OpenStack and gaining good understanding of it is key. If you read all four posts you should have a good starting point to analyze and understand different network topologies in OpenStack. We can apply the same principles shown here to understand more network concepts such as Firewall as a service, Load Balance as a service, Metadata service etc. The general method will be to look into a namespace and figure out how certain functionality is implemented using the regular Linux networking features in the same way we did throughout this series.
+
+As we said in the beginning, the use cases shown here are just examples of one method to configure networking in OpenStack and there are many others. All the examples here are using the Open vSwitch plugin and can be used right out of the box. When analyzing another plugin or specific feature operation it will be useful to compare the features here to their equivalent method with the plugin you choose to use. In many cases vendor plugins will use Open vSwitch , bridges or namespaces and some of the same principles and methods shown here.
+
+The goal of this series is to make the OpenStack networking accessible to the average user. This series takes a bottom up approach and using simple use cases tries to build a complete picture of how the network architecture is working. Unlike some other resources we did not start out by explaining the different agents and their functionality but tried to explain what they do , how does the end result looks like. A good next step would be to go to one of those resources and try to see how the different agents implement the functionality explained here.
+
+That’s it for now
