@@ -266,3 +266,8 @@ fa:16:3e:fe:c7:87,host-10-10-10-2.openstacklocal,10.10.10.2
 19:27:12.191666 IP 10.10.10.3.bootps > 10.10.10.2.bootpc: BOOTP/DHCP, Reply, length 325
 </code></pre>
 总之，DHCP服务由dnsmasq提供，这个服务由Neutron配置，监听在DHCP namespace中的网络接口上。Neutron还配置dnsmasq中的MAC/IP映射关系，所以当DHCP请求时会受到分配给它的IP。
+### 总结  
+In this post we relied on the components described in the previous post and saw how network connectivity is achieved using three simple use cases. These use cases gave a good view of the entire network stack and helped understand how an end to end connection is being made between a VM on a compute node and the DHCP namespace on the control node. One conclusion we can draw from what we saw here is that if we launch a VM and it is able to perform a DHCP request and receive a correct IP then there is reason to believe that the network is working as expected. We saw that a packet has to travel through a long list of components before reaching its destination and if it has done so successfully this means that many components are functioning properly.
+
+In the next post we will look at some more sophisticated services Neutron supports and see how they work. We will see that while there are some more components involved for the most part the concepts are the same.
+本文，我们基于之前讲解的各种网络组建，看到三种use case下网络如何连通的。这些use cases对了解整个网络栈以及了解虚拟机/计算节点/DHCP namespace直接如何连通很有帮助。
