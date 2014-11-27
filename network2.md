@@ -244,11 +244,12 @@ VLAN tags:我们在第一个use case中提到过，net1使用VLAN标签1000，�
 总结如下，虚拟机通过一组网络设备连入虚拟机网络。虚拟机和网络之间，VLAN标签被修改。
 ### Use case #3: Serving a DHCP request coming from the virtual machine
 之前的use case中，我们看到了一个叫dhcp-<some id>的namespace和虚拟机，两者最终连接到物理网络eth2。他们都会被打上VLAN标签1000。
-我们看到该namespace中的网络接口使用IP 10.10.10.3。因为虚拟机和namespace彼此连接并在相同子网，因此可以ping到对方。如下图，虚拟机中网络接口被分配了IP 10.10.10.2，我们尝试ping namespace中的网络接口的IP:
-![vm-console](https://blogs.oracle.com/ronen/resource/vm-console.png)
+我们看到该namespace中的网络接口使用IP 10.10.10.3。因为虚拟机和namespace彼此连接并在相同子网，因此可以ping到对方。如下图，虚拟机中网络接口被分配了IP 10.10.10.2，我们尝试ping namespace中的网络接口的IP:   
+![vm-console](https://blogs.oracle.com/ronen/resource/vm-console.png)   
 The fact that they are connected and can ping each other can become very handy when something doesn’t work right and we need to isolate the problem. In such case knowing that we should be able to ping from the VM to the namespace and back can be used to trace the disconnect using tcpdump or other monitoring tools.
 
 To serve DHCP requests coming from VMs on the network Neutron uses a Linux tool called “dnsmasq”,this is a lightweight DNS and DHCP service you can read more about it here. If we look at the dnsmasq on the control node with the ps command we see this:
+
 <pre><code>
 dnsmasq --no-hosts --no-resolv --strict-order --bind-interfaces --interface=tap26c9b807-7c --except-interface=lo --pid-file=/var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/pid --dhcp-hostsfile=/var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/host --dhcp-optsfile=/var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/opts --leasefile-ro --dhcp-range=tag0,10.10.10.0,static,120s --dhcp-lease-max=256 --conf-file= --domain=openstacklocal
 </code></pre>
