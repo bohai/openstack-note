@@ -175,7 +175,7 @@ Those will allow ping and ssh.
 
 Iptables is a sophisticated and powerful tool, to better understand all the bits and pieces on how the chains are structured in the different tables we can look at one of the many iptables tutorials available online and read more to understand any specific details.
 
-Summary
+### Summary
 
 This post was about connecting VMs in the OpenStack deployment to a public network. It shows how using namespaces and routing tables we can route not only inside the OpenStack environment but also to the outside world.
 
