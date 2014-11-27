@@ -148,6 +148,6 @@ qdhcp-5f833617-6179-4797-b7c0-7d420d84040c
 </code></pre>
 
 As we see those interfaces are connected to “br-int” and tagged with the VLAN corresponding to their respective networks. At this point we should be able to successfully ping the router namespace using the gateway address (20.20.20.1 in this case):
-
+我们可以看到，这些接口连接到”br-int"，并打上了所在network对应的VLAN标签。这里我们可以通过gateway地址（20.20.20.1）成功的ping通router namespace。
 
 ![ping-router](https://blogs.oracle.com/ronen/resource/openstack-routing/ping-router.png)   
