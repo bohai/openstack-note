@@ -151,21 +151,20 @@ qdhcp-5f833617-6179-4797-b7c0-7d420d84040c
 
 ![ping-router](https://blogs.oracle.com/ronen/resource/openstack-routing/ping-router.png)   
 
-We can also see that the VM with IP 20.20.20.2 can ping the VM with IP 10.10.10.2 and this is how we see the routing actually getting done:
 我们还可以看到IP地址为20.20.20.2可以ping通IP地址为10.10.10.2的虚拟机：
 
 ![ping-vm-to-vm](https://blogs.oracle.com/ronen/resource/openstack-routing/ping-vm-to-vm.png)   
 
-The two subnets are connected to the name space through an interface in the namespace. Inside the namespace Neutron enabled forwarding by setting the net.ipv4.ip_forward parameter to 1, we can see that here:
+两个subnets通过namespace中的网络接口互相连通。在namespace中，Neutron将系统参数net.ipv4.ip_forward设置为1。
+命令查看如下：  
 
 <pre><code>
 # ip netns exec qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 1
 </code></pre>
-We  can see that this net.ipv4.ip_forward is specific to the namespace and is not impacted by changing this parameter outside the namespace.
+我们可以看到namespace中的系统参数net.ipv4.ip_forward被设置，这种设置不会对namespace外产生影响。  
 
 ### 总结  
-
-When a router is created Neutron creates a namespace called qrouter-<router id>. The subnets are connected to the router through interfaces on the OVS br-int bridge. The interfaces are designated with the correct VLAN so they can connect to their respective networks. In the example above the interface qr-0b7b0b40-f9 is assigned IP 10.10.10.1 and is tagged with VLAN 1, this allows it to be connected to “net1”. The routing action itself is enabled by the net.ipv4.ip_forward parameter set to 1 inside the namespace.
-
-This post shows how a router is created using just a network namespace. In the next post we will see how floating IPs work using iptables. This becomes a bit more sophisticated but still uses the same basic components.
+创建router时，Neutron会创建一个叫qrouter-<router id>的namespace。subnets通过OVS的br-int网桥上的网络接口接入router。
+网络接口被设置了正确的VLAN，从而可以连入它们对应的network。例子中，网络接口qr-0b7b0b40-f9的IP被设置为10.10.10.1，VLAN标签为1,它可以连接到“net1”。通过在namespace中设置系统参数net.ipv4.ip_forward为1，从而允许路由生效。
+本文介绍了如何使用network namespace创建一个router。下一篇文章中，我们会探索浮动IP如何使用iptables工作。这也许更复杂但是依然使用这些基本的网络组件。
