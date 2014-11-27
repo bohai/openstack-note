@@ -194,9 +194,8 @@ NXST_FLOW reply (xid=0x4):
 | 3707ac87-4f5d-4349-b7ed-3a673f55e5e1 | Oracle Linux | ACTIVE | None       | Running     | net1=10.10.10.2 |
 +--------------------------------------+--------------+--------+------------+-------------+-----------------+
 </code></pre>
-The nova list command shows us that the VM is running and that the IP 10.10.10.2 is assigned to this VM. Let’s trace the connectivity from the VM to VM network on eth2 starting with the VM definition file. The configuration files of the VM including the virtual disk(s), in case of ephemeral storage, are stored on the compute node at/var/lib/nova/instances/<instance-id>/. Looking into the VM definition file ,libvirt.xml,  we see that the VM is connected to an interface called “tap53903a95-82” which is connected to a Linux bridge called “qbr53903a95-82”:
 nova list命令显示虚拟机在运行中，并被分配了IP 10.10.10.2。我们通过虚拟机定义文件，查看下虚拟机与虚拟机网络之间的连接性。
-虚拟机的配置文件在目录/var/lib/nova/instances/<instance-id>/下可以找到。通过查看虚拟机定义文件，libvirt.xml，
+虚拟机的配置文件在目录/var/lib/nova/instances/<instance-id>/下可以找到。通过查看虚拟机定义文件，libvirt.xml，我们可以看到虚拟机连接到网络接口“tap53903a95-82”，这个网络接口连接到了Linux网桥 “qbr53903a95-82”:
 <pre><code>
 <interface type="bridge">
       <mac address="fa:16:3e:fe:c7:87"/>
@@ -204,3 +203,43 @@ nova list命令显示虚拟机在运行中，并被分配了IP 10.10.10.2。我�
       <target dev="tap53903a95-82"/>
     </interface>
 </code></pre>
+通过brctl查看网桥信息如下：  
+<pre><code>
+# brctl show
+bridge name     bridge id               STP enabled     interfaces
+qbr53903a95-82          8000.7e7f3282b836       no              qvb53903a95-82
+                                                        tap53903a95-82
+</code></pre> 
+ 网桥有两个网络接口，一个连接到虚拟机(“tap53903a95-82 “)，另一个( “qvb53903a95-82”)连接到OVS网桥”br-int"。  
+ <pre><code>
+ # ovs-vsctl show
+83c42f80-77e9-46c8-8560-7697d76de51c
+    Bridge "br-eth2"
+        Port "br-eth2"
+            Interface "br-eth2"
+                type: internal
+        Port "eth2"
+            Interface "eth2"
+        Port "phy-br-eth2"
+            Interface "phy-br-eth2"
+    Bridge br-int
+        Port br-int
+            Interface br-int
+                type: internal
+        Port "int-br-eth2"
+            Interface "int-br-eth2"
+        Port "qvo53903a95-82"
+            tag: 3
+            Interface "qvo53903a95-82"
+    ovs_version: "1.11.0"
+ </code></pre>
+ 
+ As we showed earlier “br-int” is connected to “br-eth2” on OVS using the veth pair int-br-eth2,phy-br-eth2 and br-eth2 is connected to the physical interface eth2. The whole flow end to end looks like this:
+
+VM è tap53903a95-82 (virtual interface)è qbr53903a95-82 (Linux bridge) è qvb53903a95-82 (interface connected from Linux bridge to OVS bridge br-int) è int-br-eth2 (veth one end) è phy-br-eth2 (veth the other end) è eth2 physical interface.
+
+The purpose of the Linux Bridge connecting to the VM is to allow security group enforcement with iptables. Security groups are enforced at the edge point which are the interface of the VM, since iptables nnot be applied to OVS bridges we use Linux bridge to apply them. In the future we hope to see this Linux Bridge going away rules. 
+
+VLAN tags: As we discussed in the first use case net1 is using VLAN tag 1000, looking at OVS above we see that qvo41f1ebcf-7c is tagged with VLAN tag 3. The modification from VLAN tag 3 to 1000 as we go to the physical network is done by OVS  as part of the packet flow of br-eth2 in the same way we showed before.
+
+To summarize, when a VM is launched it is connected to the VM network through a chain of elements as described here. During the packet from VM to the network and back the VLAN tag is modified.
