@@ -5,7 +5,6 @@
 ### Use case #5: Connecting VMs to the public network  
 所谓“public network”，指openstack部署环境以外的网络。这个网络可以是datacenter中的另一个网络、internet、或者一个不被openstack控制的私有网络。
 
-To connect the deployment to a public network we first have to create a network in OpenStack and designate it as public. This network will be the target for all outgoing traffic from VMs inside the OpenStack deployment. At this time VMs cannot be directly connected to a network designated as public, the traffic can only be routed from a private network to a public network using an OpenStack created router. To create a public network in OpenStack we simply use the net-create command from Neutron and setting the router:external option as True. In our example we will create public network in OpenStack called “my-public”:
 与public network连通，我们需要在openstack中创建一个network并设置为public。这个网络用于虚拟机外部流量传输。同时虚拟机不能直接连接到属性为public的network，所有网络流量必须使用openstack创建的router从private network路由到public network。在openstack中创建public network，我们只需要使用neutron net-create 命令，并将router:external设置为True。  
 在我们的例子中，public newtork叫做“my-public”。
 <pre><code>
@@ -50,7 +49,7 @@ In our deployment eth3 on the control node is a non-IP’ed interface and we wil
 
 For this exercise we have created a public network with the IP range 180.180.180.0/24 accessible from eth3. This public network is provided from the datacenter side and has a gateway at 180.180.180.1 which connects it to the datacenter network. To connect this network to our OpenStack deployment we will create a subnet on our “my-public” network with the same IP range and tell Neutron what is its gateway:
 
-![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)
+![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
 
 <pre><code>
 # neutron subnet-create my-public 180.180.180.0/24 --name public_subnet --enable_dhcp=False --allocation-pool start=180.180.180.2,end=180.180.180.100 --gateway=180.180.180.1
