@@ -1,3 +1,5 @@
+### 深入理解openstack网络架构(2)  基本的use cases
+
 在上一篇文章中，我们了解了几个网络组件，如openvswitch/network namespace/Linux bridges/veth pairs。这篇文章中，我们将用3个简单的网络场景，展示这些基本网络组件如何以工作从而实现openstack的SDN方案。在这些网络场景中，我们会了解整个网络配置和他们如何一起运行。网络场景如下：  
 
 1. 创建网络——我们创建网络时，发生了什么。如何创建多个隔离的网络。  
