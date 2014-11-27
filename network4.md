@@ -80,7 +80,7 @@ Set gateway for router my-router
 </pre></code>
 
 注意：我们在两种情况下使用术语“public network",一个是datacenter中真实的public network，为了区分我们把它（180.180.180.0/24）叫做"external public network"。另一个是openstack中我们使用的"public network"，我们称之为“my-public"的接口网络。
-我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。
+我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。   
 
 After performing the operation above the router which had two interfaces is also connected to a third interface which is called gateway (this is the router gateway). A router can have multiple interfaces, to connect to regular internal subnets, and one gateway to connect to the “my-public” network. A common mistake would be to try to connect the public network as a regular interface, the operation can succeed but no connection will be made to the external world. After we have created a public network, a subnet and connected them to the router we the network topology view will look like this:
 
