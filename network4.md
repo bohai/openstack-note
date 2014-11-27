@@ -1,2 +1,3 @@
 ### 深入理解openstack网络架构(4)-----连接到public network
  In the previous post we discussed routing in OpenStack, we saw how routing is done between two networks inside an OpenStack deployment using a router implemented inside a network namespace. In this post we will extend the routing capabilities and show how we can route not only between two internal networks but also how we route to a public network. We will also see how Neutron can assign a floating IP to allow VMs to receive a public IP and become accessible from the public network.
+上一篇文章中我们介绍了openstack中的路由，我们了解到openstack如何在
