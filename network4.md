@@ -27,7 +27,7 @@ Created a new network:
 +---------------------------+--------------------------------------+
 </code></pre>
 In our deployment eth3 on the control node is a non-IP’ed interface and we will use it as the connection point to the external public network. To do that we simply add eth3 to a bridge on OVS called “br-ex”. This is the bridge Neutron will route the traffic to when a VM is connecting with the public network:
-
+在我们的环境中，控制节点的eth3是一个没有绑定IP的网络接口。我们使用它作为连接点接入外部public network。我们通过将eth3接入OVS网桥"br-ex"。
 
 <pre><code>
 # ovs-vsctl add-port br-ex eth3
