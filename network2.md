@@ -242,14 +242,27 @@ VM  ->  tap53903a95-82 (virtual interface)  ->  qbr53903a95-82 (Linux bridge)  -
 
 VLAN tags:我们在第一个use case中提到过，net1使用VLAN标签1000，通过OVS我们看到qvo41f1ebcf-7c使用VLAN标签3。VLAN标签从3到1000的转换在OVS中完成，通过br-eth2中实现。 
 总结如下，虚拟机通过一组网络设备连入虚拟机网络。虚拟机和网络之间，VLAN标签被修改。
-### Use case #3: Serving a DHCP request coming from the virtual machine
+
+### Use case #3: Serving a DHCP request coming from the virtual machine   
 之前的use case中，我们看到了一个叫dhcp-<some id>的namespace和虚拟机，两者最终连接到物理网络eth2。他们都会被打上VLAN标签1000。
 我们看到该namespace中的网络接口使用IP 10.10.10.3。因为虚拟机和namespace彼此连接并在相同子网，因此可以ping到对方。如下图，虚拟机中网络接口被分配了IP 10.10.10.2，我们尝试ping namespace中的网络接口的IP:   
 ![vm-console](https://blogs.oracle.com/ronen/resource/vm-console.png)   
-The fact that they are connected and can ping each other can become very handy when something doesn’t work right and we need to isolate the problem. In such case knowing that we should be able to ping from the VM to the namespace and back can be used to trace the disconnect using tcpdump or other monitoring tools.
 
-To serve DHCP requests coming from VMs on the network Neutron uses a Linux tool called “dnsmasq”,this is a lightweight DNS and DHCP service you can read more about it here. If we look at the dnsmasq on the control node with the ps command we see this:
+namespace与虚拟机之间连通，并且可以互相ping通，对于定位问题非常有用。我们可以从虚拟机ping通namespace，可以使用tcpdump或其他工具定位网络中断问题。
 
+为了响应虚拟机的dhcp请求，Neutron使用了”dnsmasq“的Linux工具，这个工具是一个轻量的DNS、DHCP服务，更多的信息请查看（http://www.thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html）。我们可以在控制节点通过PS命令看到：
 <pre><code>
 dnsmasq --no-hosts --no-resolv --strict-order --bind-interfaces --interface=tap26c9b807-7c --except-interface=lo --pid-file=/var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/pid --dhcp-hostsfile=/var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/host --dhcp-optsfile=/var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/opts --leasefile-ro --dhcp-range=tag0,10.10.10.0,static,120s --dhcp-lease-max=256 --conf-file= --domain=openstacklocal
 </code></pre>
+DHCP服务在namespace中连接到了一个tap接口（“--interface=tap26c9b807-7c”），从hosts文件我们可以看到：  
+<pre><code>
+# cat  /var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/host
+fa:16:3e:fe:c7:87,host-10-10-10-2.openstacklocal,10.10.10.2
+</code></pre>
+之前的console输出可以看到虚拟机MAC为fa:16:3e:fe:c7:87 。这个mac地址与IP 10.10.10.2 关联，当包含该MAC的DHCP请求到达，dnsmasq返回10.10.10.2。如果这个初始过程（可以重启网络服务触发）中从namespace中看，可以看到如下的DHCP请求：
+<pre><code>
+# ip netns exec qdhcp-5f833617-6179-4797-b7c0-7d420d84040c tcpdump -n
+19:27:12.191280 IP 0.0.0.0.bootpc > 255.255.255.255.bootps: BOOTP/DHCP, Request from fa:16:3e:fe:c7:87, length 310
+19:27:12.191666 IP 10.10.10.3.bootps > 10.10.10.2.bootpc: BOOTP/DHCP, Reply, length 325
+</code></pre>
+总之，DHCP服务由dnsmasq提供，这个服务由Neutron配置，监听在DHCP namespace中的网络接口上。Neutron还配置dnsmasq中的MAC/IP映射关系，所以当DHCP请求时会受到分配给它的IP。
