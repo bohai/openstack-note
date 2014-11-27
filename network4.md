@@ -26,8 +26,8 @@ Created a new network:
 | tenant_id                 | 9796e5145ee546508939cd49ad59d51f     |
 +---------------------------+--------------------------------------+
 </code></pre>
-In our deployment eth3 on the control node is a non-IP’ed interface and we will use it as the connection point to the external public network. To do that we simply add eth3 to a bridge on OVS called “br-ex”. This is the bridge Neutron will route the traffic to when a VM is connecting with the public network:
-在我们的环境中，控制节点的eth3是一个没有绑定IP的网络接口。我们使用它作为连接点接入外部public network。我们通过将eth3接入OVS网桥"br-ex"。
+
+在我们的环境中，控制节点的eth3是一个没有绑定IP的网络接口。我们使用它作为连接点接入外部public network。我们通过将eth3接入OVS网桥"br-ex"。这个bridge用于虚拟机向外部网络的流量进行路由。
 
 <pre><code>
 # ovs-vsctl add-port br-ex eth3
@@ -48,6 +48,7 @@ In our deployment eth3 on the control node is a non-IP’ed interface and we wil
 </code></pre>
 
 For this exercise we have created a public network with the IP range 180.180.180.0/24 accessible from eth3. This public network is provided from the datacenter side and has a gateway at 180.180.180.1 which connects it to the datacenter network. To connect this network to our OpenStack deployment we will create a subnet on our “my-public” network with the same IP range and tell Neutron what is its gateway:
+在上边的练习中，我们创建了一个public network，IP范围是180.180.180.0/24，通过eth3接入。
 
 ![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
 
