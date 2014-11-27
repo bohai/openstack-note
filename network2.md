@@ -267,7 +267,5 @@ fa:16:3e:fe:c7:87,host-10-10-10-2.openstacklocal,10.10.10.2
 </code></pre>
 总之，DHCP服务由dnsmasq提供，这个服务由Neutron配置，监听在DHCP namespace中的网络接口上。Neutron还配置dnsmasq中的MAC/IP映射关系，所以当DHCP请求时会受到分配给它的IP。
 ### 总结  
-In this post we relied on the components described in the previous post and saw how network connectivity is achieved using three simple use cases. These use cases gave a good view of the entire network stack and helped understand how an end to end connection is being made between a VM on a compute node and the DHCP namespace on the control node. One conclusion we can draw from what we saw here is that if we launch a VM and it is able to perform a DHCP request and receive a correct IP then there is reason to believe that the network is working as expected. We saw that a packet has to travel through a long list of components before reaching its destination and if it has done so successfully this means that many components are functioning properly.
-
-In the next post we will look at some more sophisticated services Neutron supports and see how they work. We will see that while there are some more components involved for the most part the concepts are the same.
-本文，我们基于之前讲解的各种网络组建，看到三种use case下网络如何连通的。这些use cases对了解整个网络栈以及了解虚拟机/计算节点/DHCP namespace直接如何连通很有帮助。
+本文，我们基于之前讲解的各种网络组建，看到三种use case下网络如何连通的。这些use cases对了解整个网络栈以及了解虚拟机/计算节点/DHCP namespace直接如何连通很有帮助。根据我们的探索，我们可以得出结论，我们启动虚拟机、虚拟机发出DHCP请求、虚拟机收到正确的IP、然后确信这个网络按照我们预想的工作。我们看到一个包经过一长串路径最终到达目的地，如果这一切成功，意味着这些组件功能正常。
+下一篇文章中，我们会学习更复杂的neutron服务并探索他们如何工作。我们会看到更多的组件，但是大部分的原理概念都是相似的。
