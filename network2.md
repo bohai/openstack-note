@@ -264,13 +264,15 @@ DHCP服务在namespace中连接到了一个tap接口（“--interface=tap26c9b80
 # cat  /var/lib/neutron/dhcp/5f833617-6179-4797-b7c0-7d420d84040c/host
 fa:16:3e:fe:c7:87,host-10-10-10-2.openstacklocal,10.10.10.2
 </code></pre>
-之前的console输出可以看到虚拟机MAC为fa:16:3e:fe:c7:87 。这个mac地址与IP 10.10.10.2 关联，当包含该MAC的DHCP请求到达，dnsmasq返回10.10.10.2。如果这个初始过程（可以重启网络服务触发）中从namespace中看，可以看到如下的DHCP请求：
+之前的console输出可以看到虚拟机MAC为fa:16:3e:fe:c7:87 。这个mac地址与IP 10.10.10.2 关联，当包含该MAC的DHCP请求到达，dnsmasq返回10.10.10.2。在这个初始过程（可以重启网络服务触发）中从namespace中看，可以看到如下的DHCP请求：
 <pre><code>
 # ip netns exec qdhcp-5f833617-6179-4797-b7c0-7d420d84040c tcpdump -n
 19:27:12.191280 IP 0.0.0.0.bootpc > 255.255.255.255.bootps: BOOTP/DHCP, Request from fa:16:3e:fe:c7:87, length 310
 19:27:12.191666 IP 10.10.10.3.bootps > 10.10.10.2.bootpc: BOOTP/DHCP, Reply, length 325
 </code></pre>
-总之，DHCP服务由dnsmasq提供，这个服务由Neutron配置，监听在DHCP namespace中的网络接口上。Neutron还配置dnsmasq中的MAC/IP映射关系，所以当DHCP请求时会受到分配给它的IP。
+总之，DHCP服务由dnsmasq提供，这个服务由Neutron配置，监听在DHCP namespace中的网络接口上。Neutron还配置dnsmasq中的MAC/IP映射关系，所以当DHCP请求时会受到分配给它的IP。  
+
 ### 总结  
-本文，我们基于之前讲解的各种网络组建，看到三种use case下网络如何连通的。这些use cases对了解整个网络栈以及了解虚拟机/计算节点/DHCP namespace直接如何连通很有帮助。根据我们的探索，我们可以得出结论，我们启动虚拟机、虚拟机发出DHCP请求、虚拟机收到正确的IP、然后确信这个网络按照我们预想的工作。我们看到一个包经过一长串路径最终到达目的地，如果这一切成功，意味着这些组件功能正常。
-下一篇文章中，我们会学习更复杂的neutron服务并探索他们如何工作。我们会看到更多的组件，但是大部分的原理概念都是相似的。
+本文，我们基于之前讲解的各种网络组件，分析了三种use case下网络如何连通的。这些use cases对了解整个网络栈以及了解虚拟机/计算节点/DHCP namespace直接如何连通很有帮助。  
+根据我们的分析，我们确信启动虚拟机、虚拟机发出DHCP请求、虚拟机收到正确的IP后这个网络按照我们预想的工作。我们看到一个包经过一长串路径最终到达目的地，如果这一切成功，意味着这些组件功能正常。
+下一篇文章中，我们会学习更复杂的neutron服务并分析他们如何工作。
