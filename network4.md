@@ -70,7 +70,7 @@ Created a new subnet:
 +------------------+------------------------------------------------------+
 </code></pre>
 
-然后，我们需要将router接如我们新创建的public network,使用下列命令创建：
+然后，我们需要将router接入我们新创建的public network,使用下列命令创建：
 
 <pre><code>
 # neutron router-gateway-set my-router my-public
@@ -139,9 +139,9 @@ net.ipv4.ip_forward = 1
 
 ### Use case #6: Attaching a floating IP to a VM   
 
-Now that the VMs can access the public network we would like to take the next step allow an external client to access the VMs inside the OpenStack deployment, we will do that using a floating IP. A floating IP is an IP provided by the public network which the user can assign to a particular VM making it accessible to an external client.
+现在，虚拟机可以访问public network。下一步，我们尝试允许外部客户访问Openstack环境中的虚拟机，我们通过floating IP完成这个功能。 Floating IP由外部网络提供，用户可以将它设置给虚拟机，从而允许外部客户接入虚拟机。
 
-To create a floating IP, the first step is to connect the VM to a public network as we have shown in the previous use case. The second step will be to generate a floating IP from command line:
+创建Floating IP，第一步是按照之前usecase的讲解，将虚拟机连入外部网络。第二步时使用命令行，产生一个浮动IP。
 
 <pre><code>
 # neutron floatingip-create public
