@@ -164,16 +164,18 @@ Created a new floatingip:
 
 ![connect-floatingip](https://blogs.oracle.com/ronen/resource/openstack-public-network/connect-floatingip.png)
 
-Under the hood we can look at the router namespace and see the following additional lines in the iptables of the router namespace:
+在router namespace中我们可以看到，新增加了3跳iptabales规则：  
 
 <pre><code>
 -A neutron-l3-agent-OUTPUT -d 180.180.180.3/32 -j DNAT --to-destination 20.20.20.2
 -A neutron-l3-agent-PREROUTING -d 180.180.180.3/32 -j DNAT --to-destination 20.20.20.2
 -A neutron-l3-agent-float-snat -s 20.20.20.2/32 -j SNAT --to-source 180.180.180.3
  </code></pre>
-These lines are performing the NAT operation for the floating IP. In this case if and incoming request arrives and its destination is 180.180.180.3 it will be translated to 20.20.20.2 and vice versa.
+ 
+这些规则主要是对Floating IP进行NAT操作。对于router收到的目的地址为180.180.180.3的请求，会被转换成目标地址为20.20.20.2。反之亦然。
 
-Once a floating IP is associated we can connect to the VM, it is important to make sure there are security groups rule which will allow this for example:
+绑定Floating IP后，我们可以连接到虚拟机。需要确认安全组规则已经被设置，从而允许这样连接：   
+
 <pre><code>
 nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
 nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
