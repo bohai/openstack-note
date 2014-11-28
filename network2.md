@@ -1,4 +1,4 @@
-### 深入理解openstack网络架构(2)  基本的use cases
+### 深入理解openstack网络架构(2)----Basic Use Cases
 
 在上一篇文章中，我们了解了几个网络组件，如openvswitch/network namespace/Linux bridges/veth pairs。这篇文章中，我们将用3个简单的use case，展示这些基本网络组件如何以工作从而实现openstack的SDN方案。    
 在这些use case中，我们会了解整个网络配置和他们如何一起运行。use case如下：  
