@@ -137,9 +137,9 @@ net.ipv4.ip_forward = 1
 
 ### Use case #6: Attaching a floating IP to a VM   
 
-现在，虚拟机可以访问public network。下一步，我们尝试允许外部客户访问Openstack环境中的虚拟机，我们通过floating IP完成这个功能。 Floating IP由外部网络提供，用户可以将它设置给虚拟机，从而允许外部客户接入虚拟机。
+现在，虚拟机可以访问public network。下一步，我们尝试允许外部客户访问Openstack环境中的虚拟机，通过floating IP可以完成这个功能。 Floating IP由外部网络提供，用户可以将它设置给虚拟机，从而允许外部客户接入虚拟机。
 
-创建Floating IP，第一步是按照之前usecase的讲解，将虚拟机连入外部网络。第二步时使用命令行，产生一个浮动IP。
+创建Floating IP，第一步是按照上一个usecase的讲解，将虚拟机连入外部网络。第二步时使用命令行，产生一个浮动IP。
 
 <pre><code>
 # neutron floatingip-create public
