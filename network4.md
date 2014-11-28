@@ -187,6 +187,7 @@ Iptables是一个复杂而强大的工具。如果想更好的理解iptables规�
 
 ### Summary
 
+本文介绍了如何将openstack环境中的虚拟机与public network连通。通过namespace和routing table
 This post was about connecting VMs in the OpenStack deployment to a public network. It shows how using namespaces and routing tables we can route not only inside the OpenStack environment but also to the outside world.
 
 This will also be the last post in the series for now. Networking is one of the most complicated areas in OpenStack and gaining good understanding of it is key. If you read all four posts you should have a good starting point to analyze and understand different network topologies in OpenStack. We can apply the same principles shown here to understand more network concepts such as Firewall as a service, Load Balance as a service, Metadata service etc. The general method will be to look into a namespace and figure out how certain functionality is implemented using the regular Linux networking features in the same way we did throughout this series.
