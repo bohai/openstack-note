@@ -158,7 +158,9 @@ Created a new floatingip:
 | tenant_id           | 9796e5145ee546508939cd49ad59d51f     |
 +---------------------+--------------------------------------+
  </code></pre>
-The user can generate as many IPs as are available on the “my-public” network. Assigning the floating IP can be done either from the GUI or from command line, in this example we go to the GUI:
+ 
+根据"my-public" network的能力，用户可以创建很多这样的IP。将浮动IP与虚拟机关联，可以通过命令行或者GUI完成。
+下图是GUI的例子：  
 
 ![connect-floatingip](https://blogs.oracle.com/ronen/resource/openstack-public-network/connect-floatingip.png)
 
