@@ -5,7 +5,7 @@
 ### Use case #5: Connecting VMs to the public network  
 所谓“public network”，指openstack部署环境以外的网络。这个网络可以是datacenter中的另一个网络、internet、或者一个不被openstack控制的私有网络。   
 
-与public network连通，我们需要在openstack中创建一个network并设置为public。这个network用于虚拟机与public network通信。虚拟机不能直接连接到这个新创建的属性为public的network，所有网络流量必须使用openstack创建的router从private network路由到public network。在openstack中创建public network，我们只需要使用neutron net-create 命令，并将router:external设置为True。     
+与public network通信，我们需要在openstack中创建一个network并设置为public。这个network用于虚拟机与public network通信。虚拟机不能直接连接到这个新创建的属性为public的network，所有网络流量必须使用openstack创建的router从private network路由到public network。在openstack中创建public network，我们只需要使用neutron net-create 命令，并将router:external设置为True。     
 在我们的例子中，public newtork叫做“my-public”。   
 <pre><code>
 # neutron net-create my-public --router:external=True
@@ -27,7 +27,7 @@ Created a new network:
 +---------------------------+--------------------------------------+
 </code></pre>
 
-在我们的环境中，控制节点的eth3是一个没有绑定IP的网络接口。我们使用它作为连接点接入外部public network。我们通过将eth3接入OVS网桥"br-ex"。这个bridge用于虚拟机向外部网络的流量进行路由。
+在我们的环境中，控制节点的eth3是一个没有绑定IP的网卡。我们使用它接入外部public network。因此我们将eth3加入OVS网桥"br-ex"，Neutron会将虚拟机向外部网络的发送的网络包路由到这个bridge。
 
 <pre><code>
 # ovs-vsctl add-port br-ex eth3
@@ -47,8 +47,7 @@ Created a new network:
 .
 </code></pre>
 
-在上边的练习中，我们创建了一个public network，IP范围是180.180.180.0/24，通过eth3接入。这个public network存在于datacenter中，通过gateway 180.180.180.1可以连接到datacenter网络。为了将这个网络与Openstack环境相连，我们需要创建一个叫“my-public"的network，
-这个network有相同的IP范围，而且需要告诉neutron这个网络的gateway。
+我们在eth3上创建了一个IP范围是180.180.180.0/24的public network。这个public network存在于datacenter中，通过gateway 180.180.180.1可以连接到datacenter网络。为了将这个网络与Openstack环境相连，我们需要在“my-public"这个network，上创建一个有相同的IP范围subnet，并告诉neutron这个network的gateway。
 
 <pre><code>
 # neutron subnet-create my-public 180.180.180.0/24 --name public_subnet --enable_dhcp=False --allocation-pool start=180.180.180.2,end=180.180.180.100 --gateway=180.180.180.1
@@ -70,7 +69,7 @@ Created a new subnet:
 +------------------+------------------------------------------------------+
 </code></pre>
 
-然后，我们需要将router接入我们新创建的public network,使用下列命令创建：
+然后，我们需要将router接入我们新创建的public network，使用下列命令创建：
 
 <pre><code>
 # neutron router-gateway-set my-router my-public
@@ -80,7 +79,7 @@ Set gateway for router my-router
 注意：我们在两种情况下使用术语“public network",一个是datacenter中真实的public network，为了区分我们把它（180.180.180.0/24）叫做"external public network"。另一个是openstack中我们使用的"public network"，我们称之为“my-public"的接口网络。
 我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。     
      
-执行上述的操作后，已经拥有两个网络接口的router现在增加了第三个网络接口（被称作gateway）。router可以有多个网络接口，连接通常的internal subnet或者作为gateway连入“my-public"网络。一个经常犯的错误是，试图以通常网络接口的方式接入public network，操作可能成功，但是却并不能与外部网络连通。
+执行上述的操作后，router上（之前已经拥有两个网络接口，连接两个不同的internal network）增加了第三个网络接口（被称作gateway）。router可以有多个网络接口，连接普通的internal subnet或者作为gateway连入“my-public"网络。一个经常犯的错误是，试图以通常网络接口的方式接入public network，操作可能成功，但是却并不能与外部网络连通。
 在我们创建一个public network，subnet并接入router，网络拓扑看起来是这样的:    
 
 ![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
