@@ -3,10 +3,10 @@
 我们见看到neutron如何将浮动IP配置给虚拟机，从而实现public network与虚拟机的连通。
 
 ### Use case #5: Connecting VMs to the public network  
-所谓“public network”，指openstack部署环境以外的网络。这个网络可以是datacenter中的另一个网络、internet、或者一个不被openstack控制的私有网络。
+所谓“public network”，指openstack部署环境以外的网络。这个网络可以是datacenter中的另一个网络、internet、或者一个不被openstack控制的私有网络。   
 
-与public network连通，我们需要在openstack中创建一个network并设置为public。这个网络用于虚拟机外部流量传输。同时虚拟机不能直接连接到属性为public的network，所有网络流量必须使用openstack创建的router从private network路由到public network。在openstack中创建public network，我们只需要使用neutron net-create 命令，并将router:external设置为True。  
-在我们的例子中，public newtork叫做“my-public”。
+与public network连通，我们需要在openstack中创建一个network并设置为public。这个网络用于虚拟机外部流量传输。同时虚拟机不能直接连接到属性为public的network，所有网络流量必须使用openstack创建的router从private network路由到public network。在openstack中创建public network，我们只需要使用neutron net-create 命令，并将router:external设置为True。     
+在我们的例子中，public newtork叫做“my-public”。   
 <pre><code>
 # neutron net-create my-public --router:external=True
 Created a new network:
@@ -78,12 +78,12 @@ Set gateway for router my-router
 </pre></code>
 
 注意：我们在两种情况下使用术语“public network",一个是datacenter中真实的public network，为了区分我们把它（180.180.180.0/24）叫做"external public network"。另一个是openstack中我们使用的"public network"，我们称之为“my-public"的接口网络。
-我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。   
+我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。     
 
-执行上述的操作后，已经拥有两个网络接口的router现在增加了第三个网络接口（被称作gateway）。router可以有多个网络接口，连接通常的internal subnet或者作为gateway连入“my-public"网络。一个经常犯的错误是，试图以通常网络接口的方式接入public network，操作可能成功，但是却并不能与外部网络连通。在我们创建一个public network，subnet并接入router，网络拓扑看起来是这样的： 
+执行上述的操作后，已经拥有两个网络接口的router现在增加了第三个网络接口（被称作gateway）。router可以有多个网络接口，连接通常的internal subnet或者作为gateway连入“my-public"网络。一个经常犯的错误是，试图以通常网络接口的方式接入public network，操作可能成功，但是却并不能与外部网络连通。在我们创建一个public network，subnet并接入router，网络拓扑看起来是这样的：   
 ![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
 
-进入router的namespace中，我们看到其中增加了一个180.180.180.0/24网段IP的网络接口，IP为180.180.180.2：
+进入router的namespace中，我们看到其中增加了一个180.180.180.0/24网段IP的网络接口，IP为180.180.180.2：  
 
 <pre><code>
 # ip netns exec qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 ip addr
