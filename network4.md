@@ -187,11 +187,11 @@ Iptables是一个复杂而强大的工具。如果想更好的理解iptables规�
 
 ### Summary
 
-本文介绍了如何将openstack环境中的虚拟机与public network连通。通过namespace和routing table
-This post was about connecting VMs in the OpenStack deployment to a public network. It shows how using namespaces and routing tables we can route not only inside the OpenStack environment but also to the outside world.
+本文介绍了如何将openstack环境中的虚拟机与public network连通。通过namespace和routing table，虚拟机不仅能在openstack环境内的不同网络间实现消息路由，还能与外部网络连通。
 
-This will also be the last post in the series for now. Networking is one of the most complicated areas in OpenStack and gaining good understanding of it is key. If you read all four posts you should have a good starting point to analyze and understand different network topologies in OpenStack. We can apply the same principles shown here to understand more network concepts such as Firewall as a service, Load Balance as a service, Metadata service etc. The general method will be to look into a namespace and figure out how certain functionality is implemented using the regular Linux networking features in the same way we did throughout this series.
+本文是这个系列文章的最后一篇。网络是opesntack最复杂的部分，是理解openstack的一个关键。阅读这四篇文章，对理解和分析openstack各种网络拓扑是很好的入门。使用我们提到的这些内容，可以更好的理解诸如Firewall as a service、Load Balance as a service、Metadata service这些网络概念。基本的学习方式是，进入namespace中，看究竟是如何利用Linux网络能力实现这些功能的。
 
+我们在最开始说过，
 As we said in the beginning, the use cases shown here are just examples of one method to configure networking in OpenStack and there are many others. All the examples here are using the Open vSwitch plugin and can be used right out of the box. When analyzing another plugin or specific feature operation it will be useful to compare the features here to their equivalent method with the plugin you choose to use. In many cases vendor plugins will use Open vSwitch , bridges or namespaces and some of the same principles and methods shown here.
 
 The goal of this series is to make the OpenStack networking accessible to the average user. This series takes a bottom up approach and using simple use cases tries to build a complete picture of how the network architecture is working. Unlike some other resources we did not start out by explaining the different agents and their functionality but tried to explain what they do , how does the end result looks like. A good next step would be to go to one of those resources and try to see how the different agents implement the functionality explained here.
