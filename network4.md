@@ -102,7 +102,7 @@ Set gateway for router my-router
 .
 </code></pre>
 在这里router的gateway地址180.180.180.2与虚拟机是联通的，虚拟机可以ping到它。我们也能从虚拟机ping到外部网络的gateway180.180.180.1以及这个gateway所连的网络。
-如果我们查看router namespace，我们可以在iptables的NAT talbe中增加了两行。
+如果我们查看router namespace，发现iptables的NAT talbe中有以下两行规则。
 
 <pre><code>
 # ip netns exec qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 iptables-save
@@ -114,9 +114,10 @@ Set gateway for router my-router
 .
 .
 </code></pre>
-This will change the source IP of outgoing packets from the networks net1 and net2 to 180.180.180.2. When we ping from within the VMs will one the network we will see as if the request comes from this IP address.
 
-The routing table inside the namespace will route any outgoing traffic to the gateway of the public network as we defined it when we created the subnet, in this case 180.180.180.1
+因此，从net1或net2向外网发出的网络包，其源IP地址会被修改为180.180.180.2。我们可以在虚拟机中ping外网的某个地址，看下请求包的IP地址是否是这个IP地址。
+
+namespace中的路由表会把所有外部流量路由到外网的gateway（180.180.180.1）。  
 
 <pre><code>
 #  ip netns exec  qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 route -n
@@ -129,6 +130,8 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 </code></pre>
  
 Those two pieces will assure that a request from a VM trying to reach the public network will be NAT’ed to 180.180.180.2 as a source and routed to the public network’s gateway. We can also see that ip forwarding is enabled inside the namespace to allow routing:
+虚拟机中发出的流向public network的请求，会被NAT映射为源地址为180.180.180.2，然后发给public network的gateway。同样，我们可以看到在namespace中ip forward功能是启动的。  
+
 <pre><code>
 # ip netns exec qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 1
