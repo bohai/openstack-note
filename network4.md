@@ -1,5 +1,5 @@
 ### 深入理解openstack网络架构(4)-----连接到public network
-在上一篇文章中，我们介绍了openstack中的路由，了解到openstack如何通过namespace实现的router将两个network连通。本文中，我们进一步探索路由能力，说明实现内部internal network和public network的路由（而不仅仅是internal network之间）。   
+在上一篇文章中，我们介绍了openstack中的路由，了解到openstack如何通过namespace实现的router将两个network连通。本文中，我们进一步分析路由功能，说明实现内部internal network和public network的路由（而不仅仅是internal network之间）。   
 我们还会分析neutron如何将浮动IP配置给虚拟机，从而实现public network与虚拟机的连通。
 
 ### Use case #5: Connecting VMs to the public network  
