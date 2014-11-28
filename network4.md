@@ -79,8 +79,8 @@ Set gateway for router my-router
 
 注意：我们在两种情况下使用术语“public network",一个是datacenter中真实的public network，为了区分我们把它（180.180.180.0/24）叫做"external public network"。另一个是openstack中我们使用的"public network"，我们称之为“my-public"的接口网络。
 我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。     
-
-执行上述的操作后，已经拥有两个网络接口的router现在增加了第三个网络接口（被称作gateway）。router可以有多个网络接口，连接通常的internal subnet或者作为gateway连入“my-public"网络。一个经常犯的错误是，试图以通常网络接口的方式接入public network，操作可能成功，但是却并不能与外部网络连通。在我们创建一个public network，subnet并接入router，网络拓扑看起来是这样的：   
+     
+执行上述的操作后，已经拥有两个网络接口的router现在增加了第三个网络接口（被称作gateway）。router可以有多个网络接口，连接通常的internal subnet或者作为gateway连入“my-public"网络。一个经常犯的错误是，试图以通常网络接口的方式接入public network，操作可能成功，但是却并不能与外部网络连通。在我们创建一个public network，subnet并接入router，网络拓扑看起来是这样的：     
 ![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
 
 进入router的namespace中，我们看到其中增加了一个180.180.180.0/24网段IP的网络接口，IP为180.180.180.2：  
