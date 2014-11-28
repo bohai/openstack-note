@@ -180,10 +180,10 @@ Created a new floatingip:
 nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
 nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
   </code></pre>
-  
-Those will allow ping and ssh.
 
-Iptables is a sophisticated and powerful tool, to better understand all the bits and pieces on how the chains are structured in the different tables we can look at one of the many iptables tutorials available online and read more to understand any specific details.
+这两条规则，允许ping和ssh。
+
+Iptables是一个复杂而强大的工具。如果想更好的理解iptables规则，可以查看iptables的帮助文件。
 
 ### Summary
 
