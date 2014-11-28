@@ -5,7 +5,7 @@
 ### Use case #5: Connecting VMs to the public network  
 所谓“public network”，指openstack部署环境以外的网络。这个网络可以是datacenter中的另一个网络、internet、或者一个不被openstack控制的私有网络。   
 
-与public network连通，我们需要在openstack中创建一个network并设置为public。这个网络用于虚拟机外部流量传输。同时虚拟机不能直接连接到属性为public的network，所有网络流量必须使用openstack创建的router从private network路由到public network。在openstack中创建public network，我们只需要使用neutron net-create 命令，并将router:external设置为True。     
+与public network连通，我们需要在openstack中创建一个network并设置为public。这个network用于虚拟机与public network通信。虚拟机不能直接连接到这个新创建的属性为public的network，所有网络流量必须使用openstack创建的router从private network路由到public network。在openstack中创建public network，我们只需要使用neutron net-create 命令，并将router:external设置为True。     
 在我们的例子中，public newtork叫做“my-public”。   
 <pre><code>
 # neutron net-create my-public --router:external=True
