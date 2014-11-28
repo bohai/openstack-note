@@ -1,6 +1,7 @@
 ### 深入理解openstack网络架构(2)  基本的use cases
 
-在上一篇文章中，我们了解了几个网络组件，如openvswitch/network namespace/Linux bridges/veth pairs。这篇文章中，我们将用3个简单的网络场景，展示这些基本网络组件如何以工作从而实现openstack的SDN方案。在这些网络场景中，我们会了解整个网络配置和他们如何一起运行。网络场景如下：  
+在上一篇文章中，我们了解了几个网络组件，如openvswitch/network namespace/Linux bridges/veth pairs。这篇文章中，我们将用3个简单的use case，展示这些基本网络组件如何以工作从而实现openstack的SDN方案。    
+在这些use case中，我们会了解整个网络配置和他们如何一起运行。use case如下：  
 
 1. 创建网络——我们创建网络时，发生了什么。如何创建多个隔离的网络。  
 2. 创建虚拟机——一旦我们有了网络，我们可以创建虚拟机并将其接入网络。   
@@ -8,10 +9,10 @@
 
 这篇文章中，我们会展示网络连接的原理，我们会了解网络包如何从A到B。我们先了解已经完成的网络配置是什么样子的？然后我们讨论这些网络配置是如何以及何时创建的？我个人认为，通过例子和具体实践看到真实的网络接口如何工作以及如何将他们连接起来是非常有价值的。然后，一切真相大白，我们知道网络连接如何工作，在后边的文章中，我将进一步解释neutron如何配置这些组件，从而提供这样的网络连接能力。
 
-我推荐在你自己的部署上尝试这些例子或者使用Oracle Openstack Tech Preview。完全理解这些网络场景，对我们调查openstack环境中的网络问题非常有帮助。  
+我推荐在你自己的环境上尝试这些例子或者使用Oracle Openstack Tech Preview。完全理解这些网络场景，对我们调查openstack环境中的网络问题非常有帮助。  
 
 ### Use case #1: Create Network
-创建网络的操作非常简单。我们可以使用GUI或者命令行完成。openstack的网络仅供创建该网络的租户使用。当然如果这个网络是“shared”，它也可以被其他所有租户使用。一个网络可以有多个subnets，但是为了演示目的和简单，我们仅为每一个network创建一个subnet。
+创建network的操作非常简单。我们可以使用GUI或者命令行完成。openstack的网络仅供创建该网络的租户使用。当然如果这个网络是“shared”，它也可以被其他所有租户使用。一个网络可以有多个subnets，但是为了演示目的和简单，我们仅为每一个network创建一个subnet。
 通过命令行创建network： 
 <pre><code>
 # neutron net-create net1
@@ -84,7 +85,7 @@ Created a new subnet:
 </code></pre>
 
 现在我们有了一个network和subnet，网络拓扑像这样：  
-![horizon_network](https://blogs.oracle.com/ronen/resource/horizon-network.png)
+![horizon_network](https://blogs.oracle.com/ronen/resource/horizon-network.png)    
 
 现在让我们深入看下到底发生了什么？在控制节点，我们一个新的namespace被创建：   
 <pre><code>
@@ -93,7 +94,7 @@ Created a new subnet:
 qdhcp-5f833617-6179-4797-b7c0-7d420d84040c
 </code></pre>
 
-这个namespace的名字是qdhcp-<network id> (参见上边),让我们深入namespace中看看有什么？
+这个namespace的名字是qdhcp-<network id> (参见上边),让我们深入namespace中看看有什么？   
 <pre><code>
 # ip netns exec qdhcp-5f833617-6179-4797-b7c0-7d420d84040c ip addr
 
@@ -161,6 +162,7 @@ NIC statistics:
 .
 </code></pre>
 注意“phy-br-eth2”连接到网桥"br-eth2"，这个网桥的一个网口是物理网卡eth2。这意味着我们创建的网络创建了一个连接到了物理网卡eth2的namespace。eth2所在的虚拟机网络会连接所有的虚拟机的。
+
 ##### 关于网络隔离:  
 Openstack支持创建多个隔离的网络，也可以使用多种机制完成网络间的彼此隔离。这些隔离机制包括VLANs/VxLANs/GRE tunnels，这个在我们部署openstack环境时配置。本文中我们选择了VLANs。当使用VLAN标签作为隔离机制，Neutron会从预定义好的VLAN池中选择一个VLAN标签，并分配给一个新创建的network。通过分配VLAN标签给network，Neutron允许在一个物理网卡上创建多个隔离的网络。与其他的平台的最大的区别是，用户不需要负责管理VLAN如何分配给networks。Neutron会负责管理分配VLAN标签，并负责回收。在我们的例子中，net1使用VLAN标签1000，这意味着连接到该网络的虚拟机，发出的包会被打上VLAN标签1000然后发送到物理网络中。对namespace也是同样的，如果我们希望namespace连接到某个特定网络，我们需要确保这个namespace发出的/接收的包被正确的打上了标签。
 
@@ -181,7 +183,7 @@ NXST_FLOW reply (xid=0x4):
  cookie=0x0, duration=165131.96s, table=0, n_packets=863, n_bytes=160727, idle_age=1, hard_age=65534, priority=1 actions=NORMAL
  </code></pre>
  
-总之，当用户创建network，neutrong会创建一个namespace，这个namespace通过OVS连接到虚拟机网络。OVS还负责namespace与虚拟机网络之间VLAN标签的修改。现在，让我们看下创建虚拟机时，发生了什么？虚拟机是怎么连接到虚拟机网络的？
+总之，当用户创建network，neutrong会创建一个namespace，这个namespace通过OVS连接到虚拟机网络。OVS还负责namespace与虚拟机网络之间VLAN标签的修改。现在，让我们看下创建虚拟机时，发生了什么？虚拟机是怎么连接到虚拟机网络的？   
 ### Use case #2: Launch a VM  
 从Horizon或者命令行创建并启动一个虚拟机，下图是从Horzion创建的例子： 
 ![launch-instance](https://blogs.oracle.com/ronen/resource/launch-instance.png)    
@@ -213,6 +215,7 @@ qbr53903a95-82          8000.7e7f3282b836       no              qvb53903a95-82
                                                         tap53903a95-82
 </code></pre> 
  网桥有两个网络接口，一个连接到虚拟机(“tap53903a95-82 “)，另一个( “qvb53903a95-82”)连接到OVS网桥”br-int"。  
+ 
  <pre><code>
  # ovs-vsctl show
 83c42f80-77e9-46c8-8560-7697d76de51c
@@ -230,9 +233,9 @@ qbr53903a95-82          8000.7e7f3282b836       no              qvb53903a95-82
                 type: internal
         Port "int-br-eth2"
             Interface "int-br-eth2"
-        Port "qvo53903a95-82"
+        Port "qvb53903a95-82"
             tag: 3
-            Interface "qvo53903a95-82"
+            Interface "qvb53903a95-82"
     ovs_version: "1.11.0"
  </code></pre>
  
