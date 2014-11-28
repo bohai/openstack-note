@@ -47,7 +47,7 @@ Created a new network:
 .
 </code></pre>
 
-我们在eth3上创建了一个IP范围是180.180.180.0/24的public network。这个public network存在于datacenter中，通过gateway 180.180.180.1可以连接到datacenter网络。为了将这个网络与Openstack环境相连，我们需要在“my-public"这个network，上创建一个有相同的IP范围subnet，并告诉neutron这个network的gateway。
+我们在eth3上创建了一个IP范围是180.180.180.0/24的public network。这个public network存在于datacenter中，通过gateway 180.180.180.1可以连接到datacenter网络。为了将这个网络与Openstack环境相连，我们需要在“my-public"这个network，上创建一个有相同IP范围的subnet，并告诉neutron这个network的gateway。
 
 <pre><code>
 # neutron subnet-create my-public 180.180.180.0/24 --name public_subnet --enable_dhcp=False --allocation-pool start=180.180.180.2,end=180.180.180.100 --gateway=180.180.180.1
@@ -127,8 +127,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 20.20.20.0      0.0.0.0         255.255.255.0   U     0      0        0 qr-dc290da0-0a
 180.180.180.0   0.0.0.0         255.255.255.0   U     0      0        0 qg-c08b8179-3b
 </code></pre>
- 
-Those two pieces will assure that a request from a VM trying to reach the public network will be NAT’ed to 180.180.180.2 as a source and routed to the public network’s gateway. We can also see that ip forwarding is enabled inside the namespace to allow routing:
+
 虚拟机中发出的流向public network的请求，会被NAT映射为源地址为180.180.180.2，然后发给public network的gateway。同样，我们可以看到在namespace中ip forward功能是启动的。  
 
 <pre><code>
