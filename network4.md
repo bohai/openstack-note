@@ -50,8 +50,6 @@ Created a new network:
 在上边的练习中，我们创建了一个public network，IP范围是180.180.180.0/24，通过eth3接入。这个public network存在于datacenter中，通过gateway 180.180.180.1可以连接到datacenter网络。为了将这个网络与Openstack环境相连，我们需要创建一个叫“my-public"的network，
 这个network有相同的IP范围，而且需要告诉neutron这个网络的gateway。
 
-![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
-
 <pre><code>
 # neutron subnet-create my-public 180.180.180.0/24 --name public_subnet --enable_dhcp=False --allocation-pool start=180.180.180.2,end=180.180.180.100 --gateway=180.180.180.1
 Created a new subnet:
@@ -82,11 +80,10 @@ Set gateway for router my-router
 注意：我们在两种情况下使用术语“public network",一个是datacenter中真实的public network，为了区分我们把它（180.180.180.0/24）叫做"external public network"。另一个是openstack中我们使用的"public network"，我们称之为“my-public"的接口网络。
 我们还涉及两个”gateways“，一个是外部Public network用的gateway（180.180.180.1），另一个是router中的gateway接口（180.180.180.2）。   
 
-After performing the operation above the router which had two interfaces is also connected to a third interface which is called gateway (this is the router gateway). A router can have multiple interfaces, to connect to regular internal subnets, and one gateway to connect to the “my-public” network. A common mistake would be to try to connect the public network as a regular interface, the operation can succeed but no connection will be made to the external world. After we have created a public network, a subnet and connected them to the router we the network topology view will look like this:
+执行上述的操作后，已经拥有两个网络接口的router现在增加了第三个网络接口（被称作gateway）。router可以有多个网络接口，连接通常的internal subnet或者作为gateway连入“my-public"网络。一个经常犯的错误是，试图以通常网络接口的方式接入public network，操作可能成功，但是却并不能与外部网络连通。在我们创建一个public network，subnet并接入router，网络拓扑看起来是这样的： 
+![router-public-net](https://blogs.oracle.com/ronen/resource/openstack-public-network/router-public-net.png)   
 
-
-
-Looking into the router’s namespace we see that another interface was added with an IP on the 180.180.180.0/24 network, this IP is 180.180.180.2 which is the router gateway interface:
+进入router的namespace中，我们看到其中增加了一个180.180.180.0/24网段IP的网络接口，IP为180.180.180.2：
 
 <pre><code>
 # ip netns exec qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 ip addr
@@ -102,9 +99,8 @@ Looking into the router’s namespace we see that another interface was added wi
 .
 .
 </code></pre>
-At this point the router’s gateway (180.180.180.2) address is connected to the VMs and the VMs can ping it. We can also ping the external gateway (180.180.180.1) from the VMs as well as reach the network this gateway is connected to.
-
-If we look into the router namespace we see that two lines are added to the NAT table in iptables:
+在这里router的gateway地址180.180.180.2与虚拟机是联通的，虚拟机可以ping到它。我们也能从虚拟机ping到外部网络的gateway180.180.180.1以及这个gateway所连的网络。
+如果我们查看router namespace，我们可以在iptables的NAT talbe中增加了两行。
 
 <pre><code>
 # ip netns exec qrouter-fce64ebe-47f0-4846-b3af-9cf764f1ff11 iptables-save
