@@ -191,9 +191,8 @@ Iptables是一个复杂而强大的工具。如果想更好的理解iptables规�
 
 本文是这个系列文章的最后一篇。网络是opesntack最复杂的部分，是理解openstack的一个关键。阅读这四篇文章，对理解和分析openstack各种网络拓扑是很好的入门。使用我们提到的这些内容，可以更好的理解诸如Firewall as a service、Load Balance as a service、Metadata service这些网络概念。基本的学习方式是，进入namespace中，看究竟是如何利用Linux网络能力实现这些功能的。
 
-我们在最开始说过，
-As we said in the beginning, the use cases shown here are just examples of one method to configure networking in OpenStack and there are many others. All the examples here are using the Open vSwitch plugin and can be used right out of the box. When analyzing another plugin or specific feature operation it will be useful to compare the features here to their equivalent method with the plugin you choose to use. In many cases vendor plugins will use Open vSwitch , bridges or namespaces and some of the same principles and methods shown here.
+我们在最开始说过，这些use case中我们只是使用了openstack众多网络配置方法的一种。我们的例子都是用了open vswitch 插件，可以独立于网络设备使用。通过与这里的例子对比，有助于分析其他的插件和功能。很多情况下，商业插件会使用open vswitch/bridges/namespace以及一些类似的方法和原理。
 
-The goal of this series is to make the OpenStack networking accessible to the average user. This series takes a bottom up approach and using simple use cases tries to build a complete picture of how the network architecture is working. Unlike some other resources we did not start out by explaining the different agents and their functionality but tried to explain what they do , how does the end result looks like. A good next step would be to go to one of those resources and try to see how the different agents implement the functionality explained here.
+本系列文章的目的，在于让大多数用户了解oepnstack网络。文章中自下而上，使用一下简单的usecase，试着分析了openstack network 的整个结构以及如何工作的。与网上的其他一些资料不同，我们没有介绍各种openstack网络agent以及他们的功能，而是讲了他们做什么以及如何做的。下一步，你可以查阅这些资料，试着了解不同的agents是如何实现这些功能的。
 
-That’s it for now
+全文结束。
