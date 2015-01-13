@@ -37,4 +37,5 @@
 解决办法：
 <pre><code>
 yum install mariadb-devel.x86_64
+pip install MySQL-python
 </code></pre>
