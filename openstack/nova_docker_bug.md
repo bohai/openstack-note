@@ -26,7 +26,7 @@ Traceback (most recent call last):
     raise DistutilsError(msg)
 distutils.errors.DistutilsError: Could not find suitable distribution for Requirement.parse('pbr>=0.5.21,<1.0')
 </code></pre>
-问题解决：
+问题解决：  
 添加ssl key证书，配置pip仓库为国内仓库。
 
 ### 问题2：
@@ -59,7 +59,7 @@ Traceback (most recent call last):
 OSError: [Errno 2] No such file or directory
 error in setup command: Error parsing /root/nova-docker-stable-juno/setup.cfg: OSError: [Errno 2] No such file or directory
 </code></pre>
-问题解决：
+问题解决：   
 升级PBR版本从0.10.0到0.10.7
 
 ### 问题3：
@@ -84,7 +84,7 @@ Traceback (most recent call last):
 Exception: Versioning for this project requires either an sdist tarball, or access to an upstream git repository. Are you sure that git is installed?
 error in setup command: Error parsing /root/nova-docker-stable-juno/setup.cfg: Exception: Versioning for this project requires either an sdist tarball, or access to an upstream git repository. Are you sure that git is installed?
 </code></pre>
-问题解决：
+问题解决：   
 安装git.
 使用使用最新版juno代码。
 
@@ -109,7 +109,7 @@ error in setup command: Error parsing /root/nova-docker-stable-juno/setup.cfg: E
 2015-02-02 02:33:51.365 12138 TRACE nova.compute.manager [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3] APIError: 404 Client Error: Not Found ("No such image: tutum/wordpress")
 2015-02-02 02:33:51.365 12138 TRACE nova.compute.manager [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3]
 </code></pre>
-问题解决：
+问题解决：   
 修改文件"/usr/lib/python2.7/site-packages/novadocker/virt/docker/driver.py"：
 spawn函数中增加try、catch：
          try:
@@ -195,7 +195,7 @@ REQ: curl -i http://186.100.21.172:9696/v2.0/ports.json?tenant_id=3cf2410b5f5546
 2015-02-02 04:11:55.331 28983 DEBUG nova.compute.manager [-] [instance: ac103eeb-a2b0-4b49-a863-c39bcb43975f] Build of instance ac103eeb-a2b0-4b49-a863-c39bcb43975f was re-scheduled: Cannot load repository file: UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=10) _do_build_and_run_instance /usr/lib/python2.7/site-packages/nova/compute/manager.py:2032
 2015-02-02 04:11:55.530 28983 DEBUG nova.openstack.common.lockutils [-] Releasing semaphore "ac103eeb-a2b0-4b49-a863-c39bcb43975f" lock /usr/lib/python2.7/site-packages/nova/openstack/common/lockutils.py:238
 </code></pre>
-问题解决：
+问题解决：   
 问题原因不清楚，只有第一次下载镜像时会出现。
 
 ### 问题6：
@@ -263,7 +263,7 @@ REQ: curl -i http://186.100.21.172:9696/v2.0/ports.json?tenant_id=3cf2410b5f5546
 2015-02-02 04:18:44.389 28983 DEBUG nova.openstack.common.lockutils [-] Releasing semaphore "84729308-1dbd-4741-beb5-df58d22cdb6e" lock /usr/lib/python2.7/site-packages/nova/openstack/common/lockutils.py:238
 
 </code></pre>
-问题解决：
+问题解决：   
 创建 /usr/share/nova/rootwrap/docker.filters
 文件内容：
 <pre><code>
@@ -274,7 +274,7 @@ REQ: curl -i http://186.100.21.172:9696/v2.0/ports.json?tenant_id=3cf2410b5f5546
 # nova/virt/docker/driver.py: 'ln', '-sf', '/var/run/netns/.*'
 ln: CommandFilter, /bin/ln, root
 </code></pre>
-### 问题7：
+### 问题7：   
 novadocker 创建的容器与在同一网络中的虚拟机不能互相ping通。  
 原因分析：目前nova-docker不支持安全组。因此未配置安全组规则。   
 
