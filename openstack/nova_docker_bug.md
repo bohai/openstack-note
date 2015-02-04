@@ -1,3 +1,5 @@
+### 问题1： 
+<pre><code>
 [root@0ff2335e41d6 nova-docker]# python setup.py install
 Download error on https://pypi.python.org/simple/pbr/: [Errno 8] _ssl.c:504: EOF occurred in violation of protocol -- Some packages may not be found!
 Couldn't find index page for 'pbr' (maybe misspelled?)
@@ -23,11 +25,12 @@ Traceback (most recent call last):
   File "/usr/lib/python2.7/site-packages/setuptools/command/easy_install.py", line 617, in easy_install
     raise DistutilsError(msg)
 distutils.errors.DistutilsError: Could not find suitable distribution for Requirement.parse('pbr>=0.5.21,<1.0')
-
-
+</code></pre>
+问题解决：
 添加ssl key证书，配置pip仓库为国内仓库。
 
-
+### 问题2：
+<pre><code>
 [root@A-172 nova-docker-stable-juno]# python /root/nova-docker-stable-juno/setup.py  install
 ERROR:root:Error parsing
 Traceback (most recent call last):
@@ -55,11 +58,12 @@ Traceback (most recent call last):
     raise child_exception
 OSError: [Errno 2] No such file or directory
 error in setup command: Error parsing /root/nova-docker-stable-juno/setup.cfg: OSError: [Errno 2] No such file or directory
-
-
+</code></pre>
+问题解决：
 升级PBR版本从0.10.0到0.10.7
 
-
+### 问题3：
+<pre><code>
 [root@A-172 nova-docker-stable-juno]# pip list |grep pbr
 pbr (0.10.7)
 [root@A-172 nova-docker-stable-juno]# python setup.py  install
@@ -79,11 +83,13 @@ Traceback (most recent call last):
     raise Exception("Versioning for this project requires either an sdist"
 Exception: Versioning for this project requires either an sdist tarball, or access to an upstream git repository. Are you sure that git is installed?
 error in setup command: Error parsing /root/nova-docker-stable-juno/setup.cfg: Exception: Versioning for this project requires either an sdist tarball, or access to an upstream git repository. Are you sure that git is installed?
-
+</code></pre>
+问题解决：
 安装git.
 使用使用最新版juno代码。
 
-
+### 问题4：
+<pre><code>
 2015-02-02 02:33:51.365 12138 ERROR nova.compute.manager [-] [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3] Instance failed to spawn
 2015-02-02 02:33:51.365 12138 TRACE nova.compute.manager [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3] Traceback (most recent call last):
 2015-02-02 02:33:51.365 12138 TRACE nova.compute.manager [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3]   File "/usr/lib/python2.7/site-packages/nova/compute/manager.py", line 2243, in _build_resources
@@ -102,8 +108,8 @@ error in setup command: Error parsing /root/nova-docker-stable-juno/setup.cfg: E
 2015-02-02 02:33:51.365 12138 TRACE nova.compute.manager [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3]     raise errors.APIError(e, response, explanation=explanation)
 2015-02-02 02:33:51.365 12138 TRACE nova.compute.manager [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3] APIError: 404 Client Error: Not Found ("No such image: tutum/wordpress")
 2015-02-02 02:33:51.365 12138 TRACE nova.compute.manager [instance: 425d4ed0-22ac-4845-b9dd-57ce794d12f3]
-
-
+</code></pre>
+问题解决：
 修改文件"/usr/lib/python2.7/site-packages/novadocker/virt/docker/driver.py"：
 spawn函数中增加try、catch：
          try:
@@ -111,7 +117,8 @@ spawn函数中增加try、catch：
          except errors.APIError:
              image = None
 
-
+### 问题5：
+<pre><code>
 [root@A-172 ~]# tail -f  /var/log/nova/nova-compute.log|grep ac103eeb-a2b0-4b49-a863-c39bcb43975f
 2015-02-02 04:11:55.326 28983 DEBUG nova.compute.utils [-] [instance: ac103eeb-a2b0-4b49-a863-c39bcb43975f] Cannot load repository file: UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=10) notify_about_instance_usage /usr/lib/python2.7/site-packages/nova/compute/utils.py:307
 2015-02-02 04:11:55.331 28983 DEBUG nova.compute.manager [-] [instance: ac103eeb-a2b0-4b49-a863-c39bcb43975f] Build of instance ac103eeb-a2b0-4b49-a863-c39bcb43975f was re-scheduled: Cannot load repository file: UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=10) _do_build_and_run_instance /usr/lib/python2.7/site-packages/nova/compute/manager.py:2032
@@ -187,11 +194,12 @@ REQ: curl -i http://186.100.21.172:9696/v2.0/ports.json?tenant_id=3cf2410b5f5546
 2015-02-02 04:11:55.326 28983 DEBUG nova.compute.utils [-] [instance: ac103eeb-a2b0-4b49-a863-c39bcb43975f] Cannot load repository file: UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=10) notify_about_instance_usage /usr/lib/python2.7/site-packages/nova/compute/utils.py:307
 2015-02-02 04:11:55.331 28983 DEBUG nova.compute.manager [-] [instance: ac103eeb-a2b0-4b49-a863-c39bcb43975f] Build of instance ac103eeb-a2b0-4b49-a863-c39bcb43975f was re-scheduled: Cannot load repository file: UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=10) _do_build_and_run_instance /usr/lib/python2.7/site-packages/nova/compute/manager.py:2032
 2015-02-02 04:11:55.530 28983 DEBUG nova.openstack.common.lockutils [-] Releasing semaphore "ac103eeb-a2b0-4b49-a863-c39bcb43975f" lock /usr/lib/python2.7/site-packages/nova/openstack/common/lockutils.py:238
+</code></pre>
+问题解决：
+问题原因不清楚，只有第一次下载镜像时会出现。
 
-
-
-
-
+### 问题6：
+<pre><code>
 [root@A-172 ~]# grep 84729308-1dbd-4741-beb5-df58d22cdb6e  /var/log/nova/nova-compute.log
 2015-02-02 04:18:40.023 28983 DEBUG nova.openstack.common.lockutils [-] Created new semaphore "84729308-1dbd-4741-beb5-df58d22cdb6e" internal_lock /usr/lib/python2.7/site-packages/nova/openstack/common/lockutils.py:206
 2015-02-02 04:18:40.024 28983 DEBUG nova.openstack.common.lockutils [-] Acquired semaphore "84729308-1dbd-4741-beb5-df58d22cdb6e" lock /usr/lib/python2.7/site-packages/nova/openstack/common/lockutils.py:229
@@ -254,7 +262,8 @@ REQ: curl -i http://186.100.21.172:9696/v2.0/ports.json?tenant_id=3cf2410b5f5546
 2015-02-02 04:18:44.154 28983 DEBUG nova.compute.manager [-] [instance: 84729308-1dbd-4741-beb5-df58d22cdb6e] Build of instance 84729308-1dbd-4741-beb5-df58d22cdb6e was re-scheduled: Cannot setup network: Unexpected error while running command.
 2015-02-02 04:18:44.389 28983 DEBUG nova.openstack.common.lockutils [-] Releasing semaphore "84729308-1dbd-4741-beb5-df58d22cdb6e" lock /usr/lib/python2.7/site-packages/nova/openstack/common/lockutils.py:238
 
-
+</code></pre>
+问题解决：
 创建 /usr/share/nova/rootwrap/docker.filters
 文件内容：
 # nova-rootwrap command filters for setting up network in the docker driver
@@ -264,13 +273,13 @@ REQ: curl -i http://186.100.21.172:9696/v2.0/ports.json?tenant_id=3cf2410b5f5546
 # nova/virt/docker/driver.py: 'ln', '-sf', '/var/run/netns/.*'
 ln: CommandFilter, /bin/ln, root
 
+### 问题7：
+novadocker 创建的容器与在同一网络中的虚拟机不能互相ping通。  
+原因分析：目前nova-docker不支持安全组。因此未配置安全组规则。   
 
-novadocker 创建的容器与在同一网络中的虚拟机不能互相ping通。
-原因分析：目前nova-docker不支持安全组。因此未配置安全组规则。
-
-解决办法：
-安全组中增加规则。
- nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+解决办法：  
+安全组中增加规则。  
+ nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0   
 
 
 
