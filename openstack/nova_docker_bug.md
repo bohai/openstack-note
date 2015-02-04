@@ -266,13 +266,14 @@ REQ: curl -i http://186.100.21.172:9696/v2.0/ports.json?tenant_id=3cf2410b5f5546
 问题解决：
 创建 /usr/share/nova/rootwrap/docker.filters
 文件内容：
+<pre><code>
 # nova-rootwrap command filters for setting up network in the docker driver
 # This file should be owned by (and only-writeable by) the root user
 
 [Filters]
 # nova/virt/docker/driver.py: 'ln', '-sf', '/var/run/netns/.*'
 ln: CommandFilter, /bin/ln, root
-
+</code></pre>
 ### 问题7：
 novadocker 创建的容器与在同一网络中的虚拟机不能互相ping通。  
 原因分析：目前nova-docker不支持安全组。因此未配置安全组规则。   
