@@ -25,10 +25,10 @@ Intel的mediated pass-through相当于软件实现的SR-IOV。将GPU直通给多
 ![GPUVirtual3](https://01.org/sites/default/files/xengt3.png)  
  
 
-参考： 
-1. xenGT文档
-https://01.org/zh/xen/blogs/srclarkx/2013/graphics-virtualization-xengt?langredirect=1  
-http://lists.xenproject.org/archives/html/xen-devel/2013-09/pdf4ObWP0JtcP.pdf  
-https://intel.lanyonevents.com/sz14/connect/fileDownload/session/7BFF04208A5CA171919FFCA4AFF8A8C7/SZ14_SFTS008_100_CHIf.pdf
-2. KVMGT文档
-http://www.linux-kvm.org/wiki/images/f/f3/01x08b-KVMGT-a.pdf
+参考：   
+1. xenGT文档   
+https://01.org/zh/xen/blogs/srclarkx/2013/graphics-virtualization-xengt?langredirect=1    
+http://lists.xenproject.org/archives/html/xen-devel/2013-09/pdf4ObWP0JtcP.pdf    
+https://intel.lanyonevents.com/sz14/connect/fileDownload/session/7BFF04208A5CA171919FFCA4AFF8A8C7/SZ14_SFTS008_100_CHIf.pdf  
+2. KVMGT文档   
+http://www.linux-kvm.org/wiki/images/f/f3/01x08b-KVMGT-a.pdf   
