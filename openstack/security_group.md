@@ -14,5 +14,5 @@ nova.conf有一个allow_same_net_traffic 参数，若设置为true，同一subne
 
 
 参考：  
-RDO网站上将openstack网络细节的，讲的不错：  
+RDO网站上将openstack网络细节的，讲的不错。  
 https://openstack.redhat.com/Networking_in_too_much_detail   
