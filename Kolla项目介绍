@@ -38,3 +38,4 @@ kolla项目是TripleO项目的一部分，聚焦于使用docker容器部署opens
 ### 参考  
 1. https://github.com/stackforge/kolla/blob/master/specs/containerize-openstack.rst  
 2. https://github.com/stackforge/kolla  
+3. https://github.com/sdake/compute-upgrade
