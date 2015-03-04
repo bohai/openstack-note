@@ -53,7 +53,7 @@ Docker提供了对linux容器的抽象，并提供了一种镜像格式。通过
 <img src="https://allthingsopendotcom.files.wordpress.com/2014/10/screen-shot-2014-10-22-at-10-34-25-am.png" width = "600" height = "300" alt="kubernetes" />    
 kubernetes是开源的容器集群管理平台。它使用master/minion结构提供给了容器的调度能力。开发者可以使用声明式语法描述容器间关系，并让集群管理进行调度。
 <img src="https://allthingsopendotcom.files.wordpress.com/2014/10/screen-shot-2014-10-22-at-10-35-39-am.png" width = "600" height = "300" alt="atomic" />  
-Atomic项目提供给了一个安全、稳定、高性能的容器运行环境。Atomic包含了kubernetes和docker，并运行用户使用新的软件更新机制ostree。
+Atomic项目提供给了一个安全、稳定、高性能的容器运行环境。Atomic包含了kubernetes和docker，并运行用户使用新的软件更新机制ostree。   
 <img src="https://allthingsopendotcom.files.wordpress.com/2014/10/screen-shot-2014-10-23-at-2-20-49-pm.png" width = "600" height = "300" alt="atomic" />   
 将以上三者结合起来的方案就像上图。openstack开发者使用自己熟悉的环境进行开发（linux/vagrant/libvirt),然后向仓库提交服务镜像。运维人员将kubernetes配置导入生命周期管理工具，然后启动pods和services。容器镜像会被下载到本地并部署这些openstack服务。由于服务是隔离的，我们可以在单台机器上最大化密度地部署openstack服务。除此之外还有其他优点，比如回滚、部署、更新的速度等。
 
