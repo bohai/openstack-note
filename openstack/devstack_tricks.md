@@ -40,14 +40,15 @@
    解决：执行setenforce 0  
 13. 关闭devstack的所有screen   
    解决：screen -wipe
-14. 查看mysql数据库
+14. 查看mysql数据库  
+<pre><code>
    # mysql -u root -p
    mysql> CREATE DATABASE nova;
    mysql> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' \
    IDENTIFIED BY 'NOVA_DBPASS';
    mysql> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' \
    IDENTIFIED BY 'NOVA_DBPASS';
-
+</code></pre>
 
 
 
