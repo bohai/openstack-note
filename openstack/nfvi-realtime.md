@@ -38,8 +38,8 @@
   + 前提是配置了”hw:cpu_policy"为"dedicated"。
   + kvm主要做了配置：1. QEMU和guest RAM lock 2. 所有的vCPUs使用固定的实时调度策略。
 + flavor中增加hw:cpu_realtime_mask=^0-1参数控制emulator使用的cpu
-  + 如果不配置，默认会使用vCPU0。
-  + 将某些cpu专门分配给emulator使用，且使用非实时调度策略。（默认和vCPUs共用pCPU）。
+  + 这个必须配置的。
+  + 将某些vCPUs分配给emulator使用，且使用非实时调度策略。其他的vCPU会使用实时调度策略。（默认虚拟机会使用所有vCPU给emulator用）。
   + 更进一步的在主机上固定一些pCPU供emulator使用，在P版本才完成[URL](https://blueprints.launchpad.net/nova/+spec/libvirt-emulator-threads-policy)。
 
 ### 例子
