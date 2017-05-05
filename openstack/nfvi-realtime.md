@@ -44,7 +44,15 @@
 
 ### 例子
 
-```
+```shell
+# 如果不配置cpu绑定会出现以下错误。
+[stack@localhost devstack]$ openstack server create --flavor realtime  --image  cirros-0.3.4-x86_64-uec realtime
+Cannot set realtime policy in a non dedicated cpu pinning policy (HTTP 400) (Request-ID: req-95b9c93c-cbac-4f1b-bf37-4942afa53860)
+
+# 如果不配置配置cpu mask会出现以下错误
+[stack@localhost devstack]$ openstack server create --flavor realtime  --image  cirros-0.3.4-x86_64-uec realtime
+Realtime policy needs vCPU(s) mask configured with at least 1 RT vCPU and 1 ordinary vCPU. See hw:cpu_realtime_mask or hw_cpu_realtime_mask (HTTP 400) (Request-ID: req-0f09c25a-9f56-4baf-9519-71d5b3abae29)
+
 openstack flavor create --ram 1024 --vcpu 4 --disk 1 realtime4
 openstack flavor set --property hw:cpu_realtime=yes realtime4
 openstack flavor set --property hw:cpu_policy=dedicated realtime4
