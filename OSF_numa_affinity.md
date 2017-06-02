@@ -2,7 +2,6 @@
 NUMA全称是Non-Uniform Memory Access。在NUMA中每个CPU都会分配Local memory，CPU和local memory组成NUMA node。
 CPU访问local memory，速度会很快；而访问其他node上的memory（这个称作访问remote memory）速度会比较慢，延迟无法预知。
 
-NUMA主要解决
 
 # 什么是vNUMA
 
